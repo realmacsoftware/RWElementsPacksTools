@@ -586,13 +586,69 @@ export async function buildProperties(config) {
   console.log(`[properties] Build complete`);
 }
 
+/**
+ * Starts watch mode for continuous building of properties
+ * @param {Object} config - Configuration object
+ * @param {string} config.packsDir - Absolute path to the packs directory
+ */
+export async function startWatch(config) {
+  const packsDir = config.packsDir;
+  
+  console.log('[properties] Watch mode enabled. Listening for changes...');
+
+  let building = false;
+  const rebuild = async () => {
+    if (building) return;
+    building = true;
+    try {
+      await buildProperties(config);
+    } catch (err) {
+      console.error('[properties] Build error:', err.message || err);
+    } finally {
+      building = false;
+    }
+  };
+
+  // Watch the packs directory for properties.config.json changes
+  try {
+    const { default: fsModule } = await import('fs');
+    const watcher = fsModule.watch(packsDir, { recursive: true }, (eventType, filename) => {
+      if (!filename) return;
+      const lower = filename.toLowerCase();
+      if (lower.endsWith('properties.config.json')) {
+        console.log(`[properties] Change detected: ${filename} (${eventType})`);
+        rebuild();
+      }
+    });
+
+    watcher.on('error', (err) => {
+      console.error('[properties] Watcher error:', err);
+    });
+  } catch (err) {
+    console.warn(`[properties] Could not watch ${packsDir}: ${err.message}`);
+  }
+
+  await rebuild();
+}
+
 // Allow direct execution for backwards compatibility
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   // Direct execution: use default path
+  const WATCH = process.argv.includes('--watch') || process.argv.includes('-w');
   const defaultPacksDir = path.resolve(__dirname, "..", "packs");
-  buildProperties({ packsDir: defaultPacksDir }).catch((err) => {
-    console.error("[properties] Build failed:", err);
-    process.exit(1);
-  });
+  const config = { packsDir: defaultPacksDir };
+  
+  (async () => {
+    try {
+      if (WATCH) {
+        await startWatch(config);
+      } else {
+        await buildProperties(config);
+      }
+    } catch (err) {
+      console.error("[properties] Build failed:", err);
+      process.exit(1);
+    }
+  })();
 }
 

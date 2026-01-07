@@ -14,7 +14,7 @@
  * 
  * Options:
  *   --packs <dir>    Override the packs directory
- *   --watch, -w      Watch for changes (hooks only)
+ *   --watch, -w      Watch for changes
  *   --help, -h       Show this help message
  *   --version, -v    Show version number
  */
@@ -77,7 +77,7 @@ Commands:
 
 Options:
   --packs <dir>    Override the packs directory (default: ./packs)
-  --watch, -w      Watch for changes (hooks only)
+  --watch, -w      Watch for changes
   --help, -h       Show this help message
   --version, -v    Show version number
 
@@ -93,6 +93,8 @@ Examples:
   rw-build all                          Build everything
   rw-build properties                   Build properties only
   rw-build hooks --watch                Build and watch hooks
+  rw-build properties --watch           Build and watch properties
+  rw-build all --watch                  Build and watch both hooks and properties
   rw-build all --packs ./my-elements    Build with custom packs directory
 `);
 }
@@ -114,12 +116,17 @@ async function showVersion() {
 /**
  * Run the properties build
  */
-async function buildProperties(config) {
-  console.log(`[rw-build] Building properties...`);
+async function buildProperties(config, watch = false) {
+  console.log(`[rw-build] Building properties${watch ? ' (watch mode)' : ''}...`);
   console.log(`[rw-build] Packs directory: ${config.packsDir}`);
   
   const buildModule = await import('../build-properties.js');
-  await buildModule.buildProperties(config);
+  
+  if (watch) {
+    await buildModule.startWatch(config);
+  } else {
+    await buildModule.buildProperties(config);
+  }
 }
 
 /**
@@ -167,7 +174,7 @@ async function main() {
   try {
     switch (args.command) {
       case 'properties':
-        await buildProperties(config);
+        await buildProperties(config, args.watch);
         break;
         
       case 'hooks':
@@ -175,10 +182,16 @@ async function main() {
         break;
         
       case 'all':
-        await buildProperties(config);
         if (args.watch) {
-          await buildHooks(config, true);
+          // In watch mode, start both watchers concurrently
+          // They will both run indefinitely, watching for changes
+          await Promise.all([
+            buildProperties(config, true),
+            buildHooks(config, true),
+          ]);
         } else {
+          // One-time build: run sequentially
+          await buildProperties(config, false);
           await buildHooks(config, false);
         }
         break;
