@@ -14,6 +14,6 @@ export * as Properties from './properties/index.js';
 export { resolveConfig, getPackagePath } from './config.js';
 
 // Export build functions for programmatic use
-export { buildProperties } from './build-properties.js';
+export { buildProperties, startWatch as watchProperties } from './build-properties.js';
 export { buildAll as buildHooks, startWatch as watchHooks } from './build-shared-hooks.js';
 

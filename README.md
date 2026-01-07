@@ -20,8 +20,10 @@ npx rw-build properties
 # Build hooks only
 npx rw-build hooks
 
-# Watch hooks for changes
-npx rw-build hooks --watch
+# Watch for changes
+npx rw-build all --watch        # Watch both properties and hooks
+npx rw-build properties --watch # Watch properties only
+npx rw-build hooks --watch      # Watch hooks only
 ```
 
 Add to your `package.json`:
@@ -32,7 +34,7 @@ Add to your `package.json`:
     "build": "rw-build all",
     "build:properties": "rw-build properties",
     "build:hooks": "rw-build hooks",
-    "dev": "rw-build hooks --watch"
+    "dev": "rw-build all --watch"
   }
 }
 ```
@@ -948,8 +950,10 @@ rw-build properties
 # Build hooks only
 rw-build hooks
 
-# Watch hooks for changes
-rw-build hooks --watch
+# Watch for changes
+rw-build all --watch         # Watch both properties and hooks
+rw-build properties --watch  # Watch properties only
+rw-build hooks --watch       # Watch hooks only
 
 # Build with custom packs directory
 rw-build all --packs ./my-elements
@@ -968,7 +972,7 @@ Add these to your `package.json`:
     "build": "rw-build all",
     "build:properties": "rw-build properties",
     "build:hooks": "rw-build hooks",
-    "dev": "rw-build hooks --watch"
+    "dev": "rw-build all --watch"
   }
 }
 ```
@@ -982,9 +986,13 @@ npm run dev
 
 ### Development Mode Details
 
-The `--watch` flag monitors:
-- `shared-hooks/` directory for shared hook changes
-- `packs/` directory for `hooks.source.js` changes
+The `--watch` flag monitors for changes and automatically rebuilds:
+
+| Command | Watches |
+|---------|---------|
+| `rw-build all --watch` | Both properties and hooks (runs watchers concurrently) |
+| `rw-build properties --watch` | `properties.config.json` files in `packs/` |
+| `rw-build hooks --watch` | `hooks.source.js` files in `packs/` and `shared-hooks/*.js` |
 
 ### Troubleshooting
 
@@ -1085,6 +1093,7 @@ You can also use rw-element-tools programmatically in your own build scripts:
 import { 
   buildProperties, 
   buildHooks, 
+  watchProperties,
   watchHooks,
   resolveConfig,
   Controls,
@@ -1102,8 +1111,15 @@ await buildProperties(config);
 // Build hooks
 await buildHooks(config);
 
-// Or watch for changes
-await watchHooks(config);
+// Watch for changes
+await watchProperties(config);  // Watch properties only
+await watchHooks(config);       // Watch hooks only
+
+// Or watch both concurrently
+await Promise.all([
+  watchProperties(config),
+  watchHooks(config)
+]);
 ```
 
 ### Accessing Controls and Properties
