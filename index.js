@@ -1,9 +1,9 @@
 /**
- * rw-element-tools
+ * rw-elements-tools
  * 
  * Build tools for RapidWeaver element packs.
  * 
- * @module rw-element-tools
+ * @module rw-elements-tools
  */
 
 // Re-export controls and properties for programmatic access

@@ -1,6 +1,6 @@
-# Contributing to rw-element-tools
+# Contributing to rw-elements-tools
 
-Thank you for your interest in contributing to rw-element-tools! This guide will help you get started.
+Thank you for your interest in contributing to rw-elements-tools! This guide will help you get started.
 
 ## Getting Started
 
@@ -18,7 +18,7 @@ Thank you for your interest in contributing to rw-element-tools! This guide will
 ## Project Structure
 
 ```
-rw-element-tools/
+rw-elements-tools/
 ├── bin/cli.js           # CLI entry point
 ├── build-properties.js  # Properties build script
 ├── build-shared-hooks.js # Shared hooks build script

@@ -1,5 +1,5 @@
 {
-  "name": "rw-element-tools",
+  "name": "rw-elements-tools",
   "version": "1.2.0",
   "description": "Build tools for RapidWeaver Elements packs - generates properties.json and hooks.js files",
   "author": "Elements Platform",
@@ -50,6 +50,6 @@
     "lodash": "^4.17.21"
   },
   "scripts": {
-    "prepublishOnly": "echo 'Ready to publish rw-element-tools'"
+    "prepublishOnly": "echo 'Ready to publish rw-elements-tools'"
   }
 }

@@ -1,4 +1,4 @@
-# rw-element-tools
+# rw-elements-tools
 
 **The official build toolkit for creating RapidWeaver Elements**
 
@@ -6,9 +6,9 @@ Build powerful, reusable web components for RapidWeaver without the complexity. 
 
 ---
 
-## What is rw-element-tools?
+## What is rw-elements-tools?
 
-rw-element-tools is a development toolkit that simplifies the process of creating custom elements for [RapidWeaver](https://www.realmacsoftware.com/rapidweaver/), the popular Mac website builder. It provides:
+rw-elements-tools is a development toolkit that simplifies the process of creating custom elements for [RapidWeaver](https://www.realmacsoftware.com/rapidweaver/), the popular Mac website builder. It provides:
 
 - **A powerful CLI** for building and watching your element files
 - **Ready-to-use controls** for common UI patterns (colors, spacing, typography, and more)
@@ -22,9 +22,9 @@ rw-element-tools is a development toolkit that simplifies the process of creatin
 - **Developers** looking to extend RapidWeaver's capabilities
 - **Anyone** who wants to contribute elements to the RapidWeaver ecosystem
 
-## Why use rw-element-tools?
+## Why use rw-elements-tools?
 
-| Without rw-element-tools | With rw-element-tools |
+| Without rw-elements-tools | With rw-elements-tools |
 |--------------------------|----------------------|
 | Manually write complex JSON config files | Use intuitive JavaScript configuration |
 | Copy/paste utility code between elements | Import from a shared library |
@@ -36,7 +36,7 @@ rw-element-tools is a development toolkit that simplifies the process of creatin
 ## Installation
 
 ```bash
-npm install --save-dev rw-element-tools
+npm install --save-dev rw-elements-tools
 ```
 
 ## Quick Start
@@ -49,7 +49,7 @@ Create a new directory for your element pack project and initialize it:
 mkdir my-element-pack
 cd my-element-pack
 npm init -y
-npm install --save-dev rw-element-tools
+npm install --save-dev rw-elements-tools
 ```
 
 ### Step 2: Create the Required Directory Structure
@@ -197,7 +197,7 @@ RW_PACKS_DIR=./my-elements npm run build
 
 ```json
 {
-  "rw-element-tools": {
+  "rw-elements-tools": {
     "packsDir": "./my-elements"
   }
 }
@@ -206,7 +206,7 @@ RW_PACKS_DIR=./my-elements npm run build
 ### 4. Config File
 
 ```javascript
-// rw-element-tools.config.js
+// rw-elements-tools.config.js
 export default {
   packsDir: './my-elements'
 }
@@ -269,7 +269,7 @@ properties.config.json     Controls (controls/)
 ## Directory Structure
 
 ```
-rw-element-tools/
+rw-elements-tools/
 ├── bin/
 │   └── cli.js               # CLI entry point (rw-build command)
 ├── build-properties.js      # Properties build script
@@ -1226,7 +1226,7 @@ The `--watch` flag monitors for changes and automatically rebuilds:
 
 ## Programmatic Usage
 
-You can also use rw-element-tools programmatically in your own build scripts:
+You can also use rw-elements-tools programmatically in your own build scripts:
 
 ```javascript
 import { 
@@ -1237,7 +1237,7 @@ import {
   resolveConfig,
   Controls,
   Properties 
-} from 'rw-element-tools';
+} from 'rw-elements-tools';
 
 // Resolve configuration from all sources
 const config = await resolveConfig({
@@ -1264,7 +1264,7 @@ await Promise.all([
 ### Accessing Controls and Properties
 
 ```javascript
-import { Controls, Properties } from 'rw-element-tools';
+import { Controls, Properties } from 'rw-elements-tools';
 
 // Use a control definition
 console.log(Controls.Spacing);
@@ -1278,7 +1278,7 @@ console.log(Properties.Slider);
 ### Custom Build Pipeline
 
 ```javascript
-import { resolveConfig, buildProperties, buildHooks } from 'rw-element-tools';
+import { resolveConfig, buildProperties, buildHooks } from 'rw-elements-tools';
 
 async function customBuild() {
   const config = await resolveConfig();

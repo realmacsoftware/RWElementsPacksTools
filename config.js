@@ -1,11 +1,11 @@
 /**
- * Configuration Resolver for rw-element-tools
+ * Configuration Resolver for rw-elements-tools
  * 
  * Resolves configuration from multiple sources with the following priority:
  * 1. CLI arguments (highest priority)
  * 2. Environment variables
- * 3. package.json "rw-element-tools" field
- * 4. rw-element-tools.config.js file
+ * 3. package.json "rw-elements-tools" field
+ * 4. rw-elements-tools.config.js file
  * 5. Default values (lowest priority)
  */
 
@@ -58,14 +58,14 @@ function readPackageJson(projectRoot) {
 }
 
 /**
- * Loads the rw-element-tools.config.js file if it exists
+ * Loads the rw-elements-tools.config.js file if it exists
  * @param {string} projectRoot - The project root directory
  * @returns {Promise<object|null>} The config file contents or null
  */
 async function loadConfigFile(projectRoot) {
   const configPaths = [
-    path.join(projectRoot, 'rw-element-tools.config.js'),
-    path.join(projectRoot, 'rw-element-tools.config.mjs'),
+    path.join(projectRoot, 'rw-elements-tools.config.js'),
+    path.join(projectRoot, 'rw-elements-tools.config.mjs'),
   ];
   
   for (const configPath of configPaths) {
@@ -75,7 +75,7 @@ async function loadConfigFile(projectRoot) {
         const configModule = await import(configUrl);
         return configModule.default || configModule;
       } catch (err) {
-        console.warn(`[rw-element-tools] Warning: Failed to load config file ${configPath}: ${err.message}`);
+        console.warn(`[rw-elements-tools] Warning: Failed to load config file ${configPath}: ${err.message}`);
       }
     }
   }
@@ -98,16 +98,16 @@ export async function resolveConfig(cliOptions = {}) {
   
   // 5. Default values (already set above)
   
-  // 4. Config file (rw-element-tools.config.js)
+  // 4. Config file (rw-elements-tools.config.js)
   if (configFile) {
     if (configFile.packsDir) {
       config.packsDir = configFile.packsDir;
     }
   }
   
-  // 3. package.json "rw-element-tools" field
-  if (packageJson && packageJson['rw-element-tools']) {
-    const pkgConfig = packageJson['rw-element-tools'];
+  // 3. package.json "rw-elements-tools" field
+  if (packageJson && packageJson['rw-elements-tools']) {
+    const pkgConfig = packageJson['rw-elements-tools'];
     if (pkgConfig.packsDir) {
       config.packsDir = pkgConfig.packsDir;
     }

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * rw-element-tools CLI
+ * rw-elements-tools CLI
  * 
  * Build tools for RapidWeaver element packs
  * 
@@ -65,7 +65,7 @@ function parseArgs(args) {
  */
 function showHelp() {
   console.log(`
-rw-element-tools - Build tools for RapidWeaver element packs
+rw-elements-tools - Build tools for RapidWeaver element packs
 
 Usage:
   rw-build <command> [options]
@@ -85,8 +85,8 @@ Configuration:
   The packs directory can be configured via (in priority order):
   1. CLI argument: --packs ./my-elements
   2. Environment variable: RW_PACKS_DIR=./my-elements
-  3. package.json: { "rw-element-tools": { "packsDir": "./my-elements" } }
-  4. Config file: rw-element-tools.config.js
+  3. package.json: { "rw-elements-tools": { "packsDir": "./my-elements" } }
+  4. Config file: rw-elements-tools.config.js
   5. Default: ./packs
 
 Examples:
@@ -107,9 +107,9 @@ async function showVersion() {
     const packageJsonPath = path.join(packageRoot, 'package.json');
     const { default: fs } = await import('fs');
     const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-    console.log(`rw-element-tools v${pkg.version}`);
+    console.log(`rw-elements-tools v${pkg.version}`);
   } catch {
-    console.log('rw-element-tools (version unknown)');
+    console.log('rw-elements-tools (version unknown)');
   }
 }
 
