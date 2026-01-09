@@ -7,8 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.2.0] - 2026-01-09
 
+### Changed
+- **BREAKING**: Package renamed from `rw-element-tools` to `rw-elements-tools`
+
+### Fixed
+- Default packs directory now resolves relative to current working directory instead of package location
+
 ### Added
 - Subfolder support for `shared-hooks/` directory
+- LICENSE file (MIT)
+- CHANGELOG.md
+- CONTRIBUTING.md
+- .npmignore for npm publish control
 - New shared hook files split from multi-method files:
   - `getAlpineTransitionAttributesMobile.js`
   - `getAlpineTransitionAttributesDesktop.js`

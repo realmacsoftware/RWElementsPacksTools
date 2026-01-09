@@ -306,7 +306,7 @@ function processNestedGlobalControls(control) {
 
 /**
  * Processes 'use' key references in a property, replacing them with
- * the referenced Property definition from src/properties/.
+ * the referenced Property definition from properties/.
  *
  * @param {Object|Array} property - The property object or array to process.
  * @returns {Object|Array} The property with 'use' keys resolved.
