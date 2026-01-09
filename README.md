@@ -10,6 +10,112 @@ npm install --save-dev rw-element-tools
 
 ## Quick Start
 
+### Step 1: Set Up Your Project
+
+Create a new directory for your element pack project and initialize it:
+
+```bash
+mkdir my-element-pack
+cd my-element-pack
+npm init -y
+npm install --save-dev rw-element-tools
+```
+
+### Step 2: Create the Required Directory Structure
+
+Your project needs a `packs` folder containing your element pack(s). Each pack follows this structure:
+
+```
+my-element-pack/
+├── package.json
+├── packs/                                    # Default packs directory
+│   └── MyPack.elementsdevpack/               # Your pack (must end in .elementsdevpack)
+│       └── components/
+│           └── com.yourcompany.elementname/  # Component folder (must start with com.)
+│               ├── properties.config.json    # Source config (you edit this)
+│               ├── properties.json           # Generated output (don't edit)
+│               ├── hooks.source.js           # Source hooks (you edit this)
+│               └── hooks.js                  # Generated output (don't edit)
+└── node_modules/
+```
+
+**Key naming conventions:**
+- Pack folders must end with `.elementsdevpack`
+- Component folders must start with `com.` (e.g., `com.mycompany.button`)
+- Source files: `properties.config.json` and `hooks.source.js`
+- Generated files: `properties.json` and `hooks.js`
+
+### Step 3: Create Your First Element
+
+Create the folder structure for your first element:
+
+```bash
+mkdir -p packs/MyPack.elementsdevpack/components/com.mycompany.button
+```
+
+Create a minimal `properties.config.json`:
+
+```json
+{
+  "groups": [
+    {
+      "title": "Content",
+      "icon": "text.alignleft",
+      "properties": [
+        {
+          "title": "Button Text",
+          "id": "buttonText",
+          "text": {
+            "default": "Click Me"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+Create a minimal `hooks.source.js`:
+
+```javascript
+function transformHook(element, renderingContext) {
+    return element;
+}
+
+exports.transformHook = transformHook;
+```
+
+### Step 4: Add Build Scripts
+
+Add these scripts to your `package.json`:
+
+```json
+{
+  "scripts": {
+    "build": "rw-build all",
+    "build:properties": "rw-build properties",
+    "build:hooks": "rw-build hooks",
+    "dev": "rw-build all --watch"
+  }
+}
+```
+
+### Step 5: Build Your Elements
+
+```bash
+# One-time build
+npm run build
+
+# Or watch for changes during development
+npm run dev
+```
+
+That's it! The build tool will generate `properties.json` and `hooks.js` files in each component folder.
+
+---
+
+### Build Commands Reference
+
 ```bash
 # Build all properties and hooks
 npx rw-build all
@@ -24,19 +130,6 @@ npx rw-build hooks
 npx rw-build all --watch        # Watch both properties and hooks
 npx rw-build properties --watch # Watch properties only
 npx rw-build hooks --watch      # Watch hooks only
-```
-
-Add to your `package.json`:
-
-```json
-{
-  "scripts": {
-    "build": "rw-build all",
-    "build:properties": "rw-build properties",
-    "build:hooks": "rw-build hooks",
-    "dev": "rw-build all --watch"
-  }
-}
 ```
 
 ## Configuration
