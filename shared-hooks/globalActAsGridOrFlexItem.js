@@ -63,3 +63,4 @@ const globalActAsGridOrFlexItem = (app) => {
 
   return classnames(classes).toString();
 }
+

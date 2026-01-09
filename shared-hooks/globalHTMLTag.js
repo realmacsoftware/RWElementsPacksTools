@@ -14,3 +14,4 @@ const globalHTMLTag = (app, fallback = "div") => {
 
     return globalHTMLTag || fallback;
 };
+

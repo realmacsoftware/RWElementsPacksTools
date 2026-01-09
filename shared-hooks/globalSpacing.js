@@ -11,25 +11,3 @@ const globalSpacing = (app) => {
 
   return classnames([margin, padding]).toString();
 }
-
-const globalSpacingPadding = (app) => {
-  const {
-    globalSpacingEnabled: enabled,
-    globalPadding: padding,
-  } = app.props;
-
-  return enabled == 'false'
-    ? false
-    : padding;
-}
-
-const globalSpacingMargin = (app) => {
-  const {
-    globalSpacingEnabled: enabled,
-    globalMargin: margin,
-  } = app.props;
-
-  return enabled == 'false'
-    ? false
-    : margin;
-}
