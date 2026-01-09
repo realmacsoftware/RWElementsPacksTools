@@ -231,11 +231,12 @@ export async function startWatch(config) {
 
 // Allow direct execution for backwards compatibility
 if (process.argv[1] === __filename) {
+  // Direct execution: use ./packs relative to current working directory
   const WATCH = process.argv.includes('--watch') || process.argv.includes('-w');
-  const defaultPacksDir = path.resolve(__dirname, '..', 'packs');
+  const defaultPacksDir = path.resolve(process.cwd(), 'packs');
   const config = { 
     packsDir: defaultPacksDir,
-    projectRoot: path.resolve(__dirname, '..')
+    projectRoot: process.cwd()
   };
   
   (async () => {

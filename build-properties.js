@@ -633,9 +633,9 @@ export async function startWatch(config) {
 
 // Allow direct execution for backwards compatibility
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  // Direct execution: use default path
+  // Direct execution: use ./packs relative to current working directory
   const WATCH = process.argv.includes('--watch') || process.argv.includes('-w');
-  const defaultPacksDir = path.resolve(__dirname, "..", "packs");
+  const defaultPacksDir = path.resolve(process.cwd(), "packs");
   const config = { packsDir: defaultPacksDir };
   
   (async () => {
