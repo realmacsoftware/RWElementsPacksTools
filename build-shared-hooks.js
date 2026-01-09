@@ -2,7 +2,7 @@
 /**
  * Shared Hooks Builder (with dead code elimination)
  *
- * - Reads shared hooks from src/shared-hooks/*.js (alphabetical)
+ * - Reads shared hooks from shared-hooks/ and subfolders (alphabetical)
  * - For each component hooks.source.js in packs/, concatenates shared + component
  * - Uses esbuild DCE to remove unused code (anything not reachable from transformHook)
  * - Output: plain static JS with const/let preserved
@@ -30,21 +30,37 @@ function getSharedDir() {
 }
 
 /**
- * Lists all shared hook files
- * @returns {Promise<string[]>} Array of absolute paths to shared hook files
+ * Recursively lists all shared hook files in shared-hooks/ and subfolders
+ * @returns {Promise<string[]>} Array of absolute paths to shared hook files (sorted alphabetically)
  */
 async function listSharedFiles() {
   const sharedDir = getSharedDir();
-  try {
-    const entries = await fs.promises.readdir(sharedDir, { withFileTypes: true });
-    return entries
-      .filter((e) => e.isFile() && e.name.endsWith('.js'))
-      .map((e) => path.join(sharedDir, e.name))
-      .sort();
-  } catch (err) {
-    console.error(`[hooks] Failed to read shared dir: ${err.message}`);
-    return [];
+  const results = [];
+  
+  async function walk(dir) {
+    let entries;
+    try {
+      entries = await fs.promises.readdir(dir, { withFileTypes: true });
+    } catch (err) {
+      if (dir === sharedDir) {
+        console.error(`[hooks] Failed to read shared dir: ${err.message}`);
+      }
+      return;
+    }
+    
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (entry.name.startsWith('.')) continue;
+        await walk(fullPath);
+      } else if (entry.isFile() && entry.name.endsWith('.js')) {
+        results.push(fullPath);
+      }
+    }
   }
+  
+  await walk(sharedDir);
+  return results.sort();
 }
 
 /**
