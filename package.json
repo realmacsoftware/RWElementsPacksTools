@@ -1,6 +1,6 @@
 {
   "name": "rw-element-tools",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Build tools for RapidWeaver Elements packs - generates properties.json and hooks.js files",
   "author": "Elements Platform",
   "license": "MIT",
