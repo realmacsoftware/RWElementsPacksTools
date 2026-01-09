@@ -270,11 +270,19 @@ rw-element-tools/
 │   ├── FontWeight.js        # Font weight options
 │   └── ...                  # Other property definitions
 └── shared-hooks/            # Shared JavaScript hook functions
-    ├── aaaHelpers.js        # Core helper utilities (loaded first)
-    ├── classnames.js        # CSS class manipulation utilities
-    ├── globalBackground.js  # Background processing functions
-    ├── globalSpacing.js     # Spacing class generation
-    └── ...                  # Other shared hook modules
+    ├── animations/          # Animation and reveal functions
+    ├── background/          # Background processing functions
+    ├── borders/             # Border and outline functions
+    ├── core/                # Essential utilities (classnames, etc.)
+    ├── effects/             # Visual effects (opacity, filters)
+    ├── interactive/         # Link and filter functions
+    ├── layout/              # Layout and positioning
+    ├── navigation/          # Navigation component styles
+    ├── sizing/              # Dimensions and aspect ratios
+    ├── spacing/             # Margin and padding functions
+    ├── transforms/          # CSS transform functions
+    ├── transitions/         # CSS and Alpine transitions
+    └── typography/          # Text and font style functions
 ```
 
 ---
@@ -347,7 +355,7 @@ The shared hooks build system combines reusable JavaScript utility functions wit
 ### Overview
 
 ```
-src/shared-hooks/*.js          Component hooks.source.js
+shared-hooks/**/*.js           Component hooks.source.js
         │                              │
         ▼                              ▼
     ┌─────────────────────────────────────────┐
@@ -366,21 +374,30 @@ src/shared-hooks/*.js          Component hooks.source.js
 ### How It Works
 
 1. **Find all source files**: Scans `packs/` for `hooks.source.js` files
-2. **Read shared hooks**: Loads all `src/shared-hooks/*.js` files alphabetically
+2. **Read shared hooks**: Loads all `.js` files from `shared-hooks/` and its subfolders
 3. **Concatenate**: Combines shared code + component code
 4. **Dead code elimination**: Uses esbuild to remove unused functions
 5. **Output**: Writes optimized `hooks.js` to each component
 
-### Shared Hook Files
+### Shared Hook Organization
 
-Shared hooks in `src/shared-hooks/` are loaded alphabetically. Name files with prefixes to control load order:
+Shared hooks are organized into category subfolders:
 
-| File Pattern | Purpose |
-|--------------|---------|
-| `aaaHelpers.js` | Core utilities (loaded first) |
-| `classnames.js` | CSS class manipulation |
-| `global*.js` | Feature-specific helpers |
-| Other `.js` | Additional utilities |
+| Folder | Purpose | Example Functions |
+|--------|---------|-------------------|
+| `core/` | Essential utilities | `classnames`, `getHoverPrefix`, `globalHTMLTag` |
+| `layout/` | Layout and positioning | `globalLayout`, `globalActAsGridOrFlexItem` |
+| `sizing/` | Dimensions and aspect ratios | `globalSizing`, `aspectRatioClasses` |
+| `spacing/` | Margin and padding | `globalSpacing`, `globalSpacingMargin` |
+| `background/` | Background styles | `globalBackground`, `globalBgImageFetchPriority` |
+| `borders/` | Borders and outlines | `globalBorders`, `globalOutline` |
+| `effects/` | Visual effects | `globalEffects`, `globalFilters`, `globalOverlay` |
+| `typography/` | Text and font styles | `globalTextFontsAndTextStyles`, `globalHeadingColor` |
+| `transforms/` | CSS transforms | `globalTransforms` |
+| `transitions/` | CSS/Alpine transitions | `globalTransitions`, `getAlpineTransitionAttributesMobile` |
+| `animations/` | Animations and reveals | `globalAnimations`, `globalReveal` |
+| `navigation/` | Navigation styles | `globalNavItems`, `globalMenuItem` |
+| `interactive/` | Links and filters | `globalLink`, `globalFilter` |
 
 ### Component Hook Files
 
@@ -419,8 +436,7 @@ npm run build:hooks
 # Watch for changes
 npm run build:hooks:watch
 
-# Or from src/
-cd src
+# Using npm scripts
 npm run build:hooks
 ```
 
@@ -533,7 +549,7 @@ Properties are reusable value definitions (like enums or option lists) that can 
 ### Property Structure
 
 ```javascript
-// src/properties/FontWeight.js
+// properties/FontWeight.js
 const FontWeight = {
   default: "normal",
   items: [
@@ -693,7 +709,7 @@ Properties without `globalControl` are passed through with `use` resolution:
 Create a new file in the appropriate `controls/` subdirectory:
 
 ```javascript
-// src/controls/effects/NewEffect.js
+// controls/Effects/NewEffect.js
 
 const NewEffect = {
   title: "Effect Intensity",
@@ -713,7 +729,7 @@ export default NewEffect;
 
 ### Step 2: Export from index.js
 
-Add the export to `src/controls/index.js`:
+Add the export to `controls/index.js`:
 
 ```javascript
 // In the appropriate section
@@ -742,7 +758,7 @@ npm run build
 For controls with multiple UI elements:
 
 ```javascript
-// src/controls/interactive/CustomButton.js
+// controls/interactive/CustomButton.js
 
 const CustomButton = [
   {
@@ -776,7 +792,7 @@ export default CustomButton;
 ### Creating Controls with Nested globalControls
 
 ```javascript
-// src/controls/layout/CustomLayout.js
+// controls/Layout/CustomLayout.js
 
 const CustomLayout = [
   {
@@ -807,7 +823,7 @@ export default CustomLayout;
 ### Step 1: Create the Property File
 
 ```javascript
-// src/properties/CustomSizes.js
+// properties/CustomSizes.js
 
 const CustomSizes = {
   default: "md",
@@ -826,7 +842,7 @@ export default CustomSizes;
 ### Step 2: Export from index.js
 
 ```javascript
-// src/properties/index.js
+// properties/index.js
 export { default as CustomSizes } from "./CustomSizes.js";
 ```
 
@@ -860,28 +876,25 @@ Or use directly in config files:
 
 ### Step 1: Create the Shared Hook File
 
-Create a new file in `src/shared-hooks/`:
+Create a new file in the appropriate `shared-hooks/` subfolder:
 
 ```javascript
-// src/shared-hooks/customHelper.js
+// shared-hooks/effects/customEffect.js
 
 /**
- * Generate custom CSS classes based on element properties
- * @param {Object} element - The element object
+ * Generate custom effect classes based on element properties
+ * @param {Object} rw - The RapidWeaver element object
  * @returns {string} CSS class string
  */
-function customHelper(element) {
-    const classes = [];
+function customEffect(rw) {
+    const { customEnabled, customIntensity } = rw.props;
     
-    if (element.properties.customEnabled) {
-        classes.push('custom-enabled');
-        
-        if (element.properties.customSize) {
-            classes.push(`custom-size-${element.properties.customSize}`);
-        }
-    }
+    if (!customEnabled) return '';
     
-    return classes.join(' ');
+    return classnames([
+        'custom-effect',
+        customIntensity && `intensity-${customIntensity}`
+    ]).toString();
 }
 ```
 
@@ -893,11 +906,11 @@ Reference the function in any `hooks.source.js`:
 // packs/MyPack.elementsdevpack/components/com.example.mycomponent/hooks.source.js
 
 function transformHook(rw) {
-    // customHelper is available from shared hooks
-    const customClasses = customHelper(rw);
+    // customEffect is available from shared hooks (no import needed)
+    const effectClasses = customEffect(rw);
     
     return {
-        customClasses
+        effectClasses
     };
 }
 
@@ -912,9 +925,16 @@ npm run build:hooks
 
 ### Naming Conventions
 
-- **Prefix with `aaa`**: For utilities that must load first (dependencies for other hooks)
-- **Prefix with `global`**: For element property processing functions
-- **Use descriptive names**: `backgroundClasses.js`, `spacingHelper.js`
+- **Folder organization**: Place files in the appropriate category folder
+- **Prefix with `global`**: For element property processing functions (e.g., `globalSpacing`)
+- **Use descriptive names**: Match the function name to the file name
+
+| Category | Folder | Example |
+|----------|--------|---------|
+| Core utilities | `core/` | `classnames.js`, `getHoverPrefix.js` |
+| Layout functions | `layout/` | `globalLayout.js` |
+| Visual effects | `effects/` | `globalEffects.js` |
+| Typography | `typography/` | `globalHeadingColor.js` |
 
 ### Dead Code Elimination
 
@@ -923,40 +943,24 @@ The build system automatically removes unused code. If you add a function to sha
 ### Example: Complex Shared Hook
 
 ```javascript
-// src/shared-hooks/globalLayout.js
+// shared-hooks/layout/globalLayout.js
 
 /**
  * Generate layout-related CSS classes
  */
-function globalLayoutClasses(element) {
-    const props = element.properties;
-    const classes = [];
-    
-    // Position
-    if (props.position && props.position !== 'static') {
-        classes.push(props.position);
-    }
-    
-    // Z-index
-    if (props.zIndex) {
-        classes.push(`z-${props.zIndex}`);
-    }
-    
-    // Overflow
-    if (props.overflow) {
-        classes.push(`overflow-${props.overflow}`);
-    }
-    
-    return classes.join(' ');
-}
+const globalLayout = (app, args = {}) => {
+    const {
+        globalLayoutPosition: position,
+        globalLayoutZIndex: zIndex,
+        globalLayoutOverflow: overflow,
+    } = app.props;
 
-/**
- * Check if element has custom positioning
- */
-function hasCustomPosition(element) {
-    return element.properties.position && 
-           element.properties.position !== 'static';
-}
+    return classnames([
+        position,
+        zIndex,
+        overflow,
+    ]).toString();
+};
 ```
 
 ---
@@ -1101,11 +1105,11 @@ The `--watch` flag monitors for changes and automatically rebuilds:
 ### Troubleshooting
 
 **"Global control 'X' not found"**
-- Check the control is exported in `src/controls/index.js`
+- Check the control is exported in `controls/index.js`
 - Verify the spelling matches exactly (case-sensitive)
 
 **"Property 'X' not found in Properties"**
-- Check the property is exported in `src/properties/index.js`
+- Check the property is exported in `properties/index.js`
 - Verify the `use` key spelling
 
 **Build produces unexpected output**

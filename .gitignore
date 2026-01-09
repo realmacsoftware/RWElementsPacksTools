@@ -8,16 +8,30 @@ npm-debug.log*
 # OS files
 .DS_Store
 Thumbs.db
+*.tmp
 
 # Editor
 .vscode/
 .idea/
 *.swp
 *.swo
+*.sublime-project
+*.sublime-workspace
 
 # Build artifacts
 *.tgz
+dist/
 
 # Lock files (keep package-lock.json for reproducible builds)
 yarn.lock
+pnpm-lock.yaml
 
+# Environment
+.env
+.env.*
+
+# Coverage
+coverage/
+
+# Cursor
+.cursor/

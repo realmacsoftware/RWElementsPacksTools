@@ -1,26 +1,34 @@
 # Development files
-node_modules/
-*.log
+.git/
+.github/
+.vscode/
+.cursor/
+
+# Editor configs
+.editorconfig
+*.sublime-project
+*.sublime-workspace
+
+# OS files
 .DS_Store
-
-# Lock files (consumers will use their own)
-package-lock.json
-yarn.lock
-
-# Old build file (replaced by build-properties.js)
-build.js
+Thumbs.db
 
 # Test files
+__tests__/
 *.test.js
 *.spec.js
-__tests__/
+coverage/
 
-# Editor files
-.vscode/
-.idea/
-*.swp
-*.swo
+# Development configs
+.eslintrc*
+.prettierrc*
+tsconfig.json
+jest.config.*
 
-# Build artifacts that shouldn't be published
-*.tgz
+# Documentation sources (README is kept)
+docs/
 
+# Misc
+*.log
+*.tmp
+.env*
