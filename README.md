@@ -75,15 +75,29 @@ Create a minimal `properties.config.json`:
 }
 ```
 
-Create a minimal `hooks.source.js`:
+Create a `hooks.source.js` that uses the shared hook utilities:
 
 ```javascript
-function transformHook(element, renderingContext) {
-    return element;
+function transformHook(rw) {
+    // Props are accessed via rw.props - property IDs from properties.config.json
+    const { buttonText } = rw.props;
+    
+    // Build CSS classes using the shared classnames utility
+    const classes = classnames()
+        .add(globalSpacing(rw))
+        .add(globalBgColor(rw))
+        .toString();
+    
+    return {
+        classes,
+        buttonText
+    };
 }
 
 exports.transformHook = transformHook;
 ```
+
+> **Note:** The `buttonText` prop corresponds to the `"id": "buttonText"` defined in `properties.config.json`. All property IDs become available on `rw.props`. Functions like `classnames()`, `globalSpacing()`, and `globalBgColor()` come from the shared hooks library—no imports needed.
 
 ### Step 4: Add Build Scripts
 
@@ -375,15 +389,13 @@ Each component that needs hooks creates a `hooks.source.js` file:
 ```javascript
 // packs/Core.elementsdevpack/components/com.realmacsoftware.button/hooks.source.js
 
-function transformHook(element, renderingContext) {
+function transformHook(rw) {
     // Use any shared hook functions here
-    const classes = classnames(
-        element.properties.customClasses,
-        globalSpacingClasses(element)
-    );
+    const classes = classnames(rw.props.customClasses)
+        .add(globalSpacing(rw))
+        .toString();
     
     return {
-        ...element,
         classes
     };
 }
@@ -880,12 +892,11 @@ Reference the function in any `hooks.source.js`:
 ```javascript
 // packs/MyPack.elementsdevpack/components/com.example.mycomponent/hooks.source.js
 
-function transformHook(element, renderingContext) {
+function transformHook(rw) {
     // customHelper is available from shared hooks
-    const customClasses = customHelper(element);
+    const customClasses = customHelper(rw);
     
     return {
-        ...element,
         customClasses
     };
 }
