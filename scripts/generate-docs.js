@@ -763,15 +763,63 @@ ${hook.name}(${hook.params})
   content += `
 ## Usage
 
-\`\`\`javascript
-function transformHook(rw) {
-    const result = ${hook.name}(${hook.params.includes('rw') || hook.params.includes('app') ? 'rw' : ''});
-    return { result };
-}
-\`\`\`
+${generateHookUsageExample(hook)}
 `;
 
   return content;
+}
+
+/**
+ * Generate a realistic usage example for a shared hook
+ */
+function generateHookUsageExample(hook) {
+  const name = hook.name;
+  const param = hook.params.includes('rw') || hook.params.includes('app') ? 'rw' : '';
+
+  // Hooks that return objects with specific properties
+  const objectHooks = {
+    globalAnimations: `\`\`\`javascript
+const transformHook = (rw) => {
+    const animation = globalAnimations(rw);
+    // animation.isEnabled, animation.data, etc.
+};
+\`\`\``,
+    globalReveal: `\`\`\`javascript
+const transformHook = (rw) => {
+    const revealAttrs = globalReveal(rw);
+    // Returns data attributes for reveal animations
+};
+\`\`\``,
+    globalLink: `\`\`\`javascript
+const transformHook = (rw) => {
+    const link = globalLink(rw);
+    // link.hasLink, link.args
+};
+\`\`\``,
+    globalFilter: `\`\`\`javascript
+const transformHook = (rw) => {
+    const filter = globalFilter(rw);
+    // filter.wantsFilter, filter.args
+};
+\`\`\``,
+    globalBgImageFetchPriority: `\`\`\`javascript
+const transformHook = (rw) => {
+    const priority = globalBgImageFetchPriority(rw);
+    // priority.globalBgImageFetchPriorityEnabled
+};
+\`\`\``
+  };
+
+  if (objectHooks[name]) {
+    return objectHooks[name];
+  }
+
+  // Default: hooks that return CSS class strings
+  return `\`\`\`javascript
+const transformHook = (rw) => {
+    const classes = ${name}(${param});
+};
+\`\`\``;
 }
 
 /**
