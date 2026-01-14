@@ -101,8 +101,9 @@ async function findHookSources(startDir) {
  * @param {string[]} sharedFiles - Array of shared hook file paths
  * @param {string} sourcePath - Path to the hooks.source.js file
  * @param {string} projectRoot - Project root for relative path display
+ * @param {boolean} [minify=true] - Whether to fully minify the output
  */
-async function buildOne(sharedFiles, sourcePath, projectRoot) {
+async function buildOne(sharedFiles, sourcePath, projectRoot, minify = true) {
   const componentDir = path.dirname(sourcePath);
   const outputPath = path.join(componentDir, OUTPUT_FILENAME);
 
@@ -131,13 +132,13 @@ export { transformHook };
 
   // Use esbuild transform with DCE
   // minifySyntax: true enables dead code elimination
-  // We keep identifiers and whitespace for readable output
+  // When minify=true, also minify whitespace and identifiers
   const result = await transform(combinedSource, {
     loader: 'js',
     target: 'es2018',
-    minifySyntax: true,       // Enables DCE
-    minifyWhitespace: false,  // Keep formatting readable
-    minifyIdentifiers: false, // Keep variable names
+    minifySyntax: true,                  // Always enable DCE
+    minifyWhitespace: minify,            // Minify whitespace when minify=true
+    minifyIdentifiers: minify,           // Minify variable names when minify=true
     format: 'esm',
     legalComments: 'none',
   });
@@ -147,7 +148,8 @@ export { transformHook };
   // Replace ESM export with CommonJS-style assignment
   code = code.replace(/export\s*\{\s*transformHook\s*(as\s+\w+)?\s*\}\s*;?\s*$/m, 'exports.transformHook = transformHook;');
 
-  const banner = `// AUTO-GENERATED: do not edit. Edit hooks.source.js instead.\n`;
+  // Only add banner in non-minified mode to save bytes
+  const banner = minify ? '' : `// AUTO-GENERATED: do not edit. Edit hooks.source.js instead.\n`;
 
   await fs.promises.writeFile(outputPath, banner + code, 'utf8');
 
@@ -159,10 +161,12 @@ export { transformHook };
  * @param {Object} config - Configuration object
  * @param {string} config.packsDir - Absolute path to the packs directory
  * @param {string} [config.projectRoot] - Project root for display purposes
+ * @param {boolean} [config.minify=true] - Whether to fully minify the output
  */
 export async function buildAll(config) {
   const packsDir = config.packsDir;
   const projectRoot = config.projectRoot || path.dirname(packsDir);
+  const minify = config.minify !== false; // Default to true
   
   const sharedFiles = await listSharedFiles();
   const sources = await findHookSources(packsDir);
@@ -170,7 +174,7 @@ export async function buildAll(config) {
   console.log(`[hooks] Building ${sources.length} component hook(s); shared files: ${sharedFiles.length}`);
 
   for (const sourcePath of sources) {
-    await buildOne(sharedFiles, sourcePath, projectRoot);
+    await buildOne(sharedFiles, sourcePath, projectRoot, minify);
   }
   
   console.log(`[hooks] Build complete`);
@@ -181,6 +185,7 @@ export async function buildAll(config) {
  * @param {Object} config - Configuration object
  * @param {string} config.packsDir - Absolute path to the packs directory
  * @param {string} [config.projectRoot] - Project root for display purposes
+ * @param {boolean} [config.minify=true] - Whether to fully minify the output
  */
 export async function startWatch(config) {
   const packsDir = config.packsDir;
@@ -233,10 +238,12 @@ export async function startWatch(config) {
 if (process.argv[1] === __filename) {
   // Direct execution: use ./packs relative to current working directory
   const WATCH = process.argv.includes('--watch') || process.argv.includes('-w');
+  const NO_MINIFY = process.argv.includes('--no-minify');
   const defaultPacksDir = path.resolve(process.cwd(), 'packs');
   const config = { 
     packsDir: defaultPacksDir,
-    projectRoot: process.cwd()
+    projectRoot: process.cwd(),
+    minify: !NO_MINIFY
   };
   
   (async () => {

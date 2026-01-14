@@ -495,8 +495,9 @@ function setupAdvancedGroup(config) {
  * Reads and processes a properties.config.json file, generating properties.json.
  *
  * @param {string} configPath - Path to the properties.config.json file.
+ * @param {boolean} [minify=true] - Whether to minify the output JSON.
  */
-async function processConfigFile(configPath) {
+async function processConfigFile(configPath, minify = true) {
   try {
     const fileDir = path.dirname(configPath);
     const configContent = await fs.readFile(configPath, "utf8");
@@ -511,9 +512,12 @@ async function processConfigFile(configPath) {
       properties: group.properties.flatMap(processProperty),
     }));
 
-    // Write the processed config
+    // Write the processed config (minified by default)
     const outputPath = path.join(fileDir, "properties.json");
-    await fs.writeFile(outputPath, JSON.stringify(config, null, 2));
+    const jsonOutput = minify 
+      ? JSON.stringify(config) 
+      : JSON.stringify(config, null, 2);
+    await fs.writeFile(outputPath, jsonOutput);
   } catch (error) {
     console.error(`Error processing file ${configPath}:`, error);
   }
@@ -543,8 +547,9 @@ async function processDirectoryIfConfigExists(dirPath) {
  * Finds all directories matching a glob pattern and processes their configs.
  *
  * @param {string} packsDir - The packs directory to search.
+ * @param {boolean} [minify=true] - Whether to minify the output JSON.
  */
-async function processAllConfigs(packsDir) {
+async function processAllConfigs(packsDir, minify = true) {
   try {
     const pattern = path.join(packsDir, "**/*.elementsdevpack/components/com.**/**");
     const directories = globSync(pattern, { absolute: true });
@@ -556,7 +561,7 @@ async function processAllConfigs(packsDir) {
       const configPath = path.join(dir, "properties.config.json");
       try {
         await fs.access(configPath);
-        await processConfigFile(configPath);
+        await processConfigFile(configPath, minify);
         processed++;
       } catch {
         // Config file doesn't exist, skip silently
@@ -579,10 +584,12 @@ async function processAllConfigs(packsDir) {
  * 
  * @param {Object} config - Configuration object from resolveConfig()
  * @param {string} config.packsDir - Absolute path to the packs directory
+ * @param {boolean} [config.minify=true] - Whether to minify the output JSON
  */
 export async function buildProperties(config) {
+  const minify = config.minify !== false; // Default to true
   console.log(`[properties] Building properties...`);
-  await processAllConfigs(config.packsDir);
+  await processAllConfigs(config.packsDir, minify);
   console.log(`[properties] Build complete`);
 }
 
@@ -590,6 +597,7 @@ export async function buildProperties(config) {
  * Starts watch mode for continuous building of properties
  * @param {Object} config - Configuration object
  * @param {string} config.packsDir - Absolute path to the packs directory
+ * @param {boolean} [config.minify=true] - Whether to minify the output JSON
  */
 export async function startWatch(config) {
   const packsDir = config.packsDir;
@@ -635,8 +643,9 @@ export async function startWatch(config) {
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   // Direct execution: use ./packs relative to current working directory
   const WATCH = process.argv.includes('--watch') || process.argv.includes('-w');
+  const NO_MINIFY = process.argv.includes('--no-minify');
   const defaultPacksDir = path.resolve(process.cwd(), "packs");
-  const config = { packsDir: defaultPacksDir };
+  const config = { packsDir: defaultPacksDir, minify: !NO_MINIFY };
   
   (async () => {
     try {
