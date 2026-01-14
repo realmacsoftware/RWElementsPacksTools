@@ -116,42 +116,34 @@ async function buildOne(sharedFiles, sourcePath, projectRoot, minify = true) {
 
   // Read the component source
   let componentContent = await fs.promises.readFile(sourcePath, 'utf8');
+  const hasExportLine = /exports\.transformHook\s*=/.test(componentContent);
 
-  // Remove any existing exports.transformHook line (we'll add our own export marker)
-  componentContent = componentContent.replace(/^\s*exports\.transformHook\s*=.*$/gm, '').trim();
+  // Ensure the expected CommonJS export is present exactly once
+  if (!hasExportLine) {
+    componentContent = `${componentContent.trim()}\nexports.transformHook = transformHook;`;
+  }
 
-  // Concatenate everything and add an ESM export marker for DCE
-  // esbuild will keep transformHook and anything it references, drop the rest
+  // Concatenate everything
   const combinedSource = `
 ${sharedPieces.join('\n\n')}
 
 ${componentContent}
-
-export { transformHook };
 `;
 
-  // Use esbuild transform with DCE
-  // minifySyntax: true enables dead code elimination
-  // When minify=true, also minify whitespace and identifiers
+  // Minify whitespace only (keep identifier names); enable syntax minification for small size
   const result = await transform(combinedSource, {
     loader: 'js',
     target: 'es2018',
-    minifySyntax: true,                  // Always enable DCE
-    minifyWhitespace: minify,            // Minify whitespace when minify=true
-    minifyIdentifiers: minify,           // Minify variable names when minify=true
-    format: 'esm',
+    minifySyntax: minify,
+    minifyWhitespace: minify,
+    minifyIdentifiers: false,
+    format: 'cjs',
     legalComments: 'none',
   });
 
-  let code = result.code;
-
-  // Replace ESM export with CommonJS-style assignment
-  code = code.replace(/export\s*\{\s*transformHook\s*(as\s+\w+)?\s*\}\s*;?\s*$/m, 'exports.transformHook = transformHook;');
-
-  // Only add banner in non-minified mode to save bytes
   const banner = minify ? '' : `// AUTO-GENERATED: do not edit. Edit hooks.source.js instead.\n`;
 
-  await fs.promises.writeFile(outputPath, banner + code, 'utf8');
+  await fs.promises.writeFile(outputPath, banner + result.code, 'utf8');
 
   console.log(`[hooks] Wrote ${path.relative(projectRoot, outputPath)}`);
 }
