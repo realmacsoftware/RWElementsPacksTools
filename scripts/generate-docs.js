@@ -33,13 +33,24 @@ function toKebabCase(str) {
 }
 
 /**
- * Convert kebab-case to Title Case for display
+ * Convert kebab-case or UPPERCASE to Title Case for display
  */
 function toTitleCase(str) {
+  // If string has hyphens (kebab-case), split by hyphens
+  if (str.includes('-')) {
+    return str
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+  }
+  // Otherwise split by spaces/ampersand and convert to proper case
   return str
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
+    .split(/(\s+|&)/)
+    .map(part => {
+      if (part === '&' || /^\s+$/.test(part)) return part;
+      return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+    })
+    .join('');
 }
 
 /**
@@ -427,7 +438,7 @@ Use these in your \`properties.config.json\` with \`"globalControl": "Name"\`.
     if (!controls || controls.length === 0) continue;
 
     const categorySlug = toKebabCase(category.replace(/[()]/g, '').replace(/\s*&\s*/g, '-and-').trim());
-    content += `## ${category}\n\n`;
+    content += `## ${toTitleCase(category)}\n\n`;
     content += `| globalControl | Description |\n`;
     content += `|---------------|-------------|\n`;
 
@@ -780,7 +791,7 @@ function generateSummaryFragment(controlCategories, properties, hookCategories) 
     if (!controls || controls.length === 0) continue;
 
     const categorySlug = toKebabCase(category.replace(/[()]/g, '').replace(/\s*&\s*/g, '-and-').trim());
-    content += `    * [${category}](development-resources/build-tools/controls/${categorySlug}/README.md)\n`;
+    content += `    * [${toTitleCase(category)}](development-resources/build-tools/controls/${categorySlug}/README.md)\n`;
 
     for (const control of controls.sort()) {
       content += `      * [${control}](development-resources/build-tools/controls/${categorySlug}/${toKebabCase(control)}.md)\n`;
