@@ -769,8 +769,8 @@ function transformHook(rw) {
 function generateSummaryFragment(controlCategories, properties, hookCategories) {
   let content = `## Build Tools
 
-* [API Reference](development-resources/build-tools/README.md)
-* [Controls](development-resources/build-tools/controls/README.md)
+* [Build Tools](development-resources/build-tools/README.md)
+  * [Controls](development-resources/build-tools/controls/README.md)
 `;
 
   // Controls categories
@@ -780,20 +780,20 @@ function generateSummaryFragment(controlCategories, properties, hookCategories) 
     if (!controls || controls.length === 0) continue;
 
     const categorySlug = toKebabCase(category.replace(/[()]/g, '').replace(/\s*&\s*/g, '-and-').trim());
-    content += `  * [${category}](development-resources/build-tools/controls/${categorySlug}/README.md)\n`;
+    content += `    * [${category}](development-resources/build-tools/controls/${categorySlug}/README.md)\n`;
 
     for (const control of controls.sort()) {
-      content += `    * [${control}](development-resources/build-tools/controls/${categorySlug}/${toKebabCase(control)}.md)\n`;
+      content += `      * [${control}](development-resources/build-tools/controls/${categorySlug}/${toKebabCase(control)}.md)\n`;
     }
   }
 
-  content += `* [Properties](development-resources/build-tools/properties/README.md)\n`;
+  content += `  * [Properties](development-resources/build-tools/properties/README.md)\n`;
 
   for (const prop of properties) {
-    content += `  * [${prop.name}](development-resources/build-tools/properties/${toKebabCase(prop.name)}.md)\n`;
+    content += `    * [${prop.name}](development-resources/build-tools/properties/${toKebabCase(prop.name)}.md)\n`;
   }
 
-  content += `* [Shared Hooks](development-resources/build-tools/shared-hooks/README.md)\n`;
+  content += `  * [Shared Hooks](development-resources/build-tools/shared-hooks/README.md)\n`;
 
   const sortedHookCategories = Object.keys(hookCategories).sort();
   for (const category of sortedHookCategories) {
@@ -801,10 +801,10 @@ function generateSummaryFragment(controlCategories, properties, hookCategories) 
     if (!hooks || hooks.length === 0) continue;
 
     const uniqueHooks = [...new Set(hooks)];
-    content += `  * [${toTitleCase(category)}](development-resources/build-tools/shared-hooks/${category}/README.md)\n`;
+    content += `    * [${toTitleCase(category)}](development-resources/build-tools/shared-hooks/${category}/README.md)\n`;
 
     for (const hook of uniqueHooks.sort()) {
-      content += `    * [${hook}](development-resources/build-tools/shared-hooks/${category}/${toKebabCase(hook)}.md)\n`;
+      content += `      * [${hook}](development-resources/build-tools/shared-hooks/${category}/${toKebabCase(hook)}.md)\n`;
     }
   }
 
