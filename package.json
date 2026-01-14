@@ -50,6 +50,13 @@
     "lodash": "^4.17.21"
   },
   "scripts": {
-    "prepublishOnly": "echo 'Ready to publish rw-elements-tools'"
+    "prepublishOnly": "echo 'Ready to publish rw-elements-tools'",
+    "docs:generate": "node scripts/generate-docs.js",
+    "docs:publish": "node scripts/publish-docs.js",
+    "docs": "npm run docs:generate && npm run docs:publish"
+  },
+  "rw-elements-tools": {
+    "docsRepoPath": "/Users/ben/Developer/rapidweaver-elements-docs-api",
+    "docsTargetDir": "development-resources/build-tools"
   }
 }

@@ -35,3 +35,7 @@ coverage/
 
 # Cursor
 .cursor/
+.cursor
+
+# Generated documentation
+.docs-output/
