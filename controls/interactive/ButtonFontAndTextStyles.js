@@ -145,19 +145,19 @@ const ButtonFontAndTextStyles = [
     }
   },
   {
+    title: "Spacing",
+    id: "globalButtonFontAndTextStylesLetterSpacing",
+    format: "tracking-{{value}}",
+    slider: {
+      use: "LetterSpacing",
+    }
+  },
+  {
     title: "Line Height",
     id: "globalButtonFontAndTextStylesLineHeight",
     format: "leading-{{value}}",
     slider: {
       use: "LineHeight",
-    }
-  },
-  {
-    title: "Letter Spacing",
-    id: "globalButtonFontAndTextStylesLetterSpacing",
-    format: "tracking-{{value}}",
-    slider: {
-      use: "LetterSpacing",
     }
   },
   {
