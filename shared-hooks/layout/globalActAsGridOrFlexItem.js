@@ -40,7 +40,7 @@ const globalActAsGridOrFlexItem = (app) => {
         shrink,
         grow,
         basis == "custom" ? basisCustom : basis,
-        order == "custom" ? orderCustom : order
+        order == "order-custom" ? orderCustom : order
       ] : [])
     );
   }
@@ -56,7 +56,7 @@ const globalActAsGridOrFlexItem = (app) => {
         rowEnd !== "row-end-auto" ? rowEnd : undefined,
         alignSelf,
         justifySelf,
-        order == "custom" ? orderCustom : order
+        order == "order-custom" ? orderCustom : order
       ] : [])
     );
   }
