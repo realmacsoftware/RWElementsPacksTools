@@ -1,9 +1,25 @@
-const getOrderClasses = (orderByBreakpoint = {}, orderCustomByBreakpoint = {}) => {
-  return Object.entries(orderByBreakpoint)
-    .map(([breakpoint, value]) => {
+const getOrderClasses = (orderByBreakpoint = {}, orderCustomByBreakpoint = {}, breakpointNames = []) => {
+  const allBreakpoints = ["base", ...breakpointNames];
+
+  // Find custom value by cascading back through previous breakpoints
+  const getCustomValue = (currentBreakpoint) => {
+    const currentIndex = allBreakpoints.indexOf(currentBreakpoint);
+    for (let i = currentIndex; i >= 0; i--) {
+      const bp = allBreakpoints[i];
+      if (orderCustomByBreakpoint[bp] !== undefined) {
+        return orderCustomByBreakpoint[bp];
+      }
+    }
+    return undefined;
+  };
+
+  return allBreakpoints
+    .filter(bp => orderByBreakpoint[bp] !== undefined)
+    .map((breakpoint) => {
+      const value = orderByBreakpoint[breakpoint];
       const prefix = breakpoint === "base" ? "" : `${breakpoint}:`;
-      const orderValue = value === "custom" 
-        ? `order-[${orderCustomByBreakpoint[breakpoint]}]`
+      const orderValue = value === "custom"
+        ? `order-[${getCustomValue(breakpoint)}]`
         : `order-${value}`;
       return `${prefix}${orderValue}`;
     })
@@ -40,6 +56,8 @@ const globalActAsGridOrFlexItem = (app) => {
     globalGridOrFlexItemOrderCustom: orderCustomByBreakpoint,
   } = app.responsiveProps;
 
+  const { names: breakpointNames } = app.theme.breakpoints;
+
   if (displayAs == "default") {
     return false;
   }
@@ -55,7 +73,7 @@ const globalActAsGridOrFlexItem = (app) => {
         shrink,
         grow,
         basis == "custom" ? basisCustom : basis,
-        getOrderClasses(orderByBreakpoint, orderCustomByBreakpoint)
+        getOrderClasses(orderByBreakpoint, orderCustomByBreakpoint, breakpointNames)
       ] : [])
     );
   }
@@ -71,7 +89,7 @@ const globalActAsGridOrFlexItem = (app) => {
         rowEnd !== "row-end-auto" ? rowEnd : undefined,
         alignSelf,
         justifySelf,
-        getOrderClasses(orderByBreakpoint, orderCustomByBreakpoint)
+        getOrderClasses(orderByBreakpoint, orderCustomByBreakpoint, breakpointNames)
       ] : [])
     );
   }
