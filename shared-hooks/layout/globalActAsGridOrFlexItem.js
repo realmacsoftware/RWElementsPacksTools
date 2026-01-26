@@ -1,3 +1,16 @@
+const getOrderClasses = (orderByBreakpoint = {}, orderCustomByBreakpoint = {}) => {
+  return Object.entries(orderByBreakpoint)
+    .map(([breakpoint, value]) => {
+      const prefix = breakpoint === "base" ? "" : `${breakpoint}:`;
+      const orderValue = value === "order-custom" 
+        ? orderCustomByBreakpoint[breakpoint] 
+        : value;
+      return orderValue ? `${prefix}${orderValue}` : null;
+    })
+    .filter(Boolean)
+    .join(" ");
+};
+
 const globalActAsGridOrFlexItem = (app) => {
   const {
     globalGridOrFlexDisplayAs: displayAs,
@@ -21,9 +34,12 @@ const globalActAsGridOrFlexItem = (app) => {
     // General
     globalGridOrFlexItemAlignSelf: alignSelf,
     globalGridOrFlexItemJustifySelf: justifySelf,
-    globalGridOrFlexItemOrder: order,
-    globalGridOrFlexItemOrderCustom: orderCustom
   } = app.props;
+
+  const {
+    globalGridOrFlexItemOrder: orderByBreakpoint,
+    globalGridOrFlexItemOrderCustom: orderCustomByBreakpoint,
+  } = app.responsiveProps;
 
   if (displayAs == "default") {
     return false;
@@ -40,7 +56,7 @@ const globalActAsGridOrFlexItem = (app) => {
         shrink,
         grow,
         basis == "custom" ? basisCustom : basis,
-        order == "order-custom" ? orderCustom : order
+        getOrderClasses(orderByBreakpoint, orderCustomByBreakpoint)
       ] : [])
     );
   }
@@ -56,7 +72,7 @@ const globalActAsGridOrFlexItem = (app) => {
         rowEnd !== "row-end-auto" ? rowEnd : undefined,
         alignSelf,
         justifySelf,
-        order == "order-custom" ? orderCustom : order
+        getOrderClasses(orderByBreakpoint, orderCustomByBreakpoint)
       ] : [])
     );
   }
