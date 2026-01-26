@@ -2,12 +2,11 @@ const getOrderClasses = (orderByBreakpoint = {}, orderCustomByBreakpoint = {}) =
   return Object.entries(orderByBreakpoint)
     .map(([breakpoint, value]) => {
       const prefix = breakpoint === "base" ? "" : `${breakpoint}:`;
-      const orderValue = value === "order-custom" 
-        ? orderCustomByBreakpoint[breakpoint] 
-        : value;
-      return orderValue ? `${prefix}${orderValue}` : null;
+      const orderValue = value === "custom" 
+        ? `order-[${orderCustomByBreakpoint[breakpoint]}]`
+        : `order-${value}`;
+      return `${prefix}${orderValue}`;
     })
-    .filter(Boolean)
     .join(" ");
 };
 
