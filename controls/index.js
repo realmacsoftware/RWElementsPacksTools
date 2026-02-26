@@ -48,6 +48,7 @@ export { BorderHover } from "./Borders/Border.js";
 export { default as Borders } from "./Borders/Borders.js";
 export { default as BordersContainer } from "./Borders/BordersContainer.js";
 export { default as BordersInput } from "./Borders/BordersInput.js";
+export { default as BordersTable } from "./Borders/BordersTable.js";
 export { default as BorderColor } from "./Borders/BorderColor.js";
 export { default as BorderRadius } from "./Borders/BorderRadius.js";
 export { default as BorderStyle } from "./Borders/BorderStyle.js";
