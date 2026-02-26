@@ -1,6 +1,6 @@
 export const CSSClasses = [
   {
-    title: "CSS Classes",
+    title: "Classes",
     id: "cssClasses",
     textArea: {
       default: "",
