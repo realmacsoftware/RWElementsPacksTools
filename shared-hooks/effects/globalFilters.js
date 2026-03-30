@@ -8,6 +8,8 @@ const globalFilters = (app, args = {}) => {
         globalFiltersBlur: blur,
         globalFiltersBrightness: brightness,
         globalFiltersDropShadow: dropShadow,
+        globalFiltersDropShadowColor: dropShadowColor,
+        globalFiltersDropShadowColorOpacity: dropShadowColorOpacity,
         globalFiltersSaturate: saturate,
 
         // backdrop filters
@@ -17,6 +19,8 @@ const globalFilters = (app, args = {}) => {
         globalFiltersBlurEnd: blurEnd,
         globalFiltersBrightnessEnd: brightnessEnd,
         globalFiltersDropShadowEnd: dropShadowEnd,
+        globalFiltersDropShadowColorEnd: dropShadowColorEnd,
+        globalFiltersDropShadowColorOpacityEnd: dropShadowColorOpacityEnd,
         globalFiltersSaturateEnd: saturateEnd,
 
         // end backdrop filters
@@ -38,10 +42,26 @@ const globalFilters = (app, args = {}) => {
     const wantsBackdropBlur =
         !backdropBlur.endsWith("[0px]") || !backdropBlurEnd.endsWith("[0px]");
 
+    // Helper to build drop shadow color classes with opacity
+    const buildDropShadowColorClasses = (color, colorOpacity, hoverPrefix) => {
+        if (!color) return "";
+        return color
+            .split(" ")
+            .filter(Boolean)
+            .map((c) => {
+                const colorClass = hoverPrefix
+                    ? `${hoverPrefix}:${c.trim()}/${colorOpacity}`
+                    : `${c.trim()}/${colorOpacity}`;
+                return colorClass;
+            })
+            .join(" ");
+    };
+
     const classes = [
         wantsBlur ? blur : "",
         brightness,
         dropShadow,
+        buildDropShadowColorClasses(dropShadowColor, dropShadowColorOpacity),
         saturate,
         wantsBackdropBlur ? backdropBlur : "",
     ];
@@ -51,6 +71,11 @@ const globalFilters = (app, args = {}) => {
             wantsBlur ? `${prefix}:${blurEnd}` : "",
             `${prefix}:${brightnessEnd}`,
             `${prefix}:${dropShadowEnd}`,
+            buildDropShadowColorClasses(
+                dropShadowColorEnd,
+                dropShadowColorOpacityEnd,
+                prefix
+            ),
             `${prefix}:${saturateEnd}`,
             wantsBackdropBlur ? `${prefix}:${backdropBlurEnd}` : ""
         );
@@ -60,6 +85,11 @@ const globalFilters = (app, args = {}) => {
                 `data-[active=true]:${blurEnd}`,
                 `data-[active=true]:${brightnessEnd}`,
                 `data-[active=true]:${dropShadowEnd}`,
+                buildDropShadowColorClasses(
+                    dropShadowColorEnd,
+                    dropShadowColorOpacityEnd,
+                    "data-[active=true]"
+                ),
                 `data-[active=true]:${saturateEnd}`,
                 `data-[active=true]:${backdropBlurEnd}`
             );
@@ -70,6 +100,11 @@ const globalFilters = (app, args = {}) => {
                 `${prefix.replace(/hover/g, "focus")}:${blurEnd}`,
                 `${prefix.replace(/hover/g, "focus")}:${brightnessEnd}`,
                 `${prefix.replace(/hover/g, "focus")}:${dropShadowEnd}`,
+                buildDropShadowColorClasses(
+                    dropShadowColorEnd,
+                    dropShadowColorOpacityEnd,
+                    prefix.replace(/hover/g, "focus")
+                ),
                 `${prefix.replace(/hover/g, "focus")}:${saturateEnd}`,
                 `${prefix.replace(/hover/g, "focus")}:${backdropBlurEnd}`
             );
