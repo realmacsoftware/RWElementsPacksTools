@@ -82,6 +82,7 @@ export const Image = [
         resource: {},
     },
     {
+        visible: "false",
         title: "Alt",
         id: "imageAlt",
         responsive: false,
