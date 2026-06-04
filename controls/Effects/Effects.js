@@ -45,20 +45,29 @@ const Effects = [
         divider: {},
     },
     {
-        visible:
-            "globalControlTypeEffects == 'static' || (globalControlTypeEffects == 'hover' && globalEffectsState == 'start')",
-        globalControl: "BoxShadow",
+        visible: "globalControlTypeEffects != 'none'",
+        title: "Box Shadow",
+        heading: {},
     },
     {
         visible:
             "globalControlTypeEffects == 'static' || (globalControlTypeEffects == 'hover' && globalEffectsState == 'start')",
-        globalControl: "Opacity",
+        globalControl: "BoxShadow",
     },
     {
         visible:
             "(globalControlTypeEffects == 'hover' && globalEffectsState == 'end')",
         globalControl: "BoxShadow",
         id: "{{value}}End",
+    },
+    {
+        visible: "globalControlTypeEffects != 'none'",
+        divider: {},
+    },
+    {
+        visible:
+            "globalControlTypeEffects == 'static' || (globalControlTypeEffects == 'hover' && globalEffectsState == 'start')",
+        globalControl: "Opacity",
     },
     {
         visible:

@@ -1,6 +1,6 @@
 const BoxShadow = [
   {
-    title: "Box Shadow",
+    title: "Size",
     id: "globalBoxShadow",
     responsive: false,
     themeShadow: {
