@@ -25,7 +25,7 @@ const BoxShadow = [
   {
     title: "Opacity",
     id: "globalBoxShadowOpacity",
-    format: "[var(--box-shadow-opacity:{{value}}%)]",
+    format: "[--box-shadow-opacity:{{value}}%]",
     responsive: false,
     slider: {
       default: 100,
