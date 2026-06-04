@@ -5,8 +5,12 @@ const globalEffects = (app, args = {}) => {
         globalHoverGroupEffects: hoverGroup,
         globalHoverGroupCustomIdEffects: customId,
         globalBoxShadow: boxShadow,
+        globalBoxShadowColor: boxShadowColor,
+        globalBoxShadowOpacity: boxShadowOpacity,
         globalOpacity: opacity,
         globalBoxShadowEnd: boxShadowEnd,
+        globalBoxShadowColorEnd: boxShadowColorEnd,
+        globalBoxShadowOpacityEnd: boxShadowOpacityEnd,
         globalOpacityEnd: opacityEnd,
     } = app.props;
 
@@ -20,15 +24,17 @@ const globalEffects = (app, args = {}) => {
     const classes = [];
 
     if (type != "none") {
-        classes.push(boxShadow, opacity);
+        classes.push(boxShadow, boxShadowColor, boxShadowOpacity, opacity);
     }
 
     if (type == "hover") {
-        classes.push(`${prefix}:${boxShadowEnd}`, `${prefix}:${opacityEnd}`);
+        classes.push(`${prefix}:${boxShadowEnd}`, `${prefix}:${boxShadowColorEnd}`, `${prefix}:${boxShadowOpacityEnd}`, `${prefix}:${opacityEnd}`);
 
         if (wantsActive) {
             classes.push(
                 `data-[active=true]:${boxShadowEnd}`,
+                `data-[active=true]:${boxShadowColorEnd}`,
+                `data-[active=true]:${boxShadowOpacityEnd}`,
                 `data-[active=true]:${opacityEnd}`
             );
         }
@@ -36,6 +42,8 @@ const globalEffects = (app, args = {}) => {
         if (wantsFocus) {
             classes.push(
                 `${prefix.replace(/hover/g, "focus")}:${boxShadowEnd}`,
+                `${prefix.replace(/hover/g, "focus")}:${boxShadowColorEnd}`,
+                `${prefix.replace(/hover/g, "focus")}:${boxShadowOpacityEnd}`,
                 `${prefix.replace(/hover/g, "focus")}:${opacityEnd}`
             );
         }
