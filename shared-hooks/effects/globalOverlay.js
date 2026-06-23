@@ -24,7 +24,9 @@ const globalOverlayGradient = (app, prefix) => {
   const {
     globalControlTypeOverlay: controlType,
     globalOverlayGradientDirection: direction,
+    globalOverlayGradientInterpolation: interpolation,
     globalOverlayGradientDirectionEnd: directionEnd,
+    globalOverlayGradientInterpolationEnd: interpolationEnd,
 
     globalOverlayGradientFromColor: fromColor,
     globalOverlayGradientFromOpacity: fromOpacity,
@@ -53,8 +55,14 @@ const globalOverlayGradient = (app, prefix) => {
     globalOverlayGradientToPositionEnd: toPositionEnd,
   } = app.props;
 
+  const directionClass = normalizeGradientImageClass(direction, interpolation);
+  const directionEndClass = normalizeGradientImageClass(
+    directionEnd,
+    interpolationEnd
+  );
+
   const classes = classnames([
-    direction,
+    directionClass,
     `${fromColor}/${fromOpacity}`,
     fromPosition,
     `${toColor}/${toOpacity}`,
@@ -70,7 +78,7 @@ const globalOverlayGradient = (app, prefix) => {
 
   if (controlType == "hover") {
     classes.add([
-      `${prefix}:${directionEnd}`,
+      `${prefix}:${directionEndClass}`,
       `${prefix}:${fromColorEnd}/${fromOpacityEnd}`,
       `${prefix}:${fromPositionEnd}`,
       `${prefix}:${toColorEnd}/${toOpacityEnd}`,
