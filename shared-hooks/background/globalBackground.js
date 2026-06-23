@@ -48,7 +48,9 @@ const globalBgGradient = (app, args) => {
     const {
         globalControlTypeBg: controlType,
         globalBgGradientDirection: direction,
+        globalBgGradientInterpolation: interpolation,
         globalBgGradientDirectionEnd: directionEnd,
+        globalBgGradientInterpolationEnd: interpolationEnd,
 
         globalBgGradientFromColor: fromColor,
         globalBgGradientFromOpacity: fromOpacity,
@@ -80,8 +82,14 @@ const globalBgGradient = (app, args) => {
     const hasPrefix = (args?.prefix && args?.prefixCallback) || false;
     const prefixCallback = args?.prefixCallback || (() => {});
 
+    const directionClass = normalizeGradientImageClass(direction, interpolation);
+    const directionEndClass = normalizeGradientImageClass(
+        directionEnd,
+        interpolationEnd
+    );
+
     const classes = classnames([
-        direction,
+        directionClass,
         fromColor,
         fromOpacity,
         fromPosition,
@@ -97,7 +105,7 @@ const globalBgGradient = (app, args) => {
     if (controlType == "hover") {
         if (wantsPeer) {
             classes.add([
-                directionEnd.replace(/hover:/g, "peer-hover:"),
+                directionEndClass.replace(/hover:/g, "peer-hover:"),
                 fromColorEnd.replace(/hover:/g, "peer-hover:"),
                 fromOpacityEnd.replace(/hover:/g, "peer-hover:"),
                 toColorEnd.replace(/hover:/g, "peer-hover:"),
@@ -106,7 +114,7 @@ const globalBgGradient = (app, args) => {
         } else if (hasPrefix) {
             classes.add([
                 prefixCallback(
-                    directionEnd.replace(/hover:/g, ""),
+                    directionEndClass.replace(/hover:/g, ""),
                     args.prefix
                 ),
                 prefixCallback(
@@ -125,7 +133,7 @@ const globalBgGradient = (app, args) => {
             ]);
         } else {
             classes.add([
-                directionEnd,
+                directionEndClass,
                 fromColorEnd,
                 fromOpacityEnd,
                 toColorEnd,
@@ -135,7 +143,7 @@ const globalBgGradient = (app, args) => {
 
         if (wantsActive) {
             classes.add([
-                directionEnd.replace(/hover:/g, "data-[active=true]:"),
+                directionEndClass.replace(/hover:/g, "data-[active=true]:"),
                 fromColorEnd.replace(/hover:/g, "data-[active=true]:"),
                 fromOpacityEnd.replace(/hover:/g, "data-[active=true]:"),
                 toColorEnd.replace(/hover:/g, "data-[active=true]:"),
@@ -145,7 +153,7 @@ const globalBgGradient = (app, args) => {
 
         if (wantsFocus) {
             classes.add([
-                directionEnd.replace(/hover:/g, "focus:"),
+                directionEndClass.replace(/hover:/g, "focus:"),
                 fromColorEnd.replace(/hover:/g, "focus:"),
                 fromOpacityEnd.replace(/hover:/g, "focus:"),
                 toColorEnd.replace(/hover:/g, "focus:"),

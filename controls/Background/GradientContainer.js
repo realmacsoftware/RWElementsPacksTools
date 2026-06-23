@@ -1,10 +1,18 @@
 const GradientContainer = [
   {
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
-    title: "Direction",
+    title: "Style",
     id: "globalBgGradientDirection",
     select: {
       use: "GradientDirection",
+    },
+  },
+  {
+    visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
+    title: "Interpolation",
+    id: "globalBgGradientInterpolation",
+    select: {
+      use: "GradientInterpolation",
     },
   },
   {
@@ -40,7 +48,7 @@ const GradientContainer = [
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
     title: "Position",
     id: "globalBgGradientFromPosition",
-    format: "from-[{{value}}%]",
+    format: "from-{{value}}%",
     responsive: false,
     slider: {
       use: "Slider",
@@ -93,7 +101,7 @@ const GradientContainer = [
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient') && globalBgGradientViaEnabled == true",
     title: "Position",
     id: "globalBgGradientViaPosition",
-    format: "via-[{{value}}%]",
+    format: "via-{{value}}%",
     responsive: false,
     slider: {
       default: 50,
@@ -138,7 +146,7 @@ const GradientContainer = [
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
     title: "Position",
     id: "globalBgGradientToPosition",
-    format: "to-[{{value}}%]",
+    format: "to-{{value}}%",
     responsive: false,
     slider: {
       use: "Slider",
@@ -148,11 +156,19 @@ const GradientContainer = [
   },
   {
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient')",
-    title: "Direction",
+    title: "Style",
     id: "globalBgGradientDirectionEnd",
     format: "hover:{{value}}",
     select: {
       use: "GradientDirection",
+    },
+  },
+  {
+    visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient')",
+    title: "Interpolation",
+    id: "globalBgGradientInterpolationEnd",
+    select: {
+      use: "GradientInterpolation",
     },
   },
   {
