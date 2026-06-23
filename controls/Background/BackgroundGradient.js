@@ -1,10 +1,18 @@
 const BackgroundGadient = [
     {
         visible: "bgType == 'gradient'",
-        title: "Direction",
+        title: "Style",
         id: "bgGradientDirection",
         select: {
             use: "GradientDirection",
+        },
+    },
+    {
+        visible: "bgType == 'gradient'",
+        title: "Interpolation",
+        id: "bgGradientInterpolation",
+        select: {
+            use: "GradientInterpolation",
         },
     },
     {
@@ -40,7 +48,7 @@ const BackgroundGadient = [
         visible: "bgType == 'gradient'",
         title: "Position",
         id: "gradientFromPosition",
-        format: "from-[{{value}}%]",
+        format: "from-{{value}}%",
         responsive: false,
         slider: {
             use: "Slider",
@@ -91,7 +99,7 @@ const BackgroundGadient = [
         visible: "bgType == 'gradient' && wantsGradientVia == 'true'",
         title: "Position",
         id: "gradientViaPosition",
-        format: "via-[{{value}}%]",
+        format: "via-{{value}}%",
         responsive: false,
         slider: {
             default: 50,
@@ -136,7 +144,7 @@ const BackgroundGadient = [
         visible: "bgType == 'gradient'",
         title: "Position",
         id: "gradientToPosition",
-        format: "to-[{{value}}%]",
+        format: "to-{{value}}%",
         responsive: false,
         slider: {
             use: "Slider",

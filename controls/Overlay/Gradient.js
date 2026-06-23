@@ -1,10 +1,18 @@
 const Gradient = [
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient')",
-    title: "Direction",
+    title: "Style",
     id: "globalOverlayGradientDirection",
     select: {
       use: "GradientDirection",
+    },
+  },
+  {
+    visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient')",
+    title: "Interpolation",
+    id: "globalOverlayGradientInterpolation",
+    select: {
+      use: "GradientInterpolation",
     },
   },
   {
@@ -40,7 +48,7 @@ const Gradient = [
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient')",
     title: "Position",
     id: "globalOverlayGradientFromPosition",
-    format: "from-[{{value}}%]",
+    format: "from-{{value}}%",
     responsive: false,
     slider: {
       use: "Slider",
@@ -93,7 +101,7 @@ const Gradient = [
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient') && globalOverlayGradientViaEnabled == true",
     title: "Position",
     id: "globalOverlayGradientViaPosition",
-    format: "via-[{{value}}%]",
+    format: "via-{{value}}%",
     responsive: false,
     slider: {
       default: 50,
@@ -138,7 +146,7 @@ const Gradient = [
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient')",
     title: "Position",
     id: "globalOverlayGradientToPosition",
-    format: "to-[{{value}}%]",
+    format: "to-{{value}}%",
     responsive: false,
     slider: {
       use: "Slider",
@@ -148,10 +156,18 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient')",
-    title: "Direction",
+    title: "Style",
     id: "globalOverlayGradientDirectionEnd",
     select: {
       use: "GradientDirection",
+    },
+  },
+  {
+    visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient')",
+    title: "Interpolation",
+    id: "globalOverlayGradientInterpolationEnd",
+    select: {
+      use: "GradientInterpolation",
     },
   },
   {
@@ -187,7 +203,7 @@ const Gradient = [
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient')",
     title: "Position",
     id: "globalOverlayGradientFromPositionEnd",
-    format: "from-[{{value}}%]",
+    format: "from-{{value}}%",
     responsive: false,
     slider: {
       use: "Slider",
@@ -240,7 +256,7 @@ const Gradient = [
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient') && globalOverlayGradientViaEnabledEnd == true",
     title: "Position",
     id: "globalOverlayGradientViaPositionEnd",
-    format: "via-[{{value}}%]",
+    format: "via-{{value}}%",
     responsive: false,
     slider: {
       default: 50,
@@ -285,7 +301,7 @@ const Gradient = [
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient')",
     title: "Position",
     id: "globalOverlayGradientToPositionEnd",
-    format: "to-[{{value}}%]",
+    format: "to-{{value}}%",
     responsive: false,
     slider: {
       use: "Slider",

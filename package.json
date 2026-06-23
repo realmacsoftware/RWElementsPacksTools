@@ -50,6 +50,7 @@
     "lodash": "^4.17.21"
   },
   "scripts": {
+    "test": "node --test tests/*.test.js",
     "prepublishOnly": "echo 'Ready to publish rw-elements-tools'",
     "docs:generate": "node scripts/generate-docs.js",
     "docs:publish": "node scripts/publish-docs.js",
