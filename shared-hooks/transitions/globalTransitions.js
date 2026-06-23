@@ -10,6 +10,7 @@ const globalTransitions = (app, alwaysWantsHover = false) => {
     globalControlTypeSVGFill,
     globalControlTypeSVGStroke,
     globalControlTypeOutline,
+    globalControlType3D,
     globalTransitionsProperty: property,
     globalTransitionsDuration: duration,
     globalTransitionsDelay: delay,
@@ -30,9 +31,10 @@ const globalTransitions = (app, alwaysWantsHover = false) => {
       globalControlTypeSVGStroke,
       globalControlTypeOverlay,
       globalControlTypeOutline,
+      globalControlType3D,
     ].some(prop => {
-        const validValues = ['none', 'static', '', undefined, null];
-        return !validValues.includes(prop);
+      const validValues = ['none', 'static', '', undefined, null];
+      return !validValues.includes(prop);
     });
   }
 

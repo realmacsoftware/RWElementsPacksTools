@@ -160,11 +160,19 @@ export { default as SpacingInput } from "./Spacing/SpacingInput.js";
 // TRANSFORMS
 // =============================================================================
 export { default as Transforms } from "./Transforms/Transforms.js";
+export { default as Transforms3D } from "./Transforms/Transforms3D.js";
 export { default as TransformOrigin } from "./Transforms/TransformOrigin.js";
 export { default as Rotate } from "./Transforms/Rotate.js";
 export { default as Scale } from "./Transforms/Scale.js";
 export { default as Skew } from "./Transforms/Skew.js";
 export { default as Translate } from "./Transforms/Translate.js";
+export { default as Rotate3D } from "./Transforms/Rotate3D.js";
+export { default as ScaleZ } from "./Transforms/ScaleZ.js";
+export { default as TranslateZ } from "./Transforms/TranslateZ.js";
+export { default as Perspective } from "./Transforms/Perspective.js";
+export { default as PerspectiveOrigin } from "./Transforms/PerspectiveOrigin.js";
+export { default as TransformStyle } from "./Transforms/TransformStyle.js";
+export { default as Backface } from "./Transforms/Backface.js";
 
 // =============================================================================
 // TRANSITIONS

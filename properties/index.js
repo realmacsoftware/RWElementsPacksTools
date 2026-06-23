@@ -6,6 +6,7 @@ export { default as FontWeight } from "./FontWeight.js";
 export { default as GradientDirection } from "./GradientDirection.js";
 export { default as LetterSpacing } from "./LetterSpacing.js";
 export { default as LineHeight } from "./LineHeight.js";
+export { default as Perspectives } from "./Perspectives.js";
 export { default as RevealAnimations } from "./RevealAnimations.js";
 export { default as Slider } from "./Slider.js";
 export { default as TextAlign } from "./TextAlign.js";

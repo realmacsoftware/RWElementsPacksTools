@@ -2,7 +2,7 @@ const Scale = [
   {
     title: "Scale",
     id: "globalTransformScale",
-    format: "scale-[{{value}}%]",
+    format: "scale-x-[{{value}}%] scale-y-[{{value}}%]",
     number: {
       default: 100,
       subtitle: "%",
