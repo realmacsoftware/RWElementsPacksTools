@@ -24,7 +24,7 @@ const GradientContainer = [
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
     title: "Color",
     id: "globalBgGradientFromColor",
-    format: "from-{{value}}/[--bgGradientFromOpacity]",
+    format: "from-{{value}}/(--bgGradientFromOpacity)",
     themeColor: {
       default: {
         name: "brand",
@@ -77,7 +77,7 @@ const GradientContainer = [
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient') && globalBgGradientViaEnabled == true",
     title: "Color",
     id: "globalBgGradientViaColor",
-    format: "via-{{value}}/[--bgGradientViaOpacity]",
+    format: "via-{{value}}/(--bgGradientViaOpacity)",
     themeColor: {
       default: {
         name: "brand",
@@ -122,7 +122,7 @@ const GradientContainer = [
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
     title: "Color",
     id: "globalBgGradientToColor",
-    format: "to-{{value}}/[--bgGradientToOpacity]",
+    format: "to-{{value}}/(--bgGradientToOpacity)",
     themeColor: {
       default: {
         name: "brand",
@@ -180,7 +180,7 @@ const GradientContainer = [
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient')",
     title: "Color",
     id: "globalBgGradientFromColorEnd",
-    format: "hover:from-{{value}}/[--bgGradientFromOpacityEnd]",
+    format: "hover:from-{{value}}/(--bgGradientFromOpacityEnd)",
     themeColor: {
       default: {
         name: "brand",
@@ -221,7 +221,7 @@ const GradientContainer = [
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient') && globalBgGradientViaEnabledEnd == true",
     title: "Color",
     id: "globalBgGradientViaColorEnd",
-    format: "hover:via-{{value}}/[--bgGradientViaOpacityEnd]",
+    format: "hover:via-{{value}}/(--bgGradientViaOpacityEnd)",
     themeColor: {
       default: {
         name: "brand",
@@ -254,7 +254,7 @@ const GradientContainer = [
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient')",
     title: "Color",
     id: "globalBgGradientToColorEnd",
-    format: "hover:to-{{value}}/[--bgGradientToOpacityEnd]",
+    format: "hover:to-{{value}}/(--bgGradientToOpacityEnd)",
     themeColor: {
       default: {
         name: "brand",

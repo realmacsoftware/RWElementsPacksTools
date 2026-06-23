@@ -195,3 +195,30 @@ test("gradient stop position formats use Tailwind 4 percentage syntax", () => {
     "from-{{value}}%",
   );
 });
+
+test("background gradient color formats use Tailwind 4 CSS variable opacity shorthand", () => {
+  assert.equal(
+    findControlById(Controls.Background_Gradient, "globalBgGradientFromColor").format,
+    "from-{{value}}/(--bgGradientFromOpacity)",
+  );
+  assert.equal(
+    findControlById(Controls.Background_Gradient, "globalBgGradientViaColor").format,
+    "via-{{value}}/(--bgGradientViaOpacity)",
+  );
+  assert.equal(
+    findControlById(Controls.Background_Gradient, "globalBgGradientToColor").format,
+    "to-{{value}}/(--bgGradientToOpacity)",
+  );
+  assert.equal(
+    findControlById(Controls.Background_Gradient, "globalBgGradientFromColorEnd").format,
+    "hover:from-{{value}}/(--bgGradientFromOpacityEnd)",
+  );
+  assert.equal(
+    findControlById(Controls.Background_Gradient, "globalBgGradientViaColorEnd").format,
+    "hover:via-{{value}}/(--bgGradientViaOpacityEnd)",
+  );
+  assert.equal(
+    findControlById(Controls.Background_Gradient, "globalBgGradientToColorEnd").format,
+    "hover:to-{{value}}/(--bgGradientToOpacityEnd)",
+  );
+});
