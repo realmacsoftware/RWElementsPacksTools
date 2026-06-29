@@ -47,9 +47,15 @@ const globalBgColor = (app, args = {}) => {
 const globalBgGradient = (app, args) => {
     const {
         globalControlTypeBg: controlType,
+        globalBgGradientType: gradientType,
         globalBgGradientDirection: direction,
+        globalBgGradientRadialPosition: radialPosition,
+        globalBgGradientConicAngle: conicAngle,
         globalBgGradientInterpolation: interpolation,
+        globalBgGradientTypeEnd: gradientTypeEnd,
         globalBgGradientDirectionEnd: directionEnd,
+        globalBgGradientRadialPositionEnd: radialPositionEnd,
+        globalBgGradientConicAngleEnd: conicAngleEnd,
         globalBgGradientInterpolationEnd: interpolationEnd,
 
         globalBgGradientFromColor: fromColor,
@@ -82,9 +88,18 @@ const globalBgGradient = (app, args) => {
     const hasPrefix = (args?.prefix && args?.prefixCallback) || false;
     const prefixCallback = args?.prefixCallback || (() => {});
 
-    const directionClass = normalizeGradientImageClass(direction, interpolation);
-    const directionEndClass = normalizeGradientImageClass(
+    const directionClass = resolveGradientImageClass(
+        gradientType,
+        direction,
+        radialPosition,
+        conicAngle,
+        interpolation
+    );
+    const directionEndClass = resolveGradientImageClass(
+        gradientTypeEnd,
         directionEnd,
+        radialPositionEnd,
+        conicAngleEnd,
         interpolationEnd
     );
 

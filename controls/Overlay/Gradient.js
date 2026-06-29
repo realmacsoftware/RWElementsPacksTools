@@ -20,7 +20,7 @@ const Gradient = [
   {
     visible: "((globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient') || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient')) && globalOverlayGradientType == 'radial'",
     title: "Position",
-    id: "globalOverlayGradientDirection",
+    id: "globalOverlayGradientRadialPosition",
     select: {
       use: "GradientRadialPosition",
     },
@@ -28,7 +28,7 @@ const Gradient = [
   {
     visible: "((globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient') || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient')) && globalOverlayGradientType == 'conic'",
     title: "Angle",
-    id: "globalOverlayGradientDirection",
+    id: "globalOverlayGradientConicAngle",
     select: {
       use: "GradientConicAngle",
     },
@@ -201,7 +201,7 @@ const Gradient = [
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient') && globalOverlayGradientTypeEnd == 'radial'",
     title: "Position",
-    id: "globalOverlayGradientDirectionEnd",
+    id: "globalOverlayGradientRadialPositionEnd",
     select: {
       use: "GradientRadialPosition",
     },
@@ -209,7 +209,7 @@ const Gradient = [
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient') && globalOverlayGradientTypeEnd == 'conic'",
     title: "Angle",
-    id: "globalOverlayGradientDirectionEnd",
+    id: "globalOverlayGradientConicAngleEnd",
     select: {
       use: "GradientConicAngle",
     },

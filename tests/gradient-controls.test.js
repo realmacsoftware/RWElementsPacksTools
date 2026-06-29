@@ -96,8 +96,12 @@ function assertGradientTypeControl(control, id) {
   assert.equal(typeControl.segmented?.default, "linear");
 }
 
-function assertTypeSpecificDirectionControls(control, id, typeId) {
-  const directionControls = findControlsById(control, id);
+function assertTypeSpecificDirectionControls(control, expectedIds, typeId) {
+  const directionControls = [
+    ...findControlsById(control, expectedIds.linear),
+    ...findControlsById(control, expectedIds.radial),
+    ...findControlsById(control, expectedIds.conic),
+  ];
   const controlsByUse = Object.fromEntries(
     directionControls
       .filter((item) => item.select)
@@ -105,13 +109,22 @@ function assertTypeSpecificDirectionControls(control, id, typeId) {
   );
 
   assert.equal(controlsByUse.GradientLinearDirection?.title, "Direction");
+  assert.equal(controlsByUse.GradientLinearDirection?.id, expectedIds.linear);
   assert.match(controlsByUse.GradientLinearDirection?.visible ?? "", new RegExp(`${typeId} == 'linear'`));
 
   assert.equal(controlsByUse.GradientRadialPosition?.title, "Position");
+  assert.equal(controlsByUse.GradientRadialPosition?.id, expectedIds.radial);
   assert.match(controlsByUse.GradientRadialPosition?.visible ?? "", new RegExp(`${typeId} == 'radial'`));
 
   assert.equal(controlsByUse.GradientConicAngle?.title, "Angle");
+  assert.equal(controlsByUse.GradientConicAngle?.id, expectedIds.conic);
   assert.match(controlsByUse.GradientConicAngle?.visible ?? "", new RegExp(`${typeId} == 'conic'`));
+
+  assert.equal(
+    new Set(directionControls.map((item) => item.id)).size,
+    3,
+    `Expected ${typeId} direction controls to use unique IDs`,
+  );
 }
 
 test("global background gradient keeps existing property IDs", () => {
@@ -242,40 +255,68 @@ test("gradient controls expose segmented type controls that default to linear", 
   assertGradientTypeControl(Controls.BackgroundGradient, "bgGradientType");
 });
 
-test("gradient style selectors are split by type while reusing existing direction IDs", () => {
+test("gradient style selectors are split by type with unique direction IDs", () => {
   assertTypeSpecificDirectionControls(
     Controls.Background_Gradient,
-    "globalBgGradientDirection",
+    {
+      linear: "globalBgGradientDirection",
+      radial: "globalBgGradientRadialPosition",
+      conic: "globalBgGradientConicAngle",
+    },
     "globalBgGradientType",
   );
   assertTypeSpecificDirectionControls(
     Controls.Background_Gradient,
-    "globalBgGradientDirectionEnd",
+    {
+      linear: "globalBgGradientDirectionEnd",
+      radial: "globalBgGradientRadialPositionEnd",
+      conic: "globalBgGradientConicAngleEnd",
+    },
     "globalBgGradientTypeEnd",
   );
   assertTypeSpecificDirectionControls(
     Controls.Background_Gradient_Container,
-    "globalBgGradientDirection",
+    {
+      linear: "globalBgGradientDirection",
+      radial: "globalBgGradientRadialPosition",
+      conic: "globalBgGradientConicAngle",
+    },
     "globalBgGradientType",
   );
   assertTypeSpecificDirectionControls(
     Controls.Background_Gradient_Container,
-    "globalBgGradientDirectionEnd",
+    {
+      linear: "globalBgGradientDirectionEnd",
+      radial: "globalBgGradientRadialPositionEnd",
+      conic: "globalBgGradientConicAngleEnd",
+    },
     "globalBgGradientTypeEnd",
   );
   assertTypeSpecificDirectionControls(
     Controls.Overlay_Gradient,
-    "globalOverlayGradientDirection",
+    {
+      linear: "globalOverlayGradientDirection",
+      radial: "globalOverlayGradientRadialPosition",
+      conic: "globalOverlayGradientConicAngle",
+    },
     "globalOverlayGradientType",
   );
   assertTypeSpecificDirectionControls(
     Controls.Overlay_Gradient,
-    "globalOverlayGradientDirectionEnd",
+    {
+      linear: "globalOverlayGradientDirectionEnd",
+      radial: "globalOverlayGradientRadialPositionEnd",
+      conic: "globalOverlayGradientConicAngleEnd",
+    },
     "globalOverlayGradientTypeEnd",
   );
   assertTypeSpecificDirectionControls(
     Controls.BackgroundGradient,
-    "bgGradientDirection",
+    {
+      linear: "bgGradientDirection",
+      radial: "bgGradientRadialPosition",
+      conic: "bgGradientConicAngle",
+    },
     "bgGradientType",
   );
 });

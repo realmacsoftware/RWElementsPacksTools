@@ -134,7 +134,9 @@ const AnimationSettings = [
         id: "globalScrollAnimationIsSpring",
         title: "Enable",
         responsive: false,
-        switch: {}
+        switch: {
+            default: false,
+        }
     },
     {
         visible: "globalScrollAnimationIsSpring == 'true'",
@@ -420,7 +422,9 @@ const AnimationSettings = [
         title: "Yoyo",
         id: "globalScrollAnimationRepeatYoyo",
         responsive: false,
-        switch: {}
+        switch: {
+            default: false,
+        }
     },
     {
         visible: "globalScrollAnimationRepeat != 'false'",

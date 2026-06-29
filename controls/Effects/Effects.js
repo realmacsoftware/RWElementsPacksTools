@@ -13,7 +13,9 @@ const Effects = [
             "globalControlTypeEffects == 'hover' && globalHoverGroupEffects == 'custom'",
         title: "ID",
         id: "globalHoverGroupCustomIdEffects",
-        text: {},
+        text: {
+            default: "",
+        },
     },
     {
         visible: "globalHoverGroupEffects == 'custom'",

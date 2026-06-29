@@ -23,9 +23,15 @@ const globalOverlayColor = (app, prefix) => {
 const globalOverlayGradient = (app, prefix) => {
   const {
     globalControlTypeOverlay: controlType,
+    globalOverlayGradientType: gradientType,
     globalOverlayGradientDirection: direction,
+    globalOverlayGradientRadialPosition: radialPosition,
+    globalOverlayGradientConicAngle: conicAngle,
     globalOverlayGradientInterpolation: interpolation,
+    globalOverlayGradientTypeEnd: gradientTypeEnd,
     globalOverlayGradientDirectionEnd: directionEnd,
+    globalOverlayGradientRadialPositionEnd: radialPositionEnd,
+    globalOverlayGradientConicAngleEnd: conicAngleEnd,
     globalOverlayGradientInterpolationEnd: interpolationEnd,
 
     globalOverlayGradientFromColor: fromColor,
@@ -55,9 +61,18 @@ const globalOverlayGradient = (app, prefix) => {
     globalOverlayGradientToPositionEnd: toPositionEnd,
   } = app.props;
 
-  const directionClass = normalizeGradientImageClass(direction, interpolation);
-  const directionEndClass = normalizeGradientImageClass(
+  const directionClass = resolveGradientImageClass(
+    gradientType,
+    direction,
+    radialPosition,
+    conicAngle,
+    interpolation
+  );
+  const directionEndClass = resolveGradientImageClass(
+    gradientTypeEnd,
     directionEnd,
+    radialPositionEnd,
+    conicAngleEnd,
     interpolationEnd
   );
 

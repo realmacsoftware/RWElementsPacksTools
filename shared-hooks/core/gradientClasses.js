@@ -19,3 +19,21 @@ const normalizeGradientImageClass = (className, interpolation = "") => {
 
   return `${prefix}${baseClass}`;
 };
+
+const resolveGradientImageClass = (
+  type,
+  linearDirection,
+  radialPosition,
+  conicAngle,
+  interpolation = ""
+) => {
+  let selectedDirection = linearDirection;
+
+  if (type === "radial") {
+    selectedDirection = radialPosition || linearDirection;
+  } else if (type === "conic") {
+    selectedDirection = conicAngle || linearDirection;
+  }
+
+  return normalizeGradientImageClass(selectedDirection, interpolation);
+};

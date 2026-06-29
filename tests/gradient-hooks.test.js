@@ -113,6 +113,20 @@ test("global background gradients add interpolation to Tailwind 4 radial utiliti
   assert.match(classes, /\bbg-radial-\[at_50%_75%\]\/srgb\b/);
 });
 
+test("global background gradients use selected type-specific radial direction values", () => {
+  const classes = globalBgGradient({
+    props: baseBackgroundProps({
+      globalBgGradientType: "radial",
+      globalBgGradientDirection: "bg-linear-to-b",
+      globalBgGradientRadialPosition: "bg-radial-[at_50%_75%]",
+      globalBgGradientInterpolation: "srgb",
+    }),
+  });
+
+  assert.match(classes, /\bbg-radial-\[at_50%_75%\]\/srgb\b/);
+  assert.doesNotMatch(classes, /\bbg-linear-to-b\b/);
+});
+
 test("global background hover gradients normalize legacy values before replacing variants", () => {
   const classes = globalBgGradient(
     {
@@ -129,6 +143,24 @@ test("global background hover gradients normalize legacy values before replacing
   assert.doesNotMatch(classes, /\bpeer-hover:bg-gradient-to-t\b/);
 });
 
+test("global background hover gradients use selected type-specific conic end values", () => {
+  const classes = globalBgGradient(
+    {
+      props: baseBackgroundProps({
+        globalControlTypeBg: "hover",
+        globalBgGradientTypeEnd: "conic",
+        globalBgGradientDirectionEnd: "hover:bg-linear-to-t",
+        globalBgGradientConicAngleEnd: "hover:bg-conic-180",
+        globalBgGradientInterpolationEnd: "longer",
+      }),
+    },
+    { peer: true },
+  );
+
+  assert.match(classes, /\bpeer-hover:bg-conic-180\/longer\b/);
+  assert.doesNotMatch(classes, /\bpeer-hover:bg-linear-to-t\b/);
+});
+
 test("overlay gradients normalize prefixed legacy hover values with interpolation", () => {
   const classes = globalOverlayGradient(
     {
@@ -143,4 +175,21 @@ test("overlay gradients normalize prefixed legacy hover values with interpolatio
 
   assert.match(classes, /\bgroup-hover:bg-linear-to-bl\/shorter\b/);
   assert.doesNotMatch(classes, /\bgroup-hover:bg-gradient-to-bl\b/);
+});
+
+test("overlay gradients use selected type-specific conic direction values", () => {
+  const classes = globalOverlayGradient(
+    {
+      props: baseOverlayProps({
+        globalOverlayGradientType: "conic",
+        globalOverlayGradientDirection: "bg-linear-to-b",
+        globalOverlayGradientConicAngle: "bg-conic-180",
+        globalOverlayGradientInterpolation: "shorter",
+      }),
+    },
+    "group-hover",
+  );
+
+  assert.match(classes, /\bbg-conic-180\/shorter\b/);
+  assert.doesNotMatch(classes, /\bbg-linear-to-b\b/);
 });

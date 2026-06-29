@@ -13,7 +13,9 @@ const Transforms3D = [
             "globalControlType3D == 'hover' && globalHoverGroup3D == 'custom'",
         title: "ID",
         id: "globalHoverGroupCustomId3D",
-        text: {},
+        text: {
+            default: "",
+        },
     },
     {
         visible: "globalHoverGroup3D == 'custom'",

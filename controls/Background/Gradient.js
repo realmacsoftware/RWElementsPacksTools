@@ -20,7 +20,7 @@ const Gradient = [
   {
     visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientType == 'radial'",
     title: "Position",
-    id: "globalBgGradientDirection",
+    id: "globalBgGradientRadialPosition",
     select: {
       use: "GradientRadialPosition",
     },
@@ -28,7 +28,7 @@ const Gradient = [
   {
     visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientType == 'conic'",
     title: "Angle",
-    id: "globalBgGradientDirection",
+    id: "globalBgGradientConicAngle",
     select: {
       use: "GradientConicAngle",
     },
@@ -202,7 +202,7 @@ const Gradient = [
   {
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient') && globalBgGradientTypeEnd == 'radial'",
     title: "Position",
-    id: "globalBgGradientDirectionEnd",
+    id: "globalBgGradientRadialPositionEnd",
     format: "hover:{{value}}",
     select: {
       use: "GradientRadialPosition",
@@ -211,7 +211,7 @@ const Gradient = [
   {
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient') && globalBgGradientTypeEnd == 'conic'",
     title: "Angle",
-    id: "globalBgGradientDirectionEnd",
+    id: "globalBgGradientConicAngleEnd",
     format: "hover:{{value}}",
     select: {
       use: "GradientConicAngle",

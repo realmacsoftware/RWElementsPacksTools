@@ -139,7 +139,7 @@ const MenuItem = [
         id: "globalMenuItemHoverColor",
         format: "hover:text-{{value}}/[var(--text-opacity)] data-[state=active]:text-{{value}}/[var(--text-opacity)]",
         themeColor: {
-            hover: {
+            default: {
                 name: "brand",
                 brightness: 500,
             },

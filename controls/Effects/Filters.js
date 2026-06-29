@@ -13,7 +13,9 @@ const Filters = [
             "globalControlTypeFilters == 'hover' && globalHoverGroupFilters == 'custom'",
         title: "ID",
         id: "globalHoverGroupCustomIdFilters",
-        text: {},
+        text: {
+            default: "",
+        },
     },
     {
         visible: "globalHoverGroupFilters == 'custom'",

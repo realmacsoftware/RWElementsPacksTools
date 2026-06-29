@@ -74,8 +74,8 @@ export const BorderHover = [
         id: "borderColorHover",
         format: "hover:border-{{value}}",
         themeColor: {
-            base: {
-                name: "gray",
+            default: {
+                name: "surface",
                 brightness: 500,
             },
         },

@@ -20,7 +20,7 @@ const BackgroundGadient = [
     {
         visible: "bgType == 'gradient' && bgGradientType == 'radial'",
         title: "Position",
-        id: "bgGradientDirection",
+        id: "bgGradientRadialPosition",
         select: {
             use: "GradientRadialPosition",
         },
@@ -28,7 +28,7 @@ const BackgroundGadient = [
     {
         visible: "bgType == 'gradient' && bgGradientType == 'conic'",
         title: "Angle",
-        id: "bgGradientDirection",
+        id: "bgGradientConicAngle",
         select: {
             use: "GradientConicAngle",
         },
@@ -90,7 +90,9 @@ const BackgroundGadient = [
         visible: "bgType == 'gradient'",
         title: "Add Via",
         id: "wantsGradientVia",
-        switch: {},
+        switch: {
+            default: false,
+        },
     },
     {
         visible: "bgType == 'gradient' && wantsGradientVia == 'true'",

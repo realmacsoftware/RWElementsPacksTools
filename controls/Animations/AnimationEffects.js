@@ -4,7 +4,9 @@ const AnimationEffects = [
         title: "Preview",
         id: "globalScrollAnimationPreviewInEditor",
         responsive: false,
-        switch: {}
+        switch: {
+            default: false,
+        }
     },
     {
         visible: "globalScrollAnimationTrigger != 'none' && globalScrollAnimationVisibleSettings == 'effects' && globalScrollAnimationPreviewInEditor == 'true'",
@@ -84,7 +86,9 @@ const AnimationEffects = [
         title: "Enable",
         id: "globalScrollAnimationExitEnabled",
         responsive: false,
-        switch: {}
+        switch: {
+            default: false,
+        }
     },
     {
         visible: "globalScrollAnimationTrigger != 'none' && globalScrollAnimationVisibleSettings == 'effects' && globalScrollAnimationExitEnabled == 'true'",

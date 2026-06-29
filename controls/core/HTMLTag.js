@@ -11,8 +11,8 @@ const HTMLTag = [
     title: "Tag",
     id: "globalHTMLTag",
     responsive: false,
-    default: "default",
     select: {
+      default: "default",
       items: [
         {
           value: "default",

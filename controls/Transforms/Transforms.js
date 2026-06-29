@@ -13,7 +13,9 @@ const Transforms = [
             "globalControlTypeTransforms == 'hover' && globalHoverGroupTransforms == 'custom'",
         title: "ID",
         id: "globalHoverGroupCustomIdTransforms",
-        text: {},
+        text: {
+            default: "",
+        },
     },
     {
         visible: "globalHoverGroupTransforms == 'custom'",
