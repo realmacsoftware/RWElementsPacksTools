@@ -53,6 +53,30 @@ function findControlById(control, id) {
   return null;
 }
 
+function findControlsById(control, id) {
+  const matches = [];
+
+  function visit(value) {
+    if (Array.isArray(value)) {
+      value.forEach(visit);
+      return;
+    }
+
+    if (!value || typeof value !== "object") {
+      return;
+    }
+
+    if (value.id === id) {
+      matches.push(value);
+    }
+
+    Object.values(value).forEach(visit);
+  }
+
+  visit(control);
+  return matches;
+}
+
 function assertIncludesInOrder(actual, expected) {
   let searchFrom = 0;
 
@@ -61,6 +85,33 @@ function assertIncludesInOrder(actual, expected) {
     assert.notEqual(index, -1, `Expected to find existing id "${id}"`);
     searchFrom = index + 1;
   }
+}
+
+function assertGradientTypeControl(control, id) {
+  const typeControl = findControlById(control, id);
+
+  assert.ok(typeControl, `Expected ${id} to exist`);
+  assert.equal(typeControl.title, "Type");
+  assert.equal(typeControl.segmented?.use, "GradientType");
+  assert.equal(typeControl.segmented?.default, "linear");
+}
+
+function assertTypeSpecificDirectionControls(control, id, typeId) {
+  const directionControls = findControlsById(control, id);
+  const controlsByUse = Object.fromEntries(
+    directionControls
+      .filter((item) => item.select)
+      .map((item) => [item.select.use, item]),
+  );
+
+  assert.equal(controlsByUse.GradientLinearDirection?.title, "Direction");
+  assert.match(controlsByUse.GradientLinearDirection?.visible ?? "", new RegExp(`${typeId} == 'linear'`));
+
+  assert.equal(controlsByUse.GradientRadialPosition?.title, "Position");
+  assert.match(controlsByUse.GradientRadialPosition?.visible ?? "", new RegExp(`${typeId} == 'radial'`));
+
+  assert.equal(controlsByUse.GradientConicAngle?.title, "Angle");
+  assert.match(controlsByUse.GradientConicAngle?.visible ?? "", new RegExp(`${typeId} == 'conic'`));
 }
 
 test("global background gradient keeps existing property IDs", () => {
@@ -171,6 +222,62 @@ test("gradient direction property exposes Tailwind 4 gradient image utilities", 
   assert.ok(values.includes("bg-radial-[at_50%_75%]"));
   assert.ok(values.includes("bg-conic"));
   assert.ok(values.includes("bg-conic-180"));
+});
+
+test("gradient type property defaults to linear", () => {
+  assert.equal(Properties.GradientType.default, "linear");
+  assert.deepEqual(
+    Properties.GradientType.items.map((item) => item.value),
+    ["linear", "radial", "conic"],
+  );
+});
+
+test("gradient controls expose segmented type controls that default to linear", () => {
+  assertGradientTypeControl(Controls.Background_Gradient, "globalBgGradientType");
+  assertGradientTypeControl(Controls.Background_Gradient, "globalBgGradientTypeEnd");
+  assertGradientTypeControl(Controls.Background_Gradient_Container, "globalBgGradientType");
+  assertGradientTypeControl(Controls.Background_Gradient_Container, "globalBgGradientTypeEnd");
+  assertGradientTypeControl(Controls.Overlay_Gradient, "globalOverlayGradientType");
+  assertGradientTypeControl(Controls.Overlay_Gradient, "globalOverlayGradientTypeEnd");
+  assertGradientTypeControl(Controls.BackgroundGradient, "bgGradientType");
+});
+
+test("gradient style selectors are split by type while reusing existing direction IDs", () => {
+  assertTypeSpecificDirectionControls(
+    Controls.Background_Gradient,
+    "globalBgGradientDirection",
+    "globalBgGradientType",
+  );
+  assertTypeSpecificDirectionControls(
+    Controls.Background_Gradient,
+    "globalBgGradientDirectionEnd",
+    "globalBgGradientTypeEnd",
+  );
+  assertTypeSpecificDirectionControls(
+    Controls.Background_Gradient_Container,
+    "globalBgGradientDirection",
+    "globalBgGradientType",
+  );
+  assertTypeSpecificDirectionControls(
+    Controls.Background_Gradient_Container,
+    "globalBgGradientDirectionEnd",
+    "globalBgGradientTypeEnd",
+  );
+  assertTypeSpecificDirectionControls(
+    Controls.Overlay_Gradient,
+    "globalOverlayGradientDirection",
+    "globalOverlayGradientType",
+  );
+  assertTypeSpecificDirectionControls(
+    Controls.Overlay_Gradient,
+    "globalOverlayGradientDirectionEnd",
+    "globalOverlayGradientTypeEnd",
+  );
+  assertTypeSpecificDirectionControls(
+    Controls.BackgroundGradient,
+    "bgGradientDirection",
+    "bgGradientType",
+  );
 });
 
 test("gradient stop position formats use Tailwind 4 percentage syntax", () => {

@@ -1,10 +1,36 @@
 const BackgroundGadient = [
     {
         visible: "bgType == 'gradient'",
-        title: "Style",
+        title: "Type",
+        id: "bgGradientType",
+        responsive: false,
+        segmented: {
+            use: "GradientType",
+            default: "linear",
+        },
+    },
+    {
+        visible: "bgType == 'gradient' && bgGradientType == 'linear'",
+        title: "Direction",
         id: "bgGradientDirection",
         select: {
-            use: "GradientDirection",
+            use: "GradientLinearDirection",
+        },
+    },
+    {
+        visible: "bgType == 'gradient' && bgGradientType == 'radial'",
+        title: "Position",
+        id: "bgGradientDirection",
+        select: {
+            use: "GradientRadialPosition",
+        },
+    },
+    {
+        visible: "bgType == 'gradient' && bgGradientType == 'conic'",
+        title: "Angle",
+        id: "bgGradientDirection",
+        select: {
+            use: "GradientConicAngle",
         },
     },
     {

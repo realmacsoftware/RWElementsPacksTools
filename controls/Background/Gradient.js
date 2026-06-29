@@ -1,10 +1,36 @@
 const Gradient = [
   {
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
-    title: "Style",
+    title: "Type",
+    id: "globalBgGradientType",
+    responsive: false,
+    segmented: {
+      use: "GradientType",
+      default: "linear",
+    },
+  },
+  {
+    visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientType == 'linear'",
+    title: "Direction",
     id: "globalBgGradientDirection",
     select: {
-      use: "GradientDirection",
+      use: "GradientLinearDirection",
+    },
+  },
+  {
+    visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientType == 'radial'",
+    title: "Position",
+    id: "globalBgGradientDirection",
+    select: {
+      use: "GradientRadialPosition",
+    },
+  },
+  {
+    visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientType == 'conic'",
+    title: "Angle",
+    id: "globalBgGradientDirection",
+    select: {
+      use: "GradientConicAngle",
     },
   },
   {
@@ -156,11 +182,39 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient')",
-    title: "Style",
+    title: "Type",
+    id: "globalBgGradientTypeEnd",
+    responsive: false,
+    segmented: {
+      use: "GradientType",
+      default: "linear",
+    },
+  },
+  {
+    visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient') && globalBgGradientTypeEnd == 'linear'",
+    title: "Direction",
     id: "globalBgGradientDirectionEnd",
     format: "hover:{{value}}",
     select: {
-      use: "GradientDirection",
+      use: "GradientLinearDirection",
+    },
+  },
+  {
+    visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient') && globalBgGradientTypeEnd == 'radial'",
+    title: "Position",
+    id: "globalBgGradientDirectionEnd",
+    format: "hover:{{value}}",
+    select: {
+      use: "GradientRadialPosition",
+    },
+  },
+  {
+    visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient') && globalBgGradientTypeEnd == 'conic'",
+    title: "Angle",
+    id: "globalBgGradientDirectionEnd",
+    format: "hover:{{value}}",
+    select: {
+      use: "GradientConicAngle",
     },
   },
   {
