@@ -13,6 +13,7 @@ const GradientContainer = [
     visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientType == 'linear'",
     title: "Direction",
     id: "globalBgGradientDirection",
+    responsive: false,
     select: {
       use: "GradientLinearDirection",
     },
@@ -21,6 +22,7 @@ const GradientContainer = [
     visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientType == 'radial'",
     title: "Position",
     id: "globalBgGradientRadialPosition",
+    responsive: false,
     select: {
       use: "GradientRadialPosition",
     },
@@ -29,6 +31,7 @@ const GradientContainer = [
     visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientType == 'conic'",
     title: "Angle",
     id: "globalBgGradientConicAngle",
+    responsive: false,
     select: {
       use: "GradientConicAngle",
     },
@@ -37,6 +40,7 @@ const GradientContainer = [
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
     title: "Interpolation",
     id: "globalBgGradientInterpolation",
+    responsive: false,
     select: {
       use: "GradientInterpolation",
     },
@@ -194,6 +198,7 @@ const GradientContainer = [
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient') && globalBgGradientTypeEnd == 'linear'",
     title: "Direction",
     id: "globalBgGradientDirectionEnd",
+    responsive: false,
     format: "hover:{{value}}",
     select: {
       use: "GradientLinearDirection",
@@ -203,6 +208,7 @@ const GradientContainer = [
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient') && globalBgGradientTypeEnd == 'radial'",
     title: "Position",
     id: "globalBgGradientRadialPositionEnd",
+    responsive: false,
     format: "hover:{{value}}",
     select: {
       use: "GradientRadialPosition",
@@ -212,6 +218,7 @@ const GradientContainer = [
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient') && globalBgGradientTypeEnd == 'conic'",
     title: "Angle",
     id: "globalBgGradientConicAngleEnd",
+    responsive: false,
     format: "hover:{{value}}",
     select: {
       use: "GradientConicAngle",
@@ -221,6 +228,7 @@ const GradientContainer = [
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient')",
     title: "Interpolation",
     id: "globalBgGradientInterpolationEnd",
+    responsive: false,
     select: {
       use: "GradientInterpolation",
     },

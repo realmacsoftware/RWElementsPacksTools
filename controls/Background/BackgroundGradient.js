@@ -13,6 +13,7 @@ const BackgroundGadient = [
         visible: "bgType == 'gradient' && bgGradientType == 'linear'",
         title: "Direction",
         id: "bgGradientDirection",
+        responsive: false,
         select: {
             use: "GradientLinearDirection",
         },
@@ -21,6 +22,7 @@ const BackgroundGadient = [
         visible: "bgType == 'gradient' && bgGradientType == 'radial'",
         title: "Position",
         id: "bgGradientRadialPosition",
+        responsive: false,
         select: {
             use: "GradientRadialPosition",
         },
@@ -29,6 +31,7 @@ const BackgroundGadient = [
         visible: "bgType == 'gradient' && bgGradientType == 'conic'",
         title: "Angle",
         id: "bgGradientConicAngle",
+        responsive: false,
         select: {
             use: "GradientConicAngle",
         },
@@ -37,6 +40,7 @@ const BackgroundGadient = [
         visible: "bgType == 'gradient'",
         title: "Interpolation",
         id: "bgGradientInterpolation",
+        responsive: false,
         select: {
             use: "GradientInterpolation",
         },
