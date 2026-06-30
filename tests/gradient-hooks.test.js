@@ -102,7 +102,7 @@ test("global background gradients normalize legacy saved linear direction values
   assert.doesNotMatch(classes, /\bbg-gradient-to-r\b/);
 });
 
-test("global background gradients add interpolation to Tailwind 4 radial utilities", () => {
+test("global background gradients bake interpolation into arbitrary radial utilities", () => {
   const classes = globalBgGradient({
     props: baseBackgroundProps({
       globalBgGradientDirection: "bg-radial-[at_50%_75%]",
@@ -110,7 +110,34 @@ test("global background gradients add interpolation to Tailwind 4 radial utiliti
     }),
   });
 
-  assert.match(classes, /\bbg-radial-\[at_50%_75%\]\/srgb\b/);
+  assert.match(classes, /\bbg-radial-\[at_50%_75%_in_srgb\]/);
+  assert.doesNotMatch(classes, /\bbg-radial-\[at_50%_75%\]\/srgb\b/);
+});
+
+test("global background gradients bake hue interpolation into arbitrary radial utilities", () => {
+  const classes = globalBgGradient({
+    props: baseBackgroundProps({
+      globalBgGradientDirection: "bg-radial-[at_top_left]",
+      globalBgGradientInterpolation: "longer",
+    }),
+  });
+
+  assert.match(classes, /\bbg-radial-\[at_top_left_in_oklch_longer_hue\]/);
+  assert.doesNotMatch(classes, /\bbg-radial-\[at_top_left\]\/longer\b/);
+});
+
+test("global background gradients keep slash interpolation for non-arbitrary radial center", () => {
+  const classes = globalBgGradient({
+    props: baseBackgroundProps({
+      globalBgGradientType: "radial",
+      globalBgGradientDirection: "bg-linear-to-b",
+      globalBgGradientRadialPosition: "bg-radial",
+      globalBgGradientInterpolation: "longer",
+    }),
+  });
+
+  assert.match(classes, /\bbg-radial\/longer\b/);
+  assert.doesNotMatch(classes, /\bbg-linear-to-b\b/);
 });
 
 test("global background gradients use selected type-specific radial direction values", () => {
@@ -123,7 +150,7 @@ test("global background gradients use selected type-specific radial direction va
     }),
   });
 
-  assert.match(classes, /\bbg-radial-\[at_50%_75%\]\/srgb\b/);
+  assert.match(classes, /\bbg-radial-\[at_50%_75%_in_srgb\]/);
   assert.doesNotMatch(classes, /\bbg-linear-to-b\b/);
 });
 
