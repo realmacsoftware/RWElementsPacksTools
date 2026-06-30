@@ -232,7 +232,7 @@ test("gradient direction property exposes Tailwind 4 gradient image utilities", 
   assert.equal(Properties.GradientDirection.default, "bg-linear-to-b");
   assert.ok(values.includes("bg-linear-to-r"));
   assert.ok(values.includes("bg-radial"));
-  assert.ok(values.includes("bg-radial-[at_50%_75%]"));
+  assert.ok(values.includes("bg-radial-[at_top_left]"));
   assert.ok(values.includes("bg-conic"));
   assert.ok(values.includes("bg-conic-180"));
 });

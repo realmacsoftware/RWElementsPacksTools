@@ -37,14 +37,6 @@ const GradientRadialPosition = {
             value: "bg-radial-[at_top_left]",
             title: "Top Left",
         },
-        {
-            value: "bg-radial-[at_50%_75%]",
-            title: "Lower Center",
-        },
-        {
-            value: "bg-radial-[at_25%_25%]",
-            title: "Upper Left",
-        },
     ],
 };
 
