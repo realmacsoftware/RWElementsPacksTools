@@ -344,18 +344,21 @@ function resolveUseReferences(property) {
  * 3. Apply default values
  * 4. Apply theme defaults
  * 5. Transform ID using template
- * 6. Process nested globalControls
- * 7. Apply ID transformation to nested IDs
- * 8. Resolve 'use' references
+ * 6. Transform format using template
+ * 7. Process nested globalControls
+ * 8. Apply ID transformation to nested IDs
+ * 9. Resolve 'use' references
  *
  * @param {Object} control - The base control definition.
  * @param {string} idTemplate - ID template with {{value}} placeholder.
+ * @param {string} formatTemplate - Format template where {{value}} is replaced
+ *   with the control's existing format.
  * @param {Object} overrides - Property overrides to apply.
  * @param {*} defaultVal - Default value to apply.
  * @param {Object} themeDefaults - Theme property overrides.
  * @returns {Object|Array} The fully processed control(s).
  */
-function processControl(control, idTemplate, overrides, defaultVal, themeDefaults) {
+function processControl(control, idTemplate, formatTemplate, overrides, defaultVal, themeDefaults) {
   // 1. Deep clone to avoid mutating the original
   let result = cloneDeep(control);
 
@@ -373,14 +376,28 @@ function processControl(control, idTemplate, overrides, defaultVal, themeDefault
     result.id = transformIdTemplate(idTemplate, result.id);
   }
 
-  // 6. Process any nested globalControls
+  // 6. Transform the control's format using the template
+  if (formatTemplate) {
+    if (formatTemplate.includes("{{value}}")) {
+      // Wrap the control's existing format; controls without one are left as-is.
+      // A single replacement keeps any runtime {{value}} placeholder inside the
+      // original format intact.
+      if (result.format) {
+        result.format = formatTemplate.replace("{{value}}", result.format);
+      }
+    } else {
+      result.format = formatTemplate;
+    }
+  }
+
+  // 7. Process any nested globalControls
   result = processNestedGlobalControls(result);
 
-  // 7. Apply ID transformation to all nested IDs
+  // 8. Apply ID transformation to all nested IDs
   const idTransformer = createIdTransformer(result.id || "");
   result = transformIdsRecursively(result, idTransformer);
 
-  // 8. Resolve 'use' references
+  // 9. Resolve 'use' references
   return resolveUseReferences(result);
 }
 
@@ -426,6 +443,7 @@ function processProperty(property) {
     globalControl: _,
     default: defaultVal,
     id: idTemplate,
+    format: formatTemplate,
     ...rest
   } = property;
 
@@ -442,7 +460,7 @@ function processProperty(property) {
   // Process each control in the globalControl (may be array)
   const controls = normalizeToArray(globalControl);
   const processed = controls.map((ctrl) =>
-    processControl(ctrl, idTemplate, overrides, defaultVal, themeDefaults)
+    processControl(ctrl, idTemplate, formatTemplate, overrides, defaultVal, themeDefaults)
   );
 
   // Flatten in case processControl returns arrays (from nested globalControls)

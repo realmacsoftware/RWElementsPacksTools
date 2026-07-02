@@ -61,6 +61,7 @@ const Effects = [
             "(globalControlTypeEffects == 'hover' && globalEffectsState == 'end')",
         globalControl: "BoxShadow",
         id: "{{value}}End",
+        format: "hover:{{value}}",
     },
     {
         visible: "globalControlTypeEffects != 'none'",
@@ -76,6 +77,7 @@ const Effects = [
             "(globalControlTypeEffects == 'hover' && globalEffectsState == 'end')",
         globalControl: "Opacity",
         id: "{{value}}End",
+        format: "hover:{{value}}",
     },
 ];
 

@@ -28,7 +28,7 @@ const globalEffects = (app, args = {}) => {
     }
 
     if (type == "hover") {
-        classes.push(`${prefix}:${boxShadowEnd}`, `${prefix}:${boxShadowColorEnd}`, `${prefix}:${boxShadowOpacityEnd}`, `${prefix}:${opacityEnd}`);
+        classes.push(boxShadowEnd, boxShadowColorEnd, boxShadowOpacityEnd, `${prefix}:${opacityEnd}`);
 
         if (wantsActive) {
             classes.push(
