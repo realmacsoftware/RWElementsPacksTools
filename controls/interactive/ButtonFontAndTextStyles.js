@@ -20,7 +20,7 @@ const ButtonFontAndTextStyles = [
     visible: "globalButtonFontAndTextStylesState == 'normal'",
     title: "Color",
     id: "globalButtonFontAndTextStylesColor",
-    format: "text-{{value}}",
+    format: "text-{{value}}/(--buttonFontAndTextStylesColorOpacity)",
     themeColor: {
       default: {
         name: "surface",
@@ -32,7 +32,7 @@ const ButtonFontAndTextStyles = [
     visible: "globalButtonFontAndTextStylesState == 'normal'",
     title: "Opacity",
     id: "globalButtonFontAndTextStylesColorOpacity",
-    format: "text-opacity-[{{value}}%] dark:text-opacity-[{{value}}%]",
+    format: "[--buttonFontAndTextStylesColorOpacity:{{value}}%]",
     slider: {
       use: "Slider",
       default: 100,
@@ -43,7 +43,7 @@ const ButtonFontAndTextStyles = [
     visible: "globalButtonFontAndTextStylesState == 'hover'",
     title: "Color",
     id: "globalButtonFontAndTextStylesColorHover",
-    format: "hover:text-{{value}}",
+    format: "hover:text-{{value}}/(--buttonFontAndTextStylesColorOpacityHover)",
     themeColor: {
       default: {
         name: "surface",
@@ -55,7 +55,7 @@ const ButtonFontAndTextStyles = [
     visible: "globalButtonFontAndTextStylesState == 'hover'",
     title: "Opacity",
     id: "globalButtonFontAndTextStylesColorOpacityHover",
-    format: "hover:text-opacity-[{{value}}%] dark:hover:text-opacity-[{{value}}%]",
+    format: "hover:[--buttonFontAndTextStylesColorOpacityHover:{{value}}%]",
     slider: {
       use: "Slider",
       default: 100,

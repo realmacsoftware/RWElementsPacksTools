@@ -3,7 +3,7 @@ const BackgroundColor = [
         visible: "bgType == 'color'",
         title: "Color",
         id: "bgColor",
-        format: "bg-{{value}}",
+        format: "bg-{{value}}/(--bgColorOpacity)",
         themeColor: {
             default: {
                 name: "surface",
@@ -15,7 +15,7 @@ const BackgroundColor = [
         visible: "bgType == 'color'",
         title: "Opacity",
         id: "bgColorOpacity",
-        format: "bg-opacity-[{{value}}%]",
+        format: "[--bgColorOpacity:{{value}}%]",
         responsive: false,
         slider: {
             default: 100,

@@ -11,24 +11,22 @@ const globalBgColor = (app, args = {}) => {
     const wantsActive = args?.active || false;
     const wantsFocus = args?.focus || false;
 
-    const classes = classnames([color, opacity, `dark:${opacity}`]);
+    const classes = classnames([color, opacity]);
 
     if (controlType == "hover") {
         if (wantsPeer) {
             classes.add([
                 colorEnd.replace(/hover:/g, "peer-hover:"),
                 opacityEnd.replace(/hover:/g, "peer-hover:"),
-                `dark:${opacityEnd.replace(/hover:/g, "peer-hover:")}`,
             ]);
         } else {
-            classes.add([colorEnd, opacityEnd, `dark:${opacityEnd}`]);
+            classes.add([colorEnd, opacityEnd]);
         }
 
         if (wantsActive) {
             classes.add([
                 colorEnd.replace(/hover:/g, "data-[active=true]:"),
                 opacityEnd.replace(/hover:/g, "data-[active=true]:"),
-                `dark:${opacityEnd.replace(/hover:/g, "data-[active=true]:")}`,
             ]);
         }
 
@@ -36,7 +34,6 @@ const globalBgColor = (app, args = {}) => {
             classes.add([
                 colorEnd.replace(/hover:/g, "focus:"),
                 opacityEnd.replace(/hover:/g, "focus:"),
-                `dark:${opacityEnd.replace(/hover:/g, "focus:")}`,
             ]);
         }
     }

@@ -7,13 +7,12 @@ const globalOverlayColor = (app, prefix) => {
     globalOverlayColorOpacityEnd: opacityEnd,
   } = app.props;
 
-  const classes = classnames([color, `${opacity} dark:${opacity}`]);
+  const classes = classnames([color, opacity]);
 
   if (controlType == "hover") {
     classes.add([
       injectPrefixOnDarkModeColors(prefix, `${prefix}:${colorEnd}`),
       `${prefix}:${opacityEnd}`,
-      `dark:${prefix}:${opacityEnd}`,
     ]);
   }
 
