@@ -2,7 +2,7 @@ const InputFontAndTextStyles = [
     {
       title: "Color",
       id: "globalInputFontAndTextStylesColor",
-      format: "text-{{value}}",
+      format: "text-{{value}}/(--inputFontAndTextStylesColorOpacity)",
       themeColor: {
         default: {
           name: "text",
@@ -13,7 +13,7 @@ const InputFontAndTextStyles = [
     {
       title: "Opacity",
       id: "globalInputFontAndTextStylesColorOpacity",
-      format: "text-opacity-[{{value}}%] dark:text-opacity-[{{value}}%]",
+      format: "[--inputFontAndTextStylesColorOpacity:{{value}}%]",
       slider: {
         use: "Slider",
         default: 100,

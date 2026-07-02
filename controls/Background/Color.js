@@ -3,7 +3,7 @@ const Color = [
     visible: "globalControlTypeBg == 'static' && globalBgType == 'color' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'color')",
     title: "Color",
     id: "globalBgColor",
-    format: "bg-{{value}}",
+    format: "bg-{{value}}/(--bgColorOpacity)",
     themeColor: {
       default: {
         name: "surface",
@@ -15,7 +15,7 @@ const Color = [
     visible: "globalControlTypeBg == 'static' && globalBgType == 'color' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'color')",
     title: "Opacity",
     id: "globalBgColorOpacity",
-    format: "bg-opacity-[{{value}}%]",
+    format: "[--bgColorOpacity:{{value}}%]",
     responsive: false,
     slider: {
       default: 100,
@@ -27,7 +27,7 @@ const Color = [
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'color')",
     title: "Color",
     id: "globalBgColorEnd",
-    format: "hover:bg-{{value}}",
+    format: "hover:bg-{{value}}/(--bgColorOpacityEnd)",
     themeColor: {
       default: {
         name: "surface",
@@ -39,7 +39,7 @@ const Color = [
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'color')",
     title: "Opacity",
     id: "globalBgColorOpacityEnd",
-    format: "hover:bg-opacity-[{{value}}%]",
+    format: "hover:[--bgColorOpacityEnd:{{value}}%]",
     responsive: false,
     slider: {
       default: 100,

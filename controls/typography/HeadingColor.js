@@ -78,7 +78,7 @@ const HeadingColor = [
     visible: "globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'color'",
     title: "Color",
     id: "globalTextColorHover",
-    format: "text-{{value}}",
+    format: "text-{{value}}/(--textColorOpacityHover)",
     themeColor: {
       default: {
         name: "text",
@@ -91,7 +91,7 @@ const HeadingColor = [
     title: "Opacity",
     id: "globalTextColorOpacityHover",
     responsive: false,
-    format: "text-opacity-[{{value}}%] dark:text-opacity-[{{value}}%]",
+    format: "[--textColorOpacityHover:{{value}}%]",
     slider: {
       default: 100,
       min: 0,

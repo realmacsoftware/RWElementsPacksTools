@@ -2,7 +2,7 @@ const TextColor = [
   {
     title: "Color",
     id: "globalTextColor",
-    format: "text-{{value}}",
+    format: "text-{{value}}/(--textColorOpacity)",
     themeColor: {
       default: {
         name: "text",
@@ -14,7 +14,7 @@ const TextColor = [
     title: "Opacity",
     id: "globalTextColorOpacity",
     responsive: false,
-    format: "text-opacity-[{{value}}%] dark:text-opacity-[{{value}}%]",
+    format: "[--textColorOpacity:{{value}}%]",
     slider: {
       default: 100,
       use: "Slider",
@@ -27,7 +27,7 @@ export const TextColorHover = [
   {
     title: "Color",
     id: "globalTextColorHover",
-    format: "hover:text-{{value}}",
+    format: "hover:text-{{value}}/(--textColorOpacityHover)",
     themeColor: {
       default: {
         name: "text",
@@ -39,7 +39,7 @@ export const TextColorHover = [
     title: "Opacity",
     id: "globalTextColorOpacityHover",
     responsive: false,
-    format: "hover:text-opacity-[{{value}}%] dark:hover:text-opacity-[{{value}}%]",
+    format: "hover:[--textColorOpacityHover:{{value}}%]",
     slider: {
       default: 100,
       use: "Slider",
