@@ -90,7 +90,7 @@ const MenuItem = [
         visible: "globalMenuItemState == 'default'",
         title: "Color",
         id: "globalMenuItemColor",
-        format: "text-{{value}}/[var(--text-opacity)]",
+        format: "text-{{value}}/(--text-opacity)",
         themeColor: {
             default: {
                 name: "text",
@@ -137,7 +137,7 @@ const MenuItem = [
         visible: "globalMenuItemState == 'hover'",
         title: "Color",
         id: "globalMenuItemHoverColor",
-        format: "hover:text-{{value}}/[var(--text-opacity)] data-[state=active]:text-{{value}}/[var(--text-opacity)]",
+        format: "hover:text-{{value}}/(--text-opacity) data-[state=active]:text-{{value}}/(--text-opacity)",
         themeColor: {
             default: {
                 name: "brand",

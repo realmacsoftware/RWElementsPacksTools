@@ -14,7 +14,7 @@ const BoxShadow = [
   {
     title: "Color",
     id: "globalBoxShadowColor",
-    format: "shadow-{{value}}/[var(--box-shadow-opacity)]",
+    format: "shadow-{{value}}/(--box-shadow-opacity)",
     themeColor: {
       default: {
         name: "surface",
