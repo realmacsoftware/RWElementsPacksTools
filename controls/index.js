@@ -171,7 +171,6 @@ export { default as ScaleZ } from "./Transforms/ScaleZ.js";
 export { default as TranslateZ } from "./Transforms/TranslateZ.js";
 export { default as Perspective } from "./Transforms/Perspective.js";
 export { default as PerspectiveOrigin } from "./Transforms/PerspectiveOrigin.js";
-export { default as TransformStyle } from "./Transforms/TransformStyle.js";
 export { default as Backface } from "./Transforms/Backface.js";
 
 // =============================================================================

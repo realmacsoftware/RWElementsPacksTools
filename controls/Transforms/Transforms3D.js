@@ -54,10 +54,6 @@ const Transforms3D = [
     },
     {
         visible: "globalControlType3D != 'none'",
-        globalControl: "TransformStyle",
-    },
-    {
-        visible: "globalControlType3D != 'none'",
         globalControl: "Perspective",
     },
     {
