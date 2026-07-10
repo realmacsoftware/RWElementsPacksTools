@@ -1,5 +1,6 @@
 const AlignItems = {
     id: "alignItems",
+    ai: { name: "alignItems", description: "Align items on the cross axis." },
     format: "items-{{value}}",
     title: "Items",
     select: {

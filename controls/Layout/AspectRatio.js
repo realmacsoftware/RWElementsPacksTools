@@ -2,6 +2,7 @@ export const AspectRatio = [
     {
         title: "Aspect Ratio",
         id: "aspectRatio",
+        ai: { name: "aspectRatio", description: "Aspect ratio: 'auto', '16/9', '4/5', or 'custom' (use aspectRatioCustom)." },
         format: "aspect-[{{value}}]",
         segmented: {
             default: "auto",

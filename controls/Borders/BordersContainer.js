@@ -2,6 +2,7 @@ export const BordersContainer = [
   {
     globalControl: "ControlType",
     id: "{{value}}Borders",
+    ai: { name: "border", description: "Enable/disable borders.", values: ["none", "static"] },
   },
   {
     visible: "globalControlTypeBorders == 'hover'",
@@ -28,18 +29,22 @@ export const BordersContainer = [
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
+    ai: { visible: "border == 'static'" },
     globalControl: "BorderStyle",
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
+    ai: { visible: "border == 'static'" },
     globalControl: "BorderColor",
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
+    ai: { visible: "border == 'static'" },
     globalControl: "BorderWidth",
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
+    ai: { name: "borderRadius", description: "Border radius theme token per corner.", visible: "border == 'static'" },
     title: "Radius",
     id: "globalBordersRadius",
     format: "{{value}}",
@@ -56,16 +61,19 @@ export const BordersContainer = [
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
+    ai: { exclude: true },
     globalControl: "BorderStyle",
     id: "{{value}}End",
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
+    ai: { exclude: true },
     globalControl: "BorderColor",
     id: "{{value}}End",
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
+    ai: { exclude: true },
     globalControl: "BorderWidth",
     id: "{{value}}End",
   },

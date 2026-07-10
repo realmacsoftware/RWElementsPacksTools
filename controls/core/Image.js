@@ -2,6 +2,7 @@ export const Image = [
     {
         title: "Type",
         id: "imageType",
+        ai: { name: "imageType", description: "Image source mode: 'resource' (picked asset), 'custom' (URL/path string), or 'cms' (CMS field binding)." },
         segmented: {
             default: "resource",
             items: [
@@ -23,6 +24,7 @@ export const Image = [
     {
         title: "Mode",
         id: "imageMode",
+        ai: { name: "imageMode", description: "Light or dark mode variant being edited: 'light' or 'dark'." },
         segmented: {
             default: "light",
             items: [
@@ -73,12 +75,14 @@ export const Image = [
         visible: "imageType == 'resource' && imageMode == 'light'",
         title: "Image",
         id: "image",
+        ai: { name: "image", description: "Light-mode image resource ID (from listResources/addResource)." },
         resource: {},
     },
     {
         visible: "imageType == 'resource' && imageMode == 'dark'",
         title: "Image",
         id: "imageDark",
+        ai: { name: "imageDark", description: "Dark-mode image resource ID (from listResources/addResource)." },
         resource: {},
     },
     {

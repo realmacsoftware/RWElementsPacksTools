@@ -10,6 +10,7 @@ const HTMLTag = [
   {
     title: "Tag",
     id: "globalHTMLTag",
+    ai: { name: "tag", description: "HTML tag used to render this component." },
     responsive: false,
     select: {
       default: "default",

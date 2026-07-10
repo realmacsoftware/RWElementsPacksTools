@@ -2,6 +2,7 @@ const ObjectPosition = [
     {
         title: "Position",
         id: "objectPosition",
+        ai: { name: "objectPosition", description: "Focal point of the image within its box when cropped." },
         select: {
             default: "object-center",
             items: [

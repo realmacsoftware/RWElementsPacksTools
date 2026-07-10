@@ -2,6 +2,7 @@ const BorderStyle = [
   {
     title: "Style",
     id: "globalBordersStyle",
+    ai: { name: "borderStyle", description: "Border line style." },
     format: "border-{{value}}",
     segmented: {
       default: "solid",

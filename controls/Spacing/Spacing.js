@@ -6,6 +6,7 @@ const Spacing = [
   {
     title: "Enable",
     id: "globalSpacingEnabled",
+    ai: { name: "spacingEnabled", description: "Enable custom margin and padding for this element." },
     switch: {
       default: false
     }

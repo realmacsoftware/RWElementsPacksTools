@@ -2,6 +2,7 @@ export const BackgroundImage = [
     {
         title: "Image",
         id: "bgImage",
+        ai: { name: "bgImage", description: "Background image resource reference." },
         resource: {},
     },
     {
@@ -11,6 +12,7 @@ export const BackgroundImage = [
     {
         title: "Horizontal",
         id: "bgImagePositionX",
+        ai: { name: "bgImagePositionX", description: "Background image horizontal position.", values: ["left", "center", "right"] },
         segmented: {
             default: "center",
             items: [
@@ -33,6 +35,7 @@ export const BackgroundImage = [
     {
         title: "Vertical",
         id: "bgImagePositionY",
+        ai: { name: "bgImagePositionY", description: "Background image vertical position.", values: ["top", "center", "bottom"] },
         segmented: {
             default: "center",
             items: [
@@ -59,6 +62,7 @@ export const BackgroundImage = [
     {
         title: "Size",
         id: "bgImageSize",
+        ai: { name: "bgImageSize", description: "Background image size (auto/cover/contain)." },
         select: {
             default: "cover",
             items: [
@@ -80,6 +84,7 @@ export const BackgroundImage = [
     {
         title: "Repeat",
         id: "bgImageRepeat",
+        ai: { name: "bgImageRepeat", description: "Background image repeat mode." },
         format: "bg-{{value}}",
         select: {
             default: "no-repeat",
