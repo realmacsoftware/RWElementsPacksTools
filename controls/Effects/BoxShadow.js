@@ -17,8 +17,8 @@ const BoxShadow = [
     format: "shadow-{{value}}/(--box-shadow-opacity)",
     themeColor: {
       default: {
-        name: "surface",
-        brightness: 200
+        name: "none",
+        brightness: 500
       }
     },
   },
