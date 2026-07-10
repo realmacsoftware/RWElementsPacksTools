@@ -2,6 +2,7 @@ const JustifyContent = {
     title: "Content",
     format: "justify-{{value}}",
     id: "justifyContent",
+    ai: { name: "justify", description: "Justify content on the main axis." },
     select: {
         default: "normal",
         items: [

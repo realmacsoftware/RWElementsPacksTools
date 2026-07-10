@@ -2,6 +2,7 @@ const BorderWidth = [
   {
     title: "Width",
     id: "globalBordersWidth",
+    ai: { name: "borderWidth", description: "Border width theme token per side." },
     themeBorderWidth: {
       default: {
         base: {

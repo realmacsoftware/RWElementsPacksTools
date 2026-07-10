@@ -2,12 +2,14 @@ const Background = [
   {
     globalControl: "ControlType",
     id: "{{value}}Bg",
+    ai: { name: "bg", description: "Enable/disable background.", values: ["none", "static"] },
     segmented: {
       default: "static",
     },
   },
   {
     visible: "globalControlTypeBg != 'none'",
+    ai: { name: "bgStyle", description: "Background style: color, image, or gradient." },
     title: "Style",
     id: "globalBgType",
     responsive: false,

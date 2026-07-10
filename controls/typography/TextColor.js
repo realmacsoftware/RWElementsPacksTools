@@ -2,6 +2,7 @@ const TextColor = [
   {
     title: "Color",
     id: "globalTextColor",
+    ai: { name: "color", description: "Text theme color." },
     format: "text-{{value}}/(--textColorOpacity)",
     themeColor: {
       default: {
@@ -13,6 +14,7 @@ const TextColor = [
   {
     title: "Opacity",
     id: "globalTextColorOpacity",
+    ai: { name: "colorOpacity", description: "Text color opacity, 0-100." },
     responsive: false,
     format: "[--textColorOpacity:{{value}}%]",
     slider: {

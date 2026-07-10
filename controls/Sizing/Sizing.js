@@ -4,10 +4,12 @@ const Sizing = [
     heading: {}
   },
   {
-    globalControl: "Width"
+    globalControl: "Width",
+    ai: { name: "width", description: "Width theme-size token (e.g. 'auto', '0', '24', 'full')." }
   },
   {
-    globalControl: "Height"
+    globalControl: "Height",
+    ai: { name: "height", description: "Height theme-size token (e.g. 'auto', '0', '24', 'full')." }
   },
   {
     divider: {}
@@ -23,6 +25,7 @@ const Sizing = [
   {
     title: "Enable",
     id: "globalSizingMinMaxEnabled",
+    ai: { name: "minMaxEnabled", description: "Enable explicit min/max width and height constraints." },
     switch: {
       default: false
     }

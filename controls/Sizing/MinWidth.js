@@ -1,8 +1,9 @@
 const MinWidth = [
   {
-    title: "Min Width",
-    id: "globalMinWidth",
-    format: "min-w-{{value}}",
+  title: "Min Width",
+  id: "globalMinWidth",
+  ai: { name: "minWidth", description: "Minimum width theme-size token (e.g. 'auto', '0', '24', 'full')." },
+  format: "min-w-{{value}}",
     themeSpacing: {
       mode: "single",
       default: {

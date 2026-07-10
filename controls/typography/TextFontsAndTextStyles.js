@@ -2,6 +2,7 @@ const TextFontsAndTextStyles = [
     {
         title: "Font",
         id: "globalTextFontFamily",
+        ai: { name: "family", description: "Font family theme token." },
         themeFont: {
             default: {
                 base: {
@@ -13,6 +14,7 @@ const TextFontsAndTextStyles = [
     {
         title: "Size",
         id: "globalTextFontSize",
+        ai: { name: "size", description: "Font size theme text-style token." },
         themeTextStyle: {
             default: {
                 base: {
@@ -24,6 +26,7 @@ const TextFontsAndTextStyles = [
     {
         title: "Weight",
         id: "globalTextFontWeight",
+        ai: { name: "weight", description: "Font weight, 100-900." },
         format: "font-[{{value}}]",
         slider: {
             default: "400",
@@ -43,6 +46,7 @@ const TextFontsAndTextStyles = [
     {
         title: "Spacing",
         id: "globalTextLetterSpacing",
+        ai: { name: "letterSpacing", description: "Letter spacing (tracking) token." },
         format: "tracking-{{value}}",
         slider: {
             default: "normal",
@@ -59,6 +63,7 @@ const TextFontsAndTextStyles = [
     {
         title: "Line Height",
         id: "globalTextLineHeight",
+        ai: { name: "lineHeight", description: "Line height (leading) token." },
         format: "leading-{{value}}",
         slider: {
             default: "normal",
@@ -78,6 +83,7 @@ const TextFontsAndTextStyles = [
     {
         title: "Italic",
         id: "globalTextItalic",
+        ai: { name: "italic", description: "Italicize the text." },
         switch: {
             falseValue: "not-italic",
             trueValue: "italic",
@@ -101,6 +107,7 @@ const TextFontsAndTextStyles = [
     {
         title: "Case",
         id: "globalTextTextTransform",
+        ai: { name: "case", description: "Text case transform." },
         select: {
             default: "normal-case",
             items: [
@@ -130,6 +137,7 @@ const TextFontsAndTextStyles = [
     {
         title: "Whitespace",
         id: "globalTextWhiteSpace",
+        ai: { name: "whitespace", description: "CSS white-space handling." },
         format: "whitespace-{{value}}",
         select: {
             default: "none",
@@ -150,6 +158,7 @@ const TextFontsAndTextStyles = [
     {
         title: "Underline",
         id: "globalTextTextDecoration",
+        ai: { name: "decoration", description: "Text decoration (underline/overline/line-through)." },
         select: {
             default: "no-underline",
             items: [

@@ -2,6 +2,11 @@ const ButtonFontAndTextStyles = [
   {
     title: "State",
     id: "globalButtonFontAndTextStylesState",
+    ai: {
+      name: "textState",
+      description: "Label styling state: 'normal' or 'hover'.",
+      values: ["normal", "hover"],
+    },
     segmented: {
       default: "normal",
       items: [
@@ -20,6 +25,10 @@ const ButtonFontAndTextStyles = [
     visible: "globalButtonFontAndTextStylesState == 'normal'",
     title: "Color",
     id: "globalButtonFontAndTextStylesColor",
+    ai: {
+      name: "textColor",
+      description: "Button label text theme color (e.g. 'text,900' on light backgrounds, 'surface,50' on dark). Set whenever bgColor changes.",
+    },
     format: "text-{{value}}/(--buttonFontAndTextStylesColorOpacity)",
     themeColor: {
       default: {
@@ -32,6 +41,10 @@ const ButtonFontAndTextStyles = [
     visible: "globalButtonFontAndTextStylesState == 'normal'",
     title: "Opacity",
     id: "globalButtonFontAndTextStylesColorOpacity",
+    ai: {
+      name: "textColorOpacity",
+      description: "Button label text color opacity, 0-100.",
+    },
     format: "[--buttonFontAndTextStylesColorOpacity:{{value}}%]",
     slider: {
       use: "Slider",
@@ -95,6 +108,7 @@ const ButtonFontAndTextStyles = [
   {
     title: "Align",
     id: "globalButtonFontAndTextStylesTextAlign",
+    ai: { name: "align", description: "Label alignment within the button.", values: ["start", "center", "end"] },
     format: "justify-{{value}}",
     segmented: {
       default: "center",
@@ -117,6 +131,7 @@ const ButtonFontAndTextStyles = [
   {
     title: "Family",
     id: "globalButtonFontAndTextStylesFont",
+    ai: { name: "family", description: "Font family theme token." },
     themeFont: {
       default: {
         base: "body"
@@ -126,6 +141,7 @@ const ButtonFontAndTextStyles = [
   {
     title: "Size",
     id: "globalButtonFontAndTextStylesFontSize",
+    ai: { name: "size", description: "Font size theme text-style token." },
     themeTextStyle: {
       default: {
         base: { name: "base" }
@@ -139,6 +155,7 @@ const ButtonFontAndTextStyles = [
   {
     title: "Weight",
     id: "globalButtonFontAndTextStylesFontWeight",
+    ai: { name: "weight", description: "Font weight, 100-900." },
     format: "font-[{{value}}]",
     slider: {
       use: "FontWeight",
@@ -147,6 +164,7 @@ const ButtonFontAndTextStyles = [
   {
     title: "Spacing",
     id: "globalButtonFontAndTextStylesLetterSpacing",
+    ai: { name: "letterSpacing", description: "Letter spacing (tracking) token." },
     format: "tracking-{{value}}",
     slider: {
       use: "LetterSpacing",
@@ -155,6 +173,7 @@ const ButtonFontAndTextStyles = [
   {
     title: "Line Height",
     id: "globalButtonFontAndTextStylesLineHeight",
+    ai: { name: "lineHeight", description: "Line height (leading) token." },
     format: "leading-{{value}}",
     slider: {
       use: "LineHeight",
@@ -163,6 +182,7 @@ const ButtonFontAndTextStyles = [
   {
     title: "Case",
     id: "globalButtonFontAndTextStylesTextTransform",
+    ai: { name: "case", description: "Text case transform." },
     select: {
       default: "normal-case",
       items: [
@@ -188,6 +208,7 @@ const ButtonFontAndTextStyles = [
   {
     title: "Italic",
     id: "globalButtonFontAndTextStylesItalic",
+    ai: { name: "italic", description: "Italicize the label text." },
     switch: {
       default: false,
       trueValue: "italic",
@@ -197,6 +218,7 @@ const ButtonFontAndTextStyles = [
   {
     title: "Underline",
     id: "globalButtonFontAndTextStylesUnderline",
+    ai: { name: "underline", description: "Underline the label text." },
     switch: {
       default: false,
       trueValue: "underline",

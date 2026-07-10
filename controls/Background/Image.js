@@ -2,6 +2,7 @@ export const Image = [
     {
         visible:
             "globalControlTypeBg == 'static' && globalBgType == 'image' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'image')",
+        ai: { name: "bgImage", description: "Background image resource reference.", visible: "bg == 'static' && bgStyle == 'image'" },
         title: "Image",
         id: "globalBgImageResource",
         resource: {},
@@ -9,6 +10,7 @@ export const Image = [
     {
         visible:
             "globalControlTypeBg == 'static' && globalBgType == 'image' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'image')",
+        ai: { name: "bgImagePosition", description: "Background image position.", visible: "bg == 'static' && bgStyle == 'image'" },
         title: "Position",
         id: "globalBgImagePosition",
         format: "bg-{{value}}",
@@ -63,6 +65,7 @@ export const Image = [
     {
         visible:
             "globalControlTypeBg == 'static' && globalBgType == 'image' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'image')",
+        ai: { name: "bgImageSize", description: "Background image size (auto/cover/contain).", visible: "bg == 'static' && bgStyle == 'image'" },
         title: "Size",
         id: "globalBgImageSize",
         format: "bg-{{value}}",
@@ -87,6 +90,7 @@ export const Image = [
     {
         visible:
             "globalControlTypeBg == 'static' && globalBgType == 'image' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'image')",
+        ai: { name: "bgImageRepeat", description: "Background image repeat mode.", visible: "bg == 'static' && bgStyle == 'image'" },
         title: "Repeat",
         id: "globalBgImageRepeat",
         format: "bg-{{value}}",

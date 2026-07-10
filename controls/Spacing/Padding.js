@@ -1,6 +1,7 @@
 const Padding = {
   title: "Padding",
   id: "globalPadding",
+  ai: { name: "padding", description: "Padding (inner spacing) — theme spacing token per side." },
   themeSpacing: {
     mode: "padding",
     default: {

@@ -1,6 +1,7 @@
 const Margin = {
   title: "Margin",
   id: "globalMargin",
+  ai: { name: "margin", description: "Margin (outer spacing) — theme spacing token per side." },
   themeSpacing: {
     mode: "margin",
     default: {

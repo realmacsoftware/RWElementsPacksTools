@@ -1,6 +1,7 @@
 const FlexDirection = {
     title: "Direction",
     id: "flexDirection",
+    ai: { name: "direction", description: "Flex direction: column or row (optionally reversed)." },
     select: {
         default: "flex-col",
         items: [
