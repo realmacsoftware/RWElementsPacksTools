@@ -46,7 +46,7 @@ const Transforms3D = [
     },
     {
         visible: "globalControlType3D == 'mouse'",
-        title: "Transforms follow the cursor over the element chosen above. Cursor X drives Rotate Y, cursor Y drives Rotate X, and Scale Z and Depth go from Start at the centre to End at the edges.",
+        title: "Move your cursor over the component in the browser.",
         information: {},
     },
     {
