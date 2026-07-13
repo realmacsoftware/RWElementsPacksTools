@@ -1,6 +1,7 @@
 export const Image = [
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'image' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'image')",
+    ai: { name: "overlayImage", description: "Overlay image resource reference.", visible: "overlay == 'static' && overlayStyle == 'image'" },
     title: "Image",
     id: "globalOverlayImageResource",
     resource: {},
@@ -12,6 +13,7 @@ export const Image = [
   },
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'image' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'image')",
+    ai: { name: "overlayImagePositionX", description: "Overlay image horizontal position.", visible: "overlay == 'static' && overlayStyle == 'image'" },
     title: "Horizontal",
     id: "globalOverlayImagePositionX",
     segmented: {
@@ -34,6 +36,7 @@ export const Image = [
   },
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'image' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'image')",
+    ai: { name: "overlayImagePositionY", description: "Overlay image vertical position.", visible: "overlay == 'static' && overlayStyle == 'image'" },
     title: "Vertical",
     id: "globalOverlayImagePositionY",
     segmented: {
@@ -62,6 +65,7 @@ export const Image = [
   },
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'image' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'image')",
+    ai: { name: "overlayImageSize", description: "Overlay image size (auto/cover/contain).", visible: "overlay == 'static' && overlayStyle == 'image'" },
     title: "Size",
     id: "globalOverlayImageSize",
     format: "bg-{{value}}",
@@ -85,6 +89,7 @@ export const Image = [
   },
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'image' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'image')",
+    ai: { name: "overlayImageRepeat", description: "Overlay image repeat mode.", visible: "overlay == 'static' && overlayStyle == 'image'" },
     title: "Repeat",
     id: "globalOverlayImageRepeat",
     format: "bg-{{value}}",
