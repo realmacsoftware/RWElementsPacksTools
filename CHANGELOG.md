@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-07-13
+
+### Added
+- New "Mouse" type for the `Transforms3D` control: 3D transforms track the cursor over the existing "Over" target, interpolating between the Start and End values (cursor X drives Rotate Y, cursor Y drives Rotate X, distance-from-centre drives Scale Z / Depth)
+- `globalTransforms3D` mouse branch emits per-device CSS `calc()` mix classes driven by unitless `--rw-m3d-x/y/r` progress variables (raw values read from `responsiveProps`; responsive Start/End values supported)
+- New shared hook `globalMouse3D.js` returning the `data-m3d-over` attribute consumed by the pack's `mouseTransforms3d.js` runtime
+- Tests for the transforms3d hooks (`tests/transforms3d-hooks.test.js`)
+
 ## [1.2.1] - 2026-01-09
 
 ### Changed

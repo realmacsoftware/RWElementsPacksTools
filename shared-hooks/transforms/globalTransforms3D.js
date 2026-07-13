@@ -1,3 +1,36 @@
+const mouse3DDeviceOrder = ["base", "sm", "md", "lg", "xl", "2xl"];
+
+const buildMouse3DClass = (utility, start, end, cssVar, prefix = "") => {
+    if (start === end) return `${prefix}${utility}-[${start}]`;
+    return `${prefix}${utility}-[calc(${start}*(1_-_var(${cssVar},0))_+_${end}*var(${cssVar},0))]`;
+};
+
+const mouse3DChannel = (app, { utility, unit, cssVar, startId, endId, fallback }) => {
+    const responsiveProps = app.responsiveProps || {};
+    const startValues = responsiveProps[startId] || {};
+    const endValues = responsiveProps[endId] || {};
+
+    const pick = (value, previous) =>
+        value == null || value === "" ? previous : `${value}${unit}`;
+
+    let start = pick(startValues.base, fallback);
+    let end = pick(endValues.base, fallback);
+    const classes = [buildMouse3DClass(utility, start, end, cssVar)];
+
+    mouse3DDeviceOrder.slice(1).forEach((device) => {
+        const nextStart = pick(startValues[device], start);
+        const nextEnd = pick(endValues[device], end);
+        if (nextStart === start && nextEnd === end) return;
+        start = nextStart;
+        end = nextEnd;
+        classes.push(
+            buildMouse3DClass(utility, start, end, cssVar, `${device}:`)
+        );
+    });
+
+    return classes;
+};
+
 const globalTransforms3D = (app, args = {}) => {
     const {
         globalControlType3D: type,
@@ -24,13 +57,53 @@ const globalTransforms3D = (app, args = {}) => {
     const prefix = getHoverPrefix(node, applyTo, hoverGroup, customId);
     const classes = classnames();
 
-    if (type != "none") {
+    if (type != "none" && type != "mouse") {
         classes.add([
             backface,
             rotateX,
             rotateY,
             scaleZ,
             translateZ,
+        ]);
+    }
+
+    if (type == "mouse") {
+        classes.add([
+            backface,
+            // Cursor Y drives Rotate X, cursor X drives Rotate Y,
+            // distance-from-centre drives Scale Z and Depth.
+            ...mouse3DChannel(app, {
+                utility: "rotate-x",
+                unit: "deg",
+                cssVar: "--rw-m3d-y",
+                startId: "globalTransformRotateX",
+                endId: "globalTransformRotateXEnd",
+                fallback: "0deg",
+            }),
+            ...mouse3DChannel(app, {
+                utility: "rotate-y",
+                unit: "deg",
+                cssVar: "--rw-m3d-x",
+                startId: "globalTransformRotateY",
+                endId: "globalTransformRotateYEnd",
+                fallback: "0deg",
+            }),
+            ...mouse3DChannel(app, {
+                utility: "scale-z",
+                unit: "%",
+                cssVar: "--rw-m3d-r",
+                startId: "globalTransformScaleZ",
+                endId: "globalTransformScaleZEnd",
+                fallback: "100%",
+            }),
+            ...mouse3DChannel(app, {
+                utility: "translate-z",
+                unit: "",
+                cssVar: "--rw-m3d-r",
+                startId: "globalTransformTranslateZ",
+                endId: "globalTransformTranslateZEnd",
+                fallback: "0px",
+            }),
         ]);
     }
 
