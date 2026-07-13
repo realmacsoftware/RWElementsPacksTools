@@ -1,6 +1,7 @@
 const Color = [
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'color' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'color')",
+    ai: { name: "overlayColor", description: "Overlay theme color.", visible: "overlay == 'static' && overlayStyle == 'color'" },
     title: "Color",
     id: "globalOverlayColor",
     format: "bg-{{value}}/(--overlayColorOpacity)",
@@ -13,6 +14,7 @@ const Color = [
   },
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'color' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'color')",
+    ai: { name: "overlayColorOpacity", description: "Overlay color opacity, 0-100.", visible: "overlay == 'static' && overlayStyle == 'color'" },
     title: "Opacity",
     id: "globalOverlayColorOpacity",
     format: "[--overlayColorOpacity:{{value}}%]",

@@ -2,12 +2,14 @@ const Overlay = [
   {
     globalControl: "ControlType",
     id: "{{value}}Overlay",
+    ai: { name: "overlay", description: "Enable/disable overlay.", values: ["none", "static"] },
     segmented: {
       default: "none",
     },
   },
   {
     visible: "globalControlTypeOverlay != 'none'",
+    ai: { name: "overlayStyle", description: "Overlay style: color, image, or gradient." },
     title: "Style",
     id: "globalOverlayType",
     responsive: false,
