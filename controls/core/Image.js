@@ -86,7 +86,7 @@ export const Image = [
         resource: {},
     },
     {
-        visible: "false",
+        visible: "imageType == 'cms' || imageType == 'custom'",
         title: "Alt",
         id: "imageAlt",
         responsive: false,
