@@ -98,7 +98,11 @@ const FlexItem = [
     format: "basis-{{value}}",
     themeSpacing: {
       mode: "single",
-      default: "auto"
+      default: {
+        base: {
+          value: "auto"
+        }
+      }
     }
   },
 ]
