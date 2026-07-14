@@ -10,8 +10,7 @@ const Sizing = [
       mode: "single",
       default: {
         base: {
-          value: "100%",
-          custom: true
+          value: "auto"
         }
       }
     }
