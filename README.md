@@ -528,8 +528,10 @@ Controls can use these UI element types:
 | `number` | Numeric input | `{ number: { default: 0 } }` |
 | `text` | Text input | `{ text: { default: "" } }` |
 | `textArea` | Multi-line text | `{ textArea: { default: "" } }` |
+| `input` | Compact single-line input | `{ input: { default: "", subtitle: "" } }` |
 | `link` | Link picker | `{ link: {} }` |
 | `resource` | Resource/image picker | `{ resource: {} }` |
+| `collection` | Repeating item editor (uses `property` instead of `id`) | `{ collection: { identifier: "items" } }` |
 | `heading` | Section heading (no value) | `{ heading: {} }` |
 | `divider` | Visual separator | `{ divider: {} }` |
 | `information` | Info text | `{ information: {} }` |
@@ -538,6 +540,9 @@ Controls can use these UI element types:
 | `themeBorderRadius` | Border radius picker | `{ themeBorderRadius: {...} }` |
 | `themeBorderWidth` | Border width picker | `{ themeBorderWidth: {...} }` |
 | `themeShadow` | Shadow picker | `{ themeShadow: {...} }` |
+| `themeFont` | Theme font picker | `{ themeFont: { default: { base: { name: "heading" } } } }` |
+| `themeTextStyle` | Theme text style picker | `{ themeTextStyle: { default: { base: { name: "lg" } } } }` |
+| `themeTypography` | Theme typography preset picker | `{ themeTypography: { default: { base: { name: "article" } } } }` |
 
 ### Control Properties
 

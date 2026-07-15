@@ -206,7 +206,7 @@ function parseControlFile(controlName, filePath) {
   const uiTypes = ['select', 'segmented', 'switch', 'slider', 'number', 'text', 'textArea',
     'link', 'resource', 'heading', 'divider', 'information',
     'themeColor', 'themeSpacing', 'themeBorderRadius', 'themeBorderWidth',
-    'themeShadow', 'themeFont', 'themeTextStyle'];
+    'themeShadow', 'themeFont', 'themeTextStyle', 'themeTypography', 'input', 'collection'];
 
   for (const uiType of uiTypes) {
     const regex = new RegExp(`${uiType}:\\s*{`);
