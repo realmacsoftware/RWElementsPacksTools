@@ -3,7 +3,7 @@ export const BackgroundImage = [
         title: "Image",
         id: "bgImage",
         ai: { name: "bgImage", description: "Background image resource reference." },
-        resource: {},
+        resource: { accepts: "image/*", excludes: ".svg" },
     },
     {
         title: "Position",

@@ -76,14 +76,14 @@ export const Image = [
         title: "Image",
         id: "image",
         ai: { name: "image", description: "Light-mode image resource ID (from listResources/addResource)." },
-        resource: {},
+        resource: { accepts: "image/*", excludes: ".svg" },
     },
     {
         visible: "imageType == 'resource' && imageMode == 'dark'",
         title: "Image",
         id: "imageDark",
         ai: { name: "imageDark", description: "Dark-mode image resource ID (from listResources/addResource)." },
-        resource: {},
+        resource: { accepts: "image/*", excludes: ".svg" },
     },
     {
         visible: "imageType == 'cms' || imageType == 'custom'",

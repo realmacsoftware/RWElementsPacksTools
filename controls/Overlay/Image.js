@@ -4,7 +4,7 @@ export const Image = [
     ai: { name: "overlayImage", description: "Overlay image resource reference.", visible: "overlay == 'static' && overlayStyle == 'image'" },
     title: "Image",
     id: "globalOverlayImageResource",
-    resource: {},
+    resource: { accepts: "image/*", excludes: ".svg" },
   },
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'image' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'image')",
@@ -119,7 +119,7 @@ export const Image = [
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'image')",
     title: "Image",
     id: "globalOverlayImageResourceEnd",
-    resource: {},
+    resource: { accepts: "image/*", excludes: ".svg" },
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'image')",

@@ -14,6 +14,10 @@ const SpacingButton = [
   {
     visible: "globalSpacingEnabled == true",
     globalControl: "Margin",
+    ai: {
+      description:
+        "Margin (outer spacing) — theme spacing token per side. Defaults to horizontal 'auto', which overrides the parent's justify/gap. Set all sides to '0' when this button is inside a Flex or Grid so the parent controls spacing and alignment. Setting padding does not reset margin.",
+    },
     default: {
       base: {
         top: "0",

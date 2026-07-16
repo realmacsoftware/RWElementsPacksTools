@@ -530,8 +530,8 @@ Controls can use these UI element types:
 | `textArea` | Multi-line text | `{ textArea: { default: "" } }` |
 | `input` | Compact single-line input | `{ input: { default: "", subtitle: "" } }` |
 | `link` | Link picker | `{ link: {} }` |
-| `resource` | Resource/image picker | `{ resource: {} }` |
 | `collection` | Repeating item editor (uses `property` instead of `id`) | `{ collection: { identifier: "items" } }` |
+| `resource` | Resource/file picker | `{ resource: {} }` — see [Resource accepts](#resource-accepts) |
 | `heading` | Section heading (no value) | `{ heading: {} }` |
 | `divider` | Visual separator | `{ divider: {} }` |
 | `information` | Info text | `{ information: {} }` |
@@ -543,6 +543,38 @@ Controls can use these UI element types:
 | `themeFont` | Theme font picker | `{ themeFont: { default: { base: { name: "heading" } } } }` |
 | `themeTextStyle` | Theme text style picker | `{ themeTextStyle: { default: { base: { name: "lg" } } } }` |
 | `themeTypography` | Theme typography preset picker | `{ themeTypography: { default: { base: { name: "article" } } } }` |
+
+### Resource accepts
+
+`resource` controls accept any file type by default. Restrict with `accepts` and `excludes` using HTML `<input accept>` token grammar:
+
+| Token | Example | Matches |
+|-------|---------|---------|
+| Extension | `.svg` | File extension |
+| MIME wildcard | `image/*`, `video/*` | MIME major type |
+| Exact MIME | `image/svg+xml` | Exact MIME type |
+
+A file is allowed when at least one `accepts` token matches (or `accepts` is omitted) and no `excludes` token matches.
+
+```json
+{
+  "title": "Photo",
+  "id": "photo",
+  "resource": {
+    "accepts": "image/*",
+    "excludes": ".svg"
+  }
+}
+```
+
+Built-in controls apply sensible defaults: `Image` and background/overlay image controls use `image/*` excluding `.svg`; `Background_SVG` accepts `.svg` only; video controls accept `video/*`. Override on a `globalControl` reference when needed:
+
+```json
+{
+  "globalControl": "Image",
+  "resource": { "accepts": "image/*" }
+}
+```
 
 ### Control Properties
 

@@ -31,7 +31,7 @@ export const ImageCMS = [
             "globalBgImageType == 'resource' && (globalControlTypeBg == 'static' && globalBgType == 'image' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'image'))",
         title: "Image",
         id: "globalBgImageResource",
-        resource: {},
+        resource: { accepts: "image/*", excludes: ".svg" },
     },
     {
         visible:
@@ -153,7 +153,7 @@ export const ImageCMS = [
             "globalBgImageType == 'resource' && (globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'image')",
         title: "Image",
         id: "globalBgImageResourceEnd",
-        resource: {},
+        resource: { accepts: "image/*", excludes: ".svg" },
     },
     {
         visible:

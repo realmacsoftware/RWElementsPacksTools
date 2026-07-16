@@ -5,7 +5,7 @@ export const Image = [
         ai: { name: "bgImage", description: "Background image resource reference.", visible: "bg == 'static' && bgStyle == 'image'" },
         title: "Image",
         id: "globalBgImageResource",
-        resource: {},
+        resource: { accepts: "image/*", excludes: ".svg" },
     },
     {
         visible:
@@ -121,7 +121,7 @@ export const Image = [
             "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'image')",
         title: "Image",
         id: "globalBgImageResourceEnd",
-        resource: {},
+        resource: { accepts: "image/*", excludes: ".svg" },
     },
     {
         visible:

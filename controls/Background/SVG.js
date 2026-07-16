@@ -4,14 +4,14 @@ export const SVG = [
             "globalControlTypeBg == 'static' && globalBgType == 'svg' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'svg')",
         title: "SVG",
         id: "globalBgSVGResource",
-        resource: {},
+        resource: { accepts: ".svg" },
     },
     {
         visible:
             "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'svg')",
         title: "SVG",
         id: "globalBgSVGResourceEnd",
-        resource: {},
+        resource: { accepts: ".svg" },
     },
     {
         visible: "globalBgType == 'svg'",

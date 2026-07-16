@@ -3,7 +3,7 @@ export const Video = [
     visible: "globalBgType == 'video'",
     title: "Video",
     id: "globalBgVideo",
-    resource: {},
+    resource: { accepts: "video/*" },
   },
   {
     visible: "globalBgType == 'video'",

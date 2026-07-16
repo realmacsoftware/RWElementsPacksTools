@@ -2,7 +2,7 @@ export const BackgroundVideo = [
     {
         title: "Video",
         id: "bgVideo",
-        resource: {},
+        resource: { accepts: "video/*" },
     },
 ];
 
