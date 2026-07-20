@@ -2,6 +2,7 @@ const LayoutVisibility = [
   {
     title: "Visibility",
     id: "globalLayoutVisibility",
+    ai: { name: "visibility", description: "CSS visibility: '' (auto), visible, or invisible." },
     select: {
       default: "",
       items: [

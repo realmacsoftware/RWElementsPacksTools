@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Curated `ai` aliases for hover/End-state controls across Background, Borders, Effects, Filters, Transforms, and button/heading text color — components can now be styled for hover via MCP, not just their resting state
+- `build-properties.js` supports `{{value}}` templating in an override's `ai.name` (e.g. `"{{value}}Hover"`), resolved against each sibling control's own existing alias so a single End/Hover block override can curate several leaf properties at once without alias collisions. Siblings with no existing alias (e.g. `themeShadow` controls) fall back to `ai: { exclude: true }` instead of emitting a half-resolved name
+
 ## [1.4.2] - 2026-07-16
 
 ### Changed

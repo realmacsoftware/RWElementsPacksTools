@@ -3,6 +3,7 @@ const TimingFunction = [
     visible: "globalTransitionsProperty != 'none'",
     title: "Function",
     id: "globalTransitionsTimingFunction",
+    ai: { name: "timingFunction", description: "Transition timing function: custom (use timingFunctionCustom), linear, ease-in, ease-out, or ease-in-out." },
     select: {
       default: "ease-in-out",
       items: [
@@ -33,6 +34,7 @@ const TimingFunction = [
     visible: "globalTransitionsTimingFunction == 'custom'",
     title: "Cubic Bezier",
     id: "globalTransitionsTimingFunctionCustom",
+    ai: { name: "timingFunctionCustom", description: "Custom cubic-bezier value as 'x1,y1,x2,y2'.", visible: "timingFunction == 'custom'" },
     format: "ease-[cubic-bezier({{value}})]",
     input: {
       default: "0.95,0.05,0.795,0.035",

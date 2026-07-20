@@ -119,6 +119,7 @@ export const Image = [
     {
         visible:
             "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'image')",
+        ai: { name: "bgImageHover", description: "Hover-state background image resource reference.", visible: "bg == 'hover' && bgStyle == 'image'" },
         title: "Image",
         id: "globalBgImageResourceEnd",
         resource: { accepts: "image/*", excludes: ".svg" },
@@ -132,6 +133,7 @@ export const Image = [
     {
         visible:
             "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'image')",
+        ai: { name: "bgImagePositionHover", description: "Hover-state background image position.", visible: "bg == 'hover' && bgStyle == 'image'" },
         title: "Position",
         id: "globalBgImagePositionEnd",
         format: "hover:bg-{{value}}",
@@ -186,6 +188,7 @@ export const Image = [
     {
         visible:
             "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'image')",
+        ai: { name: "bgImageSizeHover", description: "Hover-state background image size (auto/cover/contain).", visible: "bg == 'hover' && bgStyle == 'image'" },
         title: "Size",
         id: "globalBgImageSizeEnd",
         format: "hover:bg-{{value}}",
@@ -210,6 +213,7 @@ export const Image = [
     {
         visible:
             "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'image')",
+        ai: { name: "bgImageRepeatHover", description: "Hover-state background image repeat mode.", visible: "bg == 'hover' && bgStyle == 'image'" },
         title: "Repeat",
         id: "globalBgImageRepeatEnd",
         format: "hover:bg-{{value}}",

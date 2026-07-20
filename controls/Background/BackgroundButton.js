@@ -2,11 +2,13 @@ const BackgroundButton = [
   {
     globalControl: "ControlType",
     id: "{{value}}Bg",
+    ai: { name: "bg", description: "Enable/disable background.", values: ["none", "static", "hover"] },
     segmented: {
       default: "hover",
     },
   },
   {
+    ai: { name: "bgStyle", description: "Background style: color, image, or gradient." },
     title: "Style",
     id: "globalBgType",
     responsive: false,

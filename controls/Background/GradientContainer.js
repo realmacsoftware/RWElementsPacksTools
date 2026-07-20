@@ -203,6 +203,7 @@ const GradientContainer = [
   },
   {
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient') && globalBgGradientTypeEnd == 'linear'",
+    ai: { name: "bgGradientDirectionHover", description: "Hover-state linear gradient direction.", visible: "bg == 'hover' && bgStyle == 'gradient'" },
     title: "Direction",
     id: "globalBgGradientDirectionEnd",
     responsive: false,
@@ -247,6 +248,7 @@ const GradientContainer = [
   },
   {
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient')",
+    ai: { name: "bgGradientFromHover", description: "Hover-state gradient start theme color.", visible: "bg == 'hover' && bgStyle == 'gradient'" },
     title: "Color",
     id: "globalBgGradientFromColorEnd",
     format: "hover:from-{{value}}/(--bgGradientFromOpacityEnd)",
@@ -259,6 +261,7 @@ const GradientContainer = [
   },
   {
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient')",
+    ai: { name: "bgGradientFromOpacityHover", description: "Hover-state gradient start color opacity, 0-100.", visible: "bg == 'hover' && bgStyle == 'gradient'" },
     title: "Opacity",
     id: "globalBgGradientFromOpacityEnd",
     format: "hover:[--bgGradientFromOpacityEnd:{{value}}%]",
@@ -321,6 +324,7 @@ const GradientContainer = [
   },
   {
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient')",
+    ai: { name: "bgGradientToHover", description: "Hover-state gradient end theme color.", visible: "bg == 'hover' && bgStyle == 'gradient'" },
     title: "Color",
     id: "globalBgGradientToColorEnd",
     format: "hover:to-{{value}}/(--bgGradientToOpacityEnd)",
@@ -333,6 +337,7 @@ const GradientContainer = [
   },
   {
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient')",
+    ai: { name: "bgGradientToOpacityHover", description: "Hover-state gradient end color opacity, 0-100.", visible: "bg == 'hover' && bgStyle == 'gradient'" },
     title: "Opacity",
     id: "globalBgGradientToOpacityEnd",
     format: "hover:[--bgGradientToOpacityEnd:{{value}}%]",

@@ -2,6 +2,7 @@ const Property = [
   {
     title: "Apply to",
     id: "globalTransitionsProperty",
+    ai: { name: "transitionProperty", description: "CSS properties to transition: none, all, default (most common), colors, opacity, shadow, or transform." },
     format: "transition-{{value}}",
     select: {
       default: "all",

@@ -2,6 +2,7 @@ const LayoutOverflow = [
   {
     title: "Overflow",
     id: "globalLayoutOverflow",
+    ai: { name: "overflow", description: "CSS overflow: '' (none), overflow-visible, overflow-hidden, overflow-scroll, or overflow-auto." },
     select: {
       default: "",
       items: [

@@ -14,6 +14,7 @@ const BoxShadow = [
   {
     title: "Color",
     id: "globalBoxShadowColor",
+    ai: { name: "boxShadowColor", description: "Box shadow theme color." },
     format: "shadow-{{value}}/(--box-shadow-opacity)",
     themeColor: {
       default: {
@@ -25,6 +26,7 @@ const BoxShadow = [
   {
     title: "Opacity",
     id: "globalBoxShadowOpacity",
+    ai: { name: "boxShadowOpacity", description: "Box shadow opacity, 0-100." },
     format: "[--box-shadow-opacity:{{value}}%]",
     responsive: false,
     slider: {

@@ -2,6 +2,7 @@ export const BordersInput = [
   {
     globalControl: "ControlType",
     id: "{{value}}Borders",
+    ai: { name: "border", description: "Enable/disable borders.", values: ["none", "static", "hover"] },
     segmented: {
       default: "static",
     }
@@ -31,10 +32,12 @@ export const BordersInput = [
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
+    ai: { visible: "border == 'static'" },
     globalControl: "BorderStyle",
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
+    ai: { visible: "border == 'static'" },
     globalControl: "BorderColor",
     default: {
       name: "surface",
@@ -43,6 +46,7 @@ export const BordersInput = [
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
+    ai: { visible: "border == 'static'" },
     globalControl: "BorderWidth",
     default: {
       base: {
@@ -55,6 +59,7 @@ export const BordersInput = [
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
+    ai: { name: "borderRadius", description: "Border radius theme token per corner.", visible: "border == 'static'" },
     title: "Radius",
     id: "globalBordersRadius",
     format: "{{value}}",
@@ -71,23 +76,27 @@ export const BordersInput = [
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
+    ai: { name: "{{value}}Hover", visible: "border == 'hover'" },
     globalControl: "BorderStyle",
     id: "{{value}}End",
     format: "hover:{{value}}",
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
+    ai: { name: "{{value}}Hover", visible: "border == 'hover'" },
     globalControl: "BorderColor",
     id: "{{value}}End",
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
+    ai: { name: "{{value}}Hover", visible: "border == 'hover'" },
     globalControl: "BorderWidth",
     id: "{{value}}End",
     format: "hover:{{value}}",
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
+    ai: { name: "borderRadiusHover", description: "Hover-state border radius theme token per corner.", visible: "border == 'hover'" },
     title: "Radius",
     id: "globalBordersRadiusEnd",
     format: "hover:{{value}}",

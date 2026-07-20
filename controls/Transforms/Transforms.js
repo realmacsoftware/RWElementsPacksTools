@@ -2,6 +2,7 @@ const Transforms = [
     {
         globalControl: "ControlType",
         id: "{{value}}Transforms",
+        ai: { name: "transforms", description: "Enable/disable transforms.", values: ["none", "static", "hover"] },
     },
     {
         visible: "globalControlTypeTransforms == 'hover'",
@@ -53,11 +54,13 @@ const Transforms = [
     {
         visible:
             "globalControlTypeTransforms == 'static' || (globalControlTypeTransforms == 'hover' && globalTransformsState == 'start')",
+        ai: { visible: "transforms == 'static'" },
         globalControl: "Scale",
     },
     {
         visible:
             "globalControlTypeTransforms == 'static' || (globalControlTypeTransforms == 'hover' && globalTransformsState == 'start')",
+        ai: { visible: "transforms == 'static'" },
         globalControl: "Rotate",
     },
     {
@@ -68,18 +71,21 @@ const Transforms = [
     {
         visible:
             "globalControlTypeTransforms == 'static' || (globalControlTypeTransforms == 'hover' && globalTransformsState == 'start')",
+        ai: { visible: "transforms == 'static'" },
         globalControl: "Skew",
     },
 
     {
         visible:
             "(globalControlTypeTransforms == 'hover' && globalTransformsState == 'end')",
+        ai: { name: "{{value}}Hover", visible: "transforms == 'hover'" },
         globalControl: "Scale",
         id: "{{value}}End",
     },
     {
         visible:
             "(globalControlTypeTransforms == 'hover' && globalTransformsState == 'end')",
+        ai: { name: "{{value}}Hover", visible: "transforms == 'hover'" },
         globalControl: "Rotate",
         id: "{{value}}End",
     },
@@ -92,6 +98,7 @@ const Transforms = [
     {
         visible:
             "(globalControlTypeTransforms == 'hover' && globalTransformsState == 'end')",
+        ai: { name: "{{value}}Hover", visible: "transforms == 'hover'" },
         globalControl: "Skew",
         id: "{{value}}End",
     },

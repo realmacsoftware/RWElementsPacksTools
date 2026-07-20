@@ -2,7 +2,7 @@ export const BordersContainer = [
   {
     globalControl: "ControlType",
     id: "{{value}}Borders",
-    ai: { name: "border", description: "Enable/disable borders.", values: ["none", "static"] },
+    ai: { name: "border", description: "Enable/disable borders.", values: ["none", "static", "hover"] },
   },
   {
     visible: "globalControlTypeBorders == 'hover'",
@@ -61,24 +61,25 @@ export const BordersContainer = [
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
-    ai: { exclude: true },
+    ai: { name: "{{value}}Hover", visible: "border == 'hover'" },
     globalControl: "BorderStyle",
     id: "{{value}}End",
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
-    ai: { exclude: true },
+    ai: { name: "{{value}}Hover", visible: "border == 'hover'" },
     globalControl: "BorderColor",
     id: "{{value}}End",
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
-    ai: { exclude: true },
+    ai: { name: "{{value}}Hover", visible: "border == 'hover'" },
     globalControl: "BorderWidth",
     id: "{{value}}End",
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
+    ai: { name: "borderRadiusHover", description: "Hover-state border radius theme token per corner.", visible: "border == 'hover'" },
     title: "Radius",
     id: "globalBordersRadiusEnd",
     format: "peer-hover:{{value}} hover:{{value}}",

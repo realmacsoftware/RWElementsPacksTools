@@ -2,11 +2,7 @@ const ButtonFontAndTextStyles = [
   {
     title: "State",
     id: "globalButtonFontAndTextStylesState",
-    ai: {
-      name: "textState",
-      description: "Label styling state: 'normal' or 'hover'.",
-      values: ["normal", "hover"],
-    },
+    ai: { exclude: true },
     segmented: {
       default: "normal",
       items: [
@@ -54,6 +50,7 @@ const ButtonFontAndTextStyles = [
   },
   {
     visible: "globalButtonFontAndTextStylesState == 'hover'",
+    ai: { name: "textColorHover", description: "Button label hover-state text theme color." },
     title: "Color",
     id: "globalButtonFontAndTextStylesColorHover",
     format: "hover:text-{{value}}/(--buttonFontAndTextStylesColorOpacityHover)",
@@ -66,6 +63,7 @@ const ButtonFontAndTextStyles = [
   },
   {
     visible: "globalButtonFontAndTextStylesState == 'hover'",
+    ai: { name: "textColorOpacityHover", description: "Button label hover-state text color opacity, 0-100." },
     title: "Opacity",
     id: "globalButtonFontAndTextStylesColorOpacityHover",
     format: "hover:[--buttonFontAndTextStylesColorOpacityHover:{{value}}%]",

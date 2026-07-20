@@ -6,6 +6,7 @@ const Skew = [
   {
     title: "Horizontal",
     id: "globalTransformSkewX",
+    ai: { name: "skewX", description: "Horizontal skew, in degrees." },
     format: "skew-x-[{{value}}deg]",
     number: {
       default: 0,
@@ -14,6 +15,7 @@ const Skew = [
   {
     title: "Vertical",
     id: "globalTransformSkewY",
+    ai: { name: "skewY", description: "Vertical skew, in degrees." },
     format: "skew-y-[{{value}}deg]",
     number: {
       default: 0,

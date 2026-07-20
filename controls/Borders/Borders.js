@@ -2,7 +2,7 @@ export const Borders = [
   {
     globalControl: "ControlType",
     id: "{{value}}Borders",
-    ai: { name: "border", description: "Enable/disable borders.", values: ["none", "static"] },
+    ai: { name: "border", description: "Enable/disable borders.", values: ["none", "static", "hover"] },
   },
   {
     visible: "globalControlTypeBorders == 'hover'",
@@ -49,26 +49,26 @@ export const Borders = [
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
-    ai: { exclude: true },
+    ai: { name: "{{value}}Hover", visible: "border == 'hover'" },
     globalControl: "BorderStyle",
     id: "{{value}}End",
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
-    ai: { exclude: true },
+    ai: { name: "{{value}}Hover", visible: "border == 'hover'" },
     globalControl: "BorderColor",
     id: "{{value}}End",
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
-    ai: { exclude: true },
+    ai: { name: "{{value}}Hover", visible: "border == 'hover'" },
     globalControl: "BorderWidth",
     id: "{{value}}End",
     format: "hover:{{value}}",
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
-    ai: { exclude: true },
+    ai: { name: "{{value}}Hover", visible: "border == 'hover'" },
     globalControl: "BorderRadius",
     format: "hover:{{value}}",
     id: "{{value}}End",

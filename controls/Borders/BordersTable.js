@@ -2,6 +2,7 @@ export const BordersTable = [
   {
     globalControl: "ControlType",
     id: "{{value}}Borders",
+    ai: { name: "border", description: "Enable/disable borders.", values: ["none", "static", "hover"] },
   },
   {
     visible: "globalControlTypeBorders == 'hover'",
@@ -28,28 +29,34 @@ export const BordersTable = [
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
+    ai: { visible: "border == 'static'" },
     globalControl: "BorderStyle",
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
+    ai: { visible: "border == 'static'" },
     globalControl: "BorderColor",
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
+    ai: { visible: "border == 'static'" },
     globalControl: "BorderWidth",
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
+    ai: { name: "{{value}}Hover", visible: "border == 'hover'" },
     globalControl: "BorderStyle",
     id: "{{value}}End",
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
+    ai: { name: "{{value}}Hover", visible: "border == 'hover'" },
     globalControl: "BorderColor",
     id: "{{value}}End",
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
+    ai: { name: "{{value}}Hover", visible: "border == 'hover'" },
     globalControl: "BorderWidth",
     id: "{{value}}End",
     format: "hover:{{value}}",

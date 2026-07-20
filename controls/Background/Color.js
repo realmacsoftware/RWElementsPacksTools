@@ -27,6 +27,7 @@ const Color = [
   },
   {
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'color')",
+    ai: { name: "bgColorHover", description: "Background hover-state theme color.", visible: "bg == 'hover' && bgStyle == 'color'" },
     title: "Color",
     id: "globalBgColorEnd",
     format: "hover:bg-{{value}}/(--bgColorOpacityEnd)",
@@ -39,6 +40,7 @@ const Color = [
   },
   {
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'color')",
+    ai: { name: "bgColorOpacityHover", description: "Background hover-state color opacity, 0-100.", visible: "bg == 'hover' && bgStyle == 'color'" },
     title: "Opacity",
     id: "globalBgColorOpacityEnd",
     format: "hover:[--bgColorOpacityEnd:{{value}}%]",

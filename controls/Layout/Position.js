@@ -2,6 +2,7 @@ const LayoutPosition = [
   {
     title: "Position",
     id: "globalLayoutPosition",
+    ai: { name: "position", description: "CSS position: '' (none), static, relative, absolute, fixed, or sticky." },
     select: {
       default: "",
       items: [

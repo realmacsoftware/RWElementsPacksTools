@@ -180,9 +180,43 @@ function transformIdsRecursively(control, transformer) {
 // =============================================================================
 
 /**
+ * Merges an `ai` override into a control's existing `ai` metadata.
+ *
+ * A parent-level override (e.g. from an End/Hover block reusing a shared leaf
+ * control across several sibling properties) can't hardcode a single alias
+ * name, since the same override object is applied to every sibling. Instead,
+ * an override name containing `{{value}}` is resolved against the sibling's
+ * *own* pre-existing `ai.name` (e.g. "borderColor" -> "borderColorHover").
+ *
+ * If the sibling has no existing `ai.name` to template from (e.g. a
+ * themeShadow-backed size control with no supported MCP domain), the result
+ * is `{ exclude: true }` rather than a half-resolved alias — leaving that
+ * property cleanly uncurated instead of emitting a broken name.
+ *
+ * @param {Object|undefined} existingAi - The control's own `ai` block, if any.
+ * @param {Object} aiOverride - The `ai` override supplied by the parent.
+ * @returns {Object} The resolved `ai` block to apply.
+ */
+function mergeAiOverride(existingAi, aiOverride) {
+  const merged = { ...(existingAi || {}), ...aiOverride };
+
+  if (typeof aiOverride.name === "string" && aiOverride.name.includes("{{value}}")) {
+    const baseName = existingAi?.name;
+    if (!baseName) {
+      // Nothing to template from: don't leak a half-curated alias.
+      return { exclude: true };
+    }
+    merged.name = transformIdTemplate(aiOverride.name, baseName);
+  }
+
+  return merged;
+}
+
+/**
  * Merges override properties into a control.
  * For existing keys: strings replace, objects are shallow merged.
- * New keys are added directly.
+ * New keys are added directly. The `ai` key is merged via `mergeAiOverride`
+ * to support alias-name templating (see above).
  *
  * @param {Object} control - The control to merge into.
  * @param {Object} overrides - The override properties.
@@ -193,6 +227,11 @@ function mergeOverrides(control, overrides) {
   const remainingOverrides = { ...overrides };
 
   for (const key of Object.keys(overrides)) {
+    if (key === "ai") {
+      result.ai = mergeAiOverride(result.ai, overrides.ai);
+      delete remainingOverrides.ai;
+      continue;
+    }
     if (key in result) {
       if (typeof overrides[key] === "string") {
         result[key] = overrides[key];

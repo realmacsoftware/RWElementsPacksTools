@@ -2,6 +2,7 @@ const Effects = [
     {
         globalControl: "ControlType",
         id: "{{value}}Effects",
+        ai: { name: "effects", description: "Enable/disable effects.", values: ["none", "static", "hover"] },
     },
     {
         visible: "globalControlTypeEffects == 'hover'",
@@ -54,11 +55,13 @@ const Effects = [
     {
         visible:
             "globalControlTypeEffects == 'static' || (globalControlTypeEffects == 'hover' && globalEffectsState == 'start')",
+        ai: { visible: "effects == 'static'" },
         globalControl: "BoxShadow",
     },
     {
         visible:
             "(globalControlTypeEffects == 'hover' && globalEffectsState == 'end')",
+        ai: { name: "{{value}}Hover", visible: "effects == 'hover'" },
         globalControl: "BoxShadow",
         id: "{{value}}End",
         format: "hover:{{value}}",
@@ -70,11 +73,13 @@ const Effects = [
     {
         visible:
             "globalControlTypeEffects == 'static' || (globalControlTypeEffects == 'hover' && globalEffectsState == 'start')",
+        ai: { visible: "effects == 'static'" },
         globalControl: "Opacity",
     },
     {
         visible:
             "(globalControlTypeEffects == 'hover' && globalEffectsState == 'end')",
+        ai: { name: "{{value}}Hover", visible: "effects == 'hover'" },
         globalControl: "Opacity",
         id: "{{value}}End",
         format: "hover:{{value}}",
