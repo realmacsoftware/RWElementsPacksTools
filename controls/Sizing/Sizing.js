@@ -5,11 +5,11 @@ const Sizing = [
   },
   {
     globalControl: "Width",
-    ai: { name: "width", description: "Width theme-size token." }
+    ai: { name: "widthSize", description: "Width theme-size token." }
   },
   {
     globalControl: "Height",
-    ai: { name: "height", description: "Height theme-size token." }
+    ai: { name: "heightSize", description: "Height theme-size token." }
   },
   {
     divider: {}

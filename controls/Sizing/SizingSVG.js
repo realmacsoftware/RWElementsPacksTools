@@ -5,6 +5,7 @@ const SizingSVG = [
   },
   {
     globalControl: "Width",
+    ai: { name: "widthSize", description: "Width theme-size token." },
     themeSpacing: {
       mode: "single",
       default: {
@@ -15,7 +16,8 @@ const SizingSVG = [
     }
   },
   {
-    globalControl: "Height"
+    globalControl: "Height",
+    ai: { name: "heightSize", description: "Height theme-size token." }
   },
   {
     divider: {}
@@ -31,6 +33,7 @@ const SizingSVG = [
   {
     title: "Enable",
     id: "globalSizingMinMaxEnabled",
+    ai: { name: "minMaxEnabled", description: "Enable explicit min/max width and height constraints." },
     switch: {
       default: false
     }

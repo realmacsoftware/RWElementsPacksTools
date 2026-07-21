@@ -5,7 +5,7 @@ const Sizing = [
   },
   {
     globalControl: "Width",
-    ai: { name: "width", description: "Width theme-size token; arbitrary literals also accepted in brackets (e.g. '[640px]')." },
+    ai: { name: "widthSize", description: "Width theme-size token; arbitrary literals also accepted in brackets (e.g. '[640px]')." },
     themeSpacing: {
       mode: "single",
       default: {
@@ -18,7 +18,7 @@ const Sizing = [
   },
   {
     globalControl: "Height",
-    ai: { name: "height", description: "Height theme-size token; arbitrary literals also accepted in brackets (e.g. '[480px]')." }
+    ai: { name: "heightSize", description: "Height theme-size token; arbitrary literals also accepted in brackets (e.g. '[480px]')." }
   },
   {
     divider: {}
