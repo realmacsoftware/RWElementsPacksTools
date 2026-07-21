@@ -6,7 +6,7 @@ const SizingContainer = [
   {
     title: "Width",
     id: "globalWidthType",
-    ai: { name: "width", description: "Width mode: 'auto', 'full', 'screen', 'container' (breakpoint), or 'theme' (use widthSize)." },
+    ai: { name: "widthType", description: "Width mode: 'auto', 'full', 'screen', 'container' (breakpoint), or 'theme' (use widthSize)." },
     responsive: false,
     select: {
       default: "full",
@@ -38,12 +38,12 @@ const SizingContainer = [
     visible: "globalWidthType == 'theme'",
     globalControl: "Width",
     title: "",
-    ai: { name: "widthSize", description: "Width theme-size token, used when width is 'theme'." }
+    ai: { name: "widthSize", description: "Width theme-size token, used when widthType is 'theme'." }
   },
   {
     title: "Height",
     id: "globalHeightType",
-    ai: { name: "height", description: "Height mode: 'auto', 'full', 'screen', or 'theme' (use heightSize)." },
+    ai: { name: "heightType", description: "Height mode: 'auto', 'full', 'screen', or 'theme' (use heightSize)." },
     responsive: false,
     select: {
       default: "auto",
@@ -71,7 +71,7 @@ const SizingContainer = [
     visible: "globalHeightType == 'theme'",
     globalControl: "Height",
     title: "",
-    ai: { name: "heightSize", description: "Height theme-size token, used when height is 'theme'." }
+    ai: { name: "heightSize", description: "Height theme-size token, used when heightType is 'theme'." }
   },
   {
     divider: {}
