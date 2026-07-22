@@ -41,6 +41,7 @@ export const Image = [
     },
     {
         visible: "imageType == 'custom' && imageMode == 'light'",
+        ai: { name: "customSource", description: "Custom image source for 'custom' mode: an absolute URL (https://...) or a site-relative path, used directly as the img src." },
         title: "Source",
         id: "imageCustomSource",
         text: {
@@ -49,6 +50,7 @@ export const Image = [
     },
     {
         visible: "imageType == 'custom' && imageMode == 'dark'",
+        ai: { name: "customSourceDark", description: "Dark-mode custom image source for 'custom' mode: absolute URL or site-relative path." },
         title: "Source",
         id: "imageCustomSourceDark",
         text: {
@@ -57,6 +59,7 @@ export const Image = [
     },
     {
         visible: "imageType == 'cms' && imageMode == 'light'",
+        ai: { name: "cmsField", description: "CMS image binding for 'cms' mode: a Twig expression resolving to an image URL (e.g. {{item.image.src}}), NOT a bare frontmatter key." },
         title: "Field",
         id: "imageCmsField",
         text: {
@@ -65,6 +68,7 @@ export const Image = [
     },
     {
         visible: "imageType == 'cms' && imageMode == 'dark'",
+        ai: { name: "cmsFieldDark", description: "Dark-mode CMS image binding: a Twig expression resolving to an image URL (e.g. {{item.image.src}})." },
         title: "Field",
         id: "imageCmsFieldDark",
         text: {
