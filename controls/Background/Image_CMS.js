@@ -29,7 +29,7 @@ export const ImageCMS = [
     {
         visible:
             "globalBgImageType == 'resource' && (globalControlTypeBg == 'static' && globalBgType == 'image' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'image'))",
-        ai: { name: "bgImage", description: "Background image resource reference.", visible: "bg == 'static' && bgStyle == 'image'" },
+        ai: { name: "bgImage", description: "Background image resource ID.", visible: "bg == 'static' && bgStyle == 'image'" },
         title: "Image",
         id: "globalBgImageResource",
         resource: { accepts: "image/*", excludes: ".svg" },

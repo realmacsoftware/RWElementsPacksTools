@@ -2,7 +2,7 @@ export const Image = [
     {
         visible:
             "globalControlTypeBg == 'static' && globalBgType == 'image' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'image')",
-        ai: { name: "bgImage", description: "Background image resource reference.", visible: "bg == 'static' && bgStyle == 'image'" },
+        ai: { name: "bgImage", description: "Background image resource ID.", visible: "bg == 'static' && bgStyle == 'image'" },
         title: "Image",
         id: "globalBgImageResource",
         resource: { accepts: "image/*", excludes: ".svg" },
@@ -119,7 +119,7 @@ export const Image = [
     {
         visible:
             "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'image')",
-        ai: { name: "bgImageHover", description: "Hover-state background image resource reference.", visible: "bg == 'hover' && bgStyle == 'image'" },
+        ai: { name: "bgImageHover", description: "Hover-state background image resource ID.", visible: "bg == 'hover' && bgStyle == 'image'" },
         title: "Image",
         id: "globalBgImageResourceEnd",
         resource: { accepts: "image/*", excludes: ".svg" },

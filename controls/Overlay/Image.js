@@ -1,7 +1,7 @@
 export const Image = [
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'image' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'image')",
-    ai: { name: "overlayImage", description: "Overlay image resource reference.", visible: "overlay == 'static' && overlayStyle == 'image'" },
+    ai: { name: "overlayImage", description: "Overlay image resource ID.", visible: "overlay == 'static' && overlayStyle == 'image'" },
     title: "Image",
     id: "globalOverlayImageResource",
     resource: { accepts: "image/*", excludes: ".svg" },
