@@ -27,6 +27,7 @@ const Color = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'color')",
+    ai: { name: "overlayColorHover", description: "Hover-state overlay theme color.", visible: "overlay == 'hover' && overlayStyle == 'color'" },
     title: "Color",
     id: "globalOverlayColorEnd",
     format: "bg-{{value}}/(--overlayColorOpacityEnd)",
@@ -39,6 +40,7 @@ const Color = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'color')",
+    ai: { name: "overlayColorOpacityHover", description: "Hover-state overlay color opacity, 0-100.", visible: "overlay == 'hover' && overlayStyle == 'color'" },
     title: "Opacity",
     id: "globalOverlayColorOpacityEnd",
     format: "[--overlayColorOpacityEnd:{{value}}%]",

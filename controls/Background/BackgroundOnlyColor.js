@@ -2,6 +2,7 @@ const BackgroundOnlyColor = [
     {
         globalControl: "ControlType",
         id: "{{value}}Bg",
+        ai: { name: "bg", description: "Enable/disable background.", values: ["none", "static", "hover"] },
         segmented: {
           default: "static",
         },
@@ -9,6 +10,7 @@ const BackgroundOnlyColor = [
     {
         enable: "false",
         visible: "false",
+        ai: { exclude: true },
         title: "Style",
         id: "globalBgType",
         responsive: false,
@@ -24,6 +26,7 @@ const BackgroundOnlyColor = [
     },
     {
         visible: "globalControlTypeBg != 'none' && globalControlTypeBg != 'static'",
+        ai: { exclude: true },
         title: "State",
         id: "globalBgState",
         responsive: false,

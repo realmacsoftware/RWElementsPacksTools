@@ -114,6 +114,7 @@ const MenuItem = [
         visible: "globalMenuItemState == 'default'",
         title: "Shadow",
         id: "globalMenuItemTextShadow",
+        ai: { name: "itemTextShadow", description: "Menu item text shadow theme token." },
         themeShadow: {
             mode: "text",
             default: {
@@ -161,6 +162,7 @@ const MenuItem = [
         visible: "globalMenuItemState == 'hover'",
         title: "Shadow",
         id: "globalMenuItemHoverTextShadow",
+        ai: { name: "itemTextShadowHover", description: "Menu item hover-state text shadow theme token." },
         format: "hover:{{value}} data-[state=active]:{{value}}",
         themeShadow: {
             mode: "text",

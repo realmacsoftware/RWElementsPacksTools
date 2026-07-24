@@ -239,7 +239,6 @@ export const Image = [
             ],
         },
     },
-    ,
     {
         visible: "globalBgType == 'image'",
         divider: {},
@@ -251,6 +250,7 @@ export const Image = [
     },
     {
         visible: "globalBgType == 'image'",
+        ai: { name: "bgImageFetchPriority", description: "Image fetch priority: auto, high, or low.", visible: "bgStyle == 'image'" },
         title: "Value",
         id: "globalBgImageFetchPriority",
         responsive: false,

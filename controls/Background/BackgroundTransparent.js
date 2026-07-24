@@ -33,6 +33,7 @@ const BackgroundTransparent = [
   },
   {
     visible: "globalControlTypeBg != 'none' && globalControlTypeBg != 'static'",
+    ai: { exclude: true },
     title: "State",
     id: "globalBgState",
     responsive: false,

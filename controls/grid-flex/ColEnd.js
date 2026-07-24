@@ -1,5 +1,6 @@
 const ColEnd = {
   id: "globalGridItemColEnd",
+  ai: { name: "colEnd", description: "Grid column end line (auto or 1-13).", visible: "actAs == 'grid'" },
   format: "col-end-{{value}}",
   title: "End",
   slider: {

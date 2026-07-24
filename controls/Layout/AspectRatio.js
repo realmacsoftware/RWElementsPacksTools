@@ -29,6 +29,7 @@ export const AspectRatio = [
     },
     {
         visible: "aspectRatio == 'custom'",
+        ai: { name: "aspectRatioCustom", description: "Custom aspect ratio as 'x/y', e.g. '5/7'.", visible: "aspectRatio == 'custom'" },
         title: "Custom Ratio",
         id: "aspectRatioCustom",
         format: "aspect-[{{value}}]",

@@ -1,6 +1,7 @@
 const Gradient = [
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient')",
+    ai: { name: "overlayGradientType", description: "Gradient type: linear, radial, or conic.", values: ["linear", "radial", "conic"], visible: "overlay == 'static' && overlayStyle == 'gradient'" },
     title: "Type",
     id: "globalOverlayGradientType",
     responsive: false,
@@ -21,6 +22,7 @@ const Gradient = [
   },
   {
     visible: "((globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient') || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient')) && globalOverlayGradientType == 'radial'",
+    ai: { name: "overlayGradientRadialPosition", description: "Radial gradient center position.", visible: "overlay == 'static' && overlayStyle == 'gradient' && overlayGradientType == 'radial'" },
     title: "Position",
     id: "globalOverlayGradientRadialPosition",
     responsive: false,
@@ -30,6 +32,7 @@ const Gradient = [
   },
   {
     visible: "((globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient') || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient')) && globalOverlayGradientType == 'conic'",
+    ai: { name: "overlayGradientConicAngle", description: "Conic gradient start angle.", visible: "overlay == 'static' && overlayStyle == 'gradient' && overlayGradientType == 'conic'" },
     title: "Angle",
     id: "globalOverlayGradientConicAngle",
     responsive: false,
@@ -39,6 +42,7 @@ const Gradient = [
   },
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient')",
+    ai: { name: "overlayGradientInterpolation", description: "Gradient color interpolation mode.", visible: "overlay == 'static' && overlayStyle == 'gradient'" },
     title: "Interpolation",
     id: "globalOverlayGradientInterpolation",
     responsive: false,
@@ -79,6 +83,7 @@ const Gradient = [
   },
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient')",
+    ai: { name: "overlayGradientFromPosition", description: "Gradient start stop position, 0-100.", visible: "overlay == 'static' && overlayStyle == 'gradient'" },
     title: "Position",
     id: "globalOverlayGradientFromPosition",
     format: "from-{{value}}%",
@@ -95,6 +100,7 @@ const Gradient = [
   },
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient')",
+    ai: { name: "overlayGradientViaEnabled", description: "Add a mid-stop (via) color to the gradient.", visible: "overlay == 'static' && overlayStyle == 'gradient'" },
     title: "Add Via",
     id: "globalOverlayGradientViaEnabled",
     switch: {
@@ -108,6 +114,7 @@ const Gradient = [
   },
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient') && globalOverlayGradientViaEnabled == true",
+    ai: { name: "overlayGradientVia", description: "Gradient mid-stop theme color.", visible: "overlay == 'static' && overlayStyle == 'gradient' && overlayGradientViaEnabled == true" },
     title: "Color",
     id: "globalOverlayGradientViaColor",
     format: "via-{{value}}",
@@ -120,6 +127,7 @@ const Gradient = [
   },
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient') && globalOverlayGradientViaEnabled == true",
+    ai: { name: "overlayGradientViaOpacity", description: "Gradient mid-stop color opacity, 0-100.", visible: "overlay == 'static' && overlayStyle == 'gradient' && overlayGradientViaEnabled == true" },
     title: "Opacity",
     id: "globalOverlayGradientViaOpacity",
     format: "[{{value}}%]",
@@ -132,6 +140,7 @@ const Gradient = [
   },
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient') && globalOverlayGradientViaEnabled == true",
+    ai: { name: "overlayGradientViaPosition", description: "Gradient mid-stop position, 0-100.", visible: "overlay == 'static' && overlayStyle == 'gradient' && overlayGradientViaEnabled == true" },
     title: "Position",
     id: "globalOverlayGradientViaPosition",
     format: "via-{{value}}%",
@@ -179,6 +188,7 @@ const Gradient = [
   },
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient')",
+    ai: { name: "overlayGradientToPosition", description: "Gradient end stop position, 0-100.", visible: "overlay == 'static' && overlayStyle == 'gradient'" },
     title: "Position",
     id: "globalOverlayGradientToPosition",
     format: "to-{{value}}%",
@@ -191,6 +201,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient')",
+    ai: { name: "overlayGradientTypeHover", description: "Hover-state gradient type: linear, radial, or conic.", values: ["linear", "radial", "conic"], visible: "overlay == 'hover' && overlayStyle == 'gradient'" },
     title: "Type",
     id: "globalOverlayGradientTypeEnd",
     responsive: false,
@@ -201,6 +212,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient') && globalOverlayGradientTypeEnd == 'linear'",
+    ai: { name: "overlayGradientDirectionHover", description: "Hover-state linear gradient direction.", visible: "overlay == 'hover' && overlayStyle == 'gradient' && overlayGradientTypeHover == 'linear'" },
     title: "Direction",
     id: "globalOverlayGradientDirectionEnd",
     responsive: false,
@@ -210,6 +222,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient') && globalOverlayGradientTypeEnd == 'radial'",
+    ai: { name: "overlayGradientRadialPositionHover", description: "Hover-state radial gradient center position.", visible: "overlay == 'hover' && overlayStyle == 'gradient' && overlayGradientTypeHover == 'radial'" },
     title: "Position",
     id: "globalOverlayGradientRadialPositionEnd",
     responsive: false,
@@ -219,6 +232,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient') && globalOverlayGradientTypeEnd == 'conic'",
+    ai: { name: "overlayGradientConicAngleHover", description: "Hover-state conic gradient start angle.", visible: "overlay == 'hover' && overlayStyle == 'gradient' && overlayGradientTypeHover == 'conic'" },
     title: "Angle",
     id: "globalOverlayGradientConicAngleEnd",
     responsive: false,
@@ -228,6 +242,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient')",
+    ai: { name: "overlayGradientInterpolationHover", description: "Hover-state gradient color interpolation mode.", visible: "overlay == 'hover' && overlayStyle == 'gradient'" },
     title: "Interpolation",
     id: "globalOverlayGradientInterpolationEnd",
     responsive: false,
@@ -242,6 +257,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient')",
+    ai: { name: "overlayGradientFromHover", description: "Hover-state gradient start theme color.", visible: "overlay == 'hover' && overlayStyle == 'gradient'" },
     title: "Color",
     id: "globalOverlayGradientFromColorEnd",
     format: "from-{{value}}",
@@ -254,6 +270,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient')",
+    ai: { name: "overlayGradientFromOpacityHover", description: "Hover-state gradient start color opacity, 0-100.", visible: "overlay == 'hover' && overlayStyle == 'gradient'" },
     title: "Opacity",
     id: "globalOverlayGradientFromOpacityEnd",
     format: "[{{value}}%]",
@@ -266,6 +283,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient')",
+    ai: { name: "overlayGradientFromPositionHover", description: "Hover-state gradient start stop position, 0-100.", visible: "overlay == 'hover' && overlayStyle == 'gradient'" },
     title: "Position",
     id: "globalOverlayGradientFromPositionEnd",
     format: "from-{{value}}%",
@@ -282,6 +300,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient')",
+    ai: { name: "overlayGradientViaEnabledHover", description: "Add a mid-stop (via) color to the hover-state gradient.", visible: "overlay == 'hover' && overlayStyle == 'gradient'" },
     title: "Add Via",
     id: "globalOverlayGradientViaEnabledEnd",
     switch: {
@@ -295,6 +314,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient') && globalOverlayGradientViaEnabledEnd == true",
+    ai: { name: "overlayGradientViaHover", description: "Hover-state gradient mid-stop theme color.", visible: "overlay == 'hover' && overlayStyle == 'gradient' && overlayGradientViaEnabledHover == true" },
     title: "Color",
     id: "globalOverlayGradientViaColorEnd",
     format: "via-{{value}}",
@@ -307,6 +327,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient') && globalOverlayGradientViaEnabledEnd == true",
+    ai: { name: "overlayGradientViaOpacityHover", description: "Hover-state gradient mid-stop color opacity, 0-100.", visible: "overlay == 'hover' && overlayStyle == 'gradient' && overlayGradientViaEnabledHover == true" },
     title: "Opacity",
     id: "globalOverlayGradientViaOpacityEnd",
     format: "[{{value}}%]",
@@ -319,6 +340,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient') && globalOverlayGradientViaEnabledEnd == true",
+    ai: { name: "overlayGradientViaPositionHover", description: "Hover-state gradient mid-stop position, 0-100.", visible: "overlay == 'hover' && overlayStyle == 'gradient' && overlayGradientViaEnabledHover == true" },
     title: "Position",
     id: "globalOverlayGradientViaPositionEnd",
     format: "via-{{value}}%",
@@ -340,6 +362,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient')",
+    ai: { name: "overlayGradientToHover", description: "Hover-state gradient end theme color.", visible: "overlay == 'hover' && overlayStyle == 'gradient'" },
     title: "Color",
     id: "globalOverlayGradientToColorEnd",
     format: "to-{{value}}",
@@ -352,6 +375,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient')",
+    ai: { name: "overlayGradientToOpacityHover", description: "Hover-state gradient end color opacity, 0-100.", visible: "overlay == 'hover' && overlayStyle == 'gradient'" },
     title: "Opacity",
     id: "globalOverlayGradientToOpacityEnd",
     format: "[{{value}}%]",
@@ -364,6 +388,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient')",
+    ai: { name: "overlayGradientToPositionHover", description: "Hover-state gradient end stop position, 0-100.", visible: "overlay == 'hover' && overlayStyle == 'gradient'" },
     title: "Position",
     id: "globalOverlayGradientToPositionEnd",
     format: "to-{{value}}%",

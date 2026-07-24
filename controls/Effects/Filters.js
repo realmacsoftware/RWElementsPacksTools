@@ -73,6 +73,7 @@ const Filters = [
     {
         visible:
             "globalControlTypeFilters == 'static' || (globalControlTypeFilters == 'hover' && globalFiltersState == 'start')",
+        ai: { visible: "filters == 'static'" },
         globalControl: "DropShadow",
     },
     {
@@ -99,6 +100,7 @@ const Filters = [
     {
         visible:
             "(globalControlTypeFilters == 'hover' && globalFiltersState == 'end')",
+        ai: { name: "{{value}}Hover", visible: "filters == 'hover'" },
         globalControl: "DropShadow",
         id: "{{value}}End",
     },

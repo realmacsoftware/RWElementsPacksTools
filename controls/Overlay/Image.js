@@ -117,6 +117,7 @@ export const Image = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'image')",
+    ai: { name: "overlayImageHover", description: "Hover-state overlay image resource ID.", visible: "overlay == 'hover' && overlayStyle == 'image'" },
     title: "Image",
     id: "globalOverlayImageResourceEnd",
     resource: { accepts: "image/*", excludes: ".svg" },
@@ -128,6 +129,7 @@ export const Image = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'image')",
+    ai: { name: "overlayImagePositionXHover", description: "Hover-state overlay image horizontal position.", visible: "overlay == 'hover' && overlayStyle == 'image'" },
     title: "Horizontal",
     id: "globalOverlayImagePositionXEnd",
     segmented: {
@@ -150,6 +152,7 @@ export const Image = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'image')",
+    ai: { name: "overlayImagePositionYHover", description: "Hover-state overlay image vertical position.", visible: "overlay == 'hover' && overlayStyle == 'image'" },
     title: "Vertical",
     id: "globalOverlayImagePositionYEnd",
     segmented: {
@@ -178,6 +181,7 @@ export const Image = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'image')",
+    ai: { name: "overlayImageSizeHover", description: "Hover-state overlay image size (auto/cover/contain).", visible: "overlay == 'hover' && overlayStyle == 'image'" },
     title: "Size",
     id: "globalOverlayImageSizeEnd",
     format: "bg-{{value}}",
@@ -201,6 +205,7 @@ export const Image = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'image')",
+    ai: { name: "overlayImageRepeatHover", description: "Hover-state overlay image repeat mode.", visible: "overlay == 'hover' && overlayStyle == 'image'" },
     title: "Repeat",
     id: "globalOverlayImageRepeatEnd",
     format: "bg-{{value}}",

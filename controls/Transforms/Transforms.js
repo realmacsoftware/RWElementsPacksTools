@@ -6,12 +6,23 @@ const Transforms = [
     },
     {
         visible: "globalControlTypeTransforms == 'hover'",
+        ai: {
+            name: "transformsHoverTrigger",
+            description: "Which element's hover triggers the transforms.",
+            values: ["self", "parent", "container", "grid", "flex", "custom"],
+            visible: "transforms == 'hover'",
+        },
         globalControl: "HoverGroup",
         id: "{{value}}Transforms",
     },
     {
         visible:
             "globalControlTypeTransforms == 'hover' && globalHoverGroupTransforms == 'custom'",
+        ai: {
+            name: "transformsHoverTriggerId",
+            description: "ID of the element that triggers the hover transforms (when trigger is 'custom').",
+            visible: "transforms == 'hover' && transformsHoverTrigger == 'custom'",
+        },
         title: "ID",
         id: "globalHoverGroupCustomIdTransforms",
         text: {
@@ -26,6 +37,7 @@ const Transforms = [
     {
         visible:
             "globalControlTypeTransforms != 'none' && globalControlTypeTransforms != 'static'",
+        ai: { exclude: true },
         title: "State",
         id: "globalTransformsState",
         responsive: false,
@@ -66,6 +78,7 @@ const Transforms = [
     {
         visible:
             "globalControlTypeTransforms == 'static' || (globalControlTypeTransforms == 'hover' && globalTransformsState == 'start')",
+        ai: { visible: "transforms == 'static'" },
         globalControl: "Translate",
     },
     {
@@ -92,6 +105,7 @@ const Transforms = [
     {
         visible:
             "(globalControlTypeTransforms == 'hover' && globalTransformsState == 'end')",
+        ai: { name: "{{value}}Hover", visible: "transforms == 'hover'" },
         globalControl: "Translate",
         id: "{{value}}End",
     },

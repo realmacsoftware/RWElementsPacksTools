@@ -77,6 +77,7 @@ const ButtonFontAndTextStyles = [
     visible: "globalButtonFontAndTextStylesState == 'normal'",
     title: "Text Shadow",
     id: "globalButtonFontAndTextStylesTextShadow",
+    ai: { name: "textShadow", description: "Button label text shadow theme token." },
     themeShadow: {
       mode: "text",
       default: {
@@ -88,6 +89,7 @@ const ButtonFontAndTextStyles = [
     visible: "globalButtonFontAndTextStylesState == 'hover'",
     title: "Text Shadow",
     id: "globalButtonFontAndTextStylesTextShadowHover",
+    ai: { name: "textShadowHover", description: "Button label hover-state text shadow theme token." },
     format: "hover:{{value}}",
     themeShadow: {
       mode: "text",

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Curated `ai` aliases for hover/End-state controls across Background, Borders, Effects, Filters, Transforms, and button/heading text color — components can now be styled for hover via MCP, not just their resting state
 - `build-properties.js` supports `{{value}}` templating in an override's `ai.name` (e.g. `"{{value}}Hover"`), resolved against each sibling control's own existing alias so a single End/Hover block override can curate several leaf properties at once without alias collisions. Siblings with no existing alias (e.g. `themeShadow` controls) fall back to `ai: { exclude: true }` instead of emitting a half-resolved name
+- Curated `ai` aliases for every `themeShadow` control (`BoxShadow`, `DropShadow`, and the text-shadow fields in `TextFontsAndTextStyles`, `InputFontAndTextStyles`, `ButtonFontAndTextStyles`, `MenuItem`), now that the MCP/Assistant integration supports the `themeShadow` domain end-to-end
 
 ## [1.4.2] - 2026-07-16
 

@@ -1,6 +1,7 @@
 export const Columns = [
   {
     visible: "globalGridOrFlexDisplayAs == 'grid'",
+    ai: { name: "colSpan", description: "Grid columns to span (auto or 1-12).", visible: "actAs == 'grid'" },
     title: "Columns",
     id: "globalGridItemColSpan",
     format: "col-span-{{value}}",

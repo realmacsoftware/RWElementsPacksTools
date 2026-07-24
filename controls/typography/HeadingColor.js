@@ -18,6 +18,7 @@ const HeadingColor = [
     },
   },
   {
+    ai: { name: "bgStyle", description: "Text fill style: color, image, or gradient." },
     title: "Style",
     id: "globalBgType",
     responsive: false,
@@ -50,6 +51,7 @@ const HeadingColor = [
 },
   {
     visible: "globalControlTypeBg != 'none' && globalControlTypeBg != 'static'",
+    ai: { exclude: true },
     title: "State",
     id: "globalBgState",
     responsive: false,

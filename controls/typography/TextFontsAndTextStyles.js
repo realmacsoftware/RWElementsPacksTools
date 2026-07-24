@@ -93,6 +93,7 @@ const TextFontsAndTextStyles = [
     {
         title: "Text Shadow",
         id: "globalTextTextShadow",
+        ai: { name: "textShadow", description: "Text shadow theme token." },
         disabled: {
             id: "bgType",
             value: "image",

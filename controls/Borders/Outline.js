@@ -2,6 +2,7 @@ export const Outline = [
   {
     title: "Type",
     id: "globalControlTypeOutline",
+    ai: { name: "outline", description: "Enable/disable outline. 'static' always shows it; 'focus' styles the unfocused and focused states separately.", values: ["none", "static", "focus"] },
     responsive: false,
     segmented: {
       default: "none",
@@ -23,10 +24,12 @@ export const Outline = [
   },
   {
     visible: "globalControlTypeOutline != 'none'",
+    ai: { visible: "outline != 'none'" },
     globalControl: "OutlineStyle",
   },
   {
     visible: "globalControlTypeOutline == 'focus'",
+    ai: { exclude: true },
     title: "State",
     id: "globalOutlineState",
     responsive: false,
@@ -50,18 +53,22 @@ export const Outline = [
   },
   {
     visible: "globalControlTypeOutline == 'static' || (globalControlTypeOutline == 'focus' && globalOutlineState == 'unfocused')",
+    ai: { visible: "outline != 'none'" },
     globalControl: "OutlineColor",
   },
   {
     visible: "globalControlTypeOutline == 'static' || (globalControlTypeOutline == 'focus' && globalOutlineState == 'unfocused')",
+    ai: { visible: "outline != 'none'" },
     globalControl: "OutlineWidth",
   },
   {
     visible: "globalControlTypeOutline == 'static' || (globalControlTypeOutline == 'focus' && globalOutlineState == 'unfocused')",
+    ai: { visible: "outline != 'none'" },
     globalControl: "OutlineOffset",
   },
   {
     visible: "(globalControlTypeOutline == 'focus' && globalOutlineState == 'focused')",
+    ai: { name: "outlineColorFocus", description: "Outline theme color when focused.", visible: "outline == 'focus'" },
     title: "Color",
     id: "globalOutlineColorFocus",
     format: "focus:outline-{{value}}",
@@ -74,6 +81,7 @@ export const Outline = [
   },
   {
     visible: "(globalControlTypeOutline == 'focus' && globalOutlineState == 'focused')",
+    ai: { name: "outlineColorOpacityFocus", description: "Focused outline color opacity, 0-100.", visible: "outline == 'focus'" },
     title: "Opacity",
     id: "globalOutlineColorOpacityFocus",
     format: "[{{value}}%]",
@@ -85,12 +93,14 @@ export const Outline = [
   },
   {
     visible: "(globalControlTypeOutline == 'focus' && globalOutlineState == 'focused')",
+    ai: { name: "{{value}}Focus", visible: "outline == 'focus'" },
     globalControl: "OutlineWidth",
     id: "{{value}}Focus",
     format: "focus:outline-[{{value}}px]",
   },
   {
     visible: "(globalControlTypeOutline == 'focus' && globalOutlineState == 'focused')",
+    ai: { name: "{{value}}Focus", visible: "outline == 'focus'" },
     globalControl: "OutlineOffset",
     format: "focus:outline-offset-[{{value}}px]",
     id: "{{value}}Focus",

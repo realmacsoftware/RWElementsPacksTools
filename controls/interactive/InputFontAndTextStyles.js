@@ -23,6 +23,7 @@ const InputFontAndTextStyles = [
     {
       title: "Text Shadow",
       id: "globalInputFontAndTextStylesTextShadow",
+      ai: { name: "textShadow", description: "Input text shadow theme token." },
       themeShadow: {
         mode: "text",
         default: {

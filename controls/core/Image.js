@@ -91,6 +91,7 @@ export const Image = [
     },
     {
         visible: "imageType == 'cms' || imageType == 'custom'",
+        ai: { name: "alt", description: "Image alt text for accessibility/SEO. Only used for 'custom' and 'cms' image types.", visible: "imageType == 'custom' || imageType == 'cms'" },
         title: "Alt",
         id: "imageAlt",
         responsive: false,

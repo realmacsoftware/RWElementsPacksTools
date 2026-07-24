@@ -2,7 +2,7 @@ const OutlineStyle = [
   {
     title: "Style",
     id: "globalOutlineStyle",
-
+    ai: { name: "outlineStyle", description: "Outline line style." },
     segmented: {
       default: "outline",
       items: [

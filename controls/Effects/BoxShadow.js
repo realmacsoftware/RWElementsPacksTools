@@ -2,6 +2,7 @@ const BoxShadow = [
   {
     title: "Size",
     id: "globalBoxShadow",
+    ai: { name: "boxShadow", description: "Box shadow size, a theme shadow token. Pair with boxShadowColor and boxShadowOpacity." },
     responsive: false,
     themeShadow: {
       default: {

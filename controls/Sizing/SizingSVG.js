@@ -5,7 +5,6 @@ const SizingSVG = [
   },
   {
     globalControl: "Width",
-    ai: { name: "widthSize", description: "Width theme-size token." },
     themeSpacing: {
       mode: "single",
       default: {
@@ -17,7 +16,6 @@ const SizingSVG = [
   },
   {
     globalControl: "Height",
-    ai: { name: "heightSize", description: "Height theme-size token." }
   },
   {
     divider: {}

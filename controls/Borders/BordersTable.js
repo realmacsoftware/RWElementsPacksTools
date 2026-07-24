@@ -6,6 +6,7 @@ export const BordersTable = [
   },
   {
     visible: "globalControlTypeBorders == 'hover'",
+    ai: { exclude: true },
     title: "State",
     id: "globalBordersState",
     responsive: false,

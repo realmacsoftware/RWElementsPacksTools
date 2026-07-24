@@ -14,6 +14,7 @@ const ActAsGridOrFlexItem = [
     title: "Component must be inside a Flex for settings to apply.",
   },
   {
+    ai: { name: "actAs", description: "Act as a grid or flex item: default, grid, or flex.", values: ["default", "grid", "flex"] },
     title: "Type",
     id: "globalGridOrFlexDisplayAs",
     responsive: false,
@@ -28,6 +29,7 @@ const ActAsGridOrFlexItem = [
   },
   {
     visible: "globalGridOrFlexDisplayAs != 'default'",
+    ai: { exclude: true },
     title: "Settings",
     id: "globalGridOrFlexItemSettings",
     responsive: false,
