@@ -77,6 +77,7 @@ export const BordersContainer = [
     ai: { name: "{{value}}Hover", visible: "border == 'hover'" },
     globalControl: "BorderWidth",
     id: "{{value}}End",
+    format: "peer-hover:{{value}} hover:{{value}}",
   },
   {
     visible: "(globalControlTypeBorders == 'hover' && globalBordersState == 'end')",
