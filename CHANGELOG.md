@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Build output is no longer minified. `properties.json` is written with 2-space indentation and `hooks.js` keeps its original formatting (with the `// AUTO-GENERATED` banner always emitted), so generated files are readable, greppable, and produce meaningful git diffs. `hooks.js` is still wrapped as CommonJS and transpiled to es2018 — only the minification passes were dropped
+
+### Removed
+- `--no-minify` flag — nothing is minified any more, so the flag had no remaining purpose. Passing it is silently ignored rather than an error
+
 ## [1.5.0] - 2026-07-27
 
 ### Added
