@@ -7,10 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-07-27
+
 ### Added
 - Curated `ai` aliases for hover/End-state controls across Background, Borders, Effects, Filters, Transforms, and button/heading text color — components can now be styled for hover via MCP, not just their resting state
 - `build-properties.js` supports `{{value}}` templating in an override's `ai.name` (e.g. `"{{value}}Hover"`), resolved against each sibling control's own existing alias so a single End/Hover block override can curate several leaf properties at once without alias collisions. Siblings with no existing alias (e.g. `themeShadow` controls) fall back to `ai: { exclude: true }` instead of emitting a half-resolved name
 - Curated `ai` aliases for every `themeShadow` control (`BoxShadow`, `DropShadow`, and the text-shadow fields in `TextFontsAndTextStyles`, `InputFontAndTextStyles`, `ButtonFontAndTextStyles`, `MenuItem`), now that the MCP/Assistant integration supports the `themeShadow` domain end-to-end
+- Broader MCP curation across gradients, overlays, outline, transforms/translate, sizing, layout/grid-flex, video/SVG backgrounds, Image custom-source and CMS fields, and background image alias vocabulary (`bg` / `bgImage` / position / size / repeat)
+- `build-properties.js` merge helper for combining `ai` objects from a control and its overrides
+
+### Changed
+- Sizing AI aliases use `widthMode` / `heightMode` and `widthSize` / `heightSize` so models no longer write mode values like `full` into themeSize fields
+- Background and overlay image AI descriptions tightened to say "resource ID"
+- Removed example theme tokens from sizing property descriptions
+
+### Fixed
+- Hover box-shadow end classes were missing the `hover:` modifier (#7); `build-properties.js` now applies `{{value}}` format templates even when the leaf control has no base format
+- Container hover border-width end classes were missing the hover modifier (#8)
+- `globalEffects.js` end-state prefix handling: stops double-prefixed opacity, restores hover-group support, and avoids active/focus stacking onto a baked `hover:` prefix
 
 ## [1.4.2] - 2026-07-16
 
