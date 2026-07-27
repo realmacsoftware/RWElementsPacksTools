@@ -13,7 +13,7 @@ rw-elements-tools is a development toolkit that simplifies the process of creati
 - **A powerful CLI** for building and watching your element files
 - **Ready-to-use controls** for common UI patterns (colors, spacing, typography, and more)
 - **Shared utilities** for generating Tailwind CSS classes
-- **Smart optimization** that automatically removes unused code from your builds
+- **Tree shaking** that ships only the shared code each component actually uses
 
 ## Who is this for?
 
@@ -28,7 +28,7 @@ rw-elements-tools is a development toolkit that simplifies the process of creati
 |--------------------------|----------------------|
 | Manually write complex JSON config files | Use intuitive JavaScript configuration |
 | Copy/paste utility code between elements | Import from a shared library |
-| Bloated output with unused code | Automatic dead code elimination |
+| Bloated output with unused code | Automatic tree shaking |
 | Manual rebuilds on every change | Watch mode for instant updates |
 
 ---
@@ -381,7 +381,7 @@ For each property in a config file:
 
 ## Shared Hooks Build System
 
-The shared hooks build system combines reusable JavaScript utility functions with component-specific hook code, then applies dead code elimination to produce optimized output.
+The shared hooks build system combines reusable JavaScript utility functions with component-specific hook code, then tree shakes the result so each component ships only the shared hooks it actually uses.
 
 ### Overview
 
@@ -392,14 +392,14 @@ shared-hooks/**/*.js           Component hooks.source.js
     ┌─────────────────────────────────────────┐
     │       build-shared-hooks.js              │
     │  • Concatenates shared + component code  │
-    │  • Applies esbuild dead code elimination │
+    │  • Tree shakes with esbuild              │
     │  • Keeps only code reachable from        │
     │    transformHook function                │
     └─────────────────────────────────────────┘
                     │
                     ▼
-            hooks.js (optimized)
-       (consumed by RapidWeaver)
+       hooks.js (tree shaken, unminified)
+          (consumed by RapidWeaver)
 ```
 
 ### How It Works
@@ -407,8 +407,8 @@ shared-hooks/**/*.js           Component hooks.source.js
 1. **Find all source files**: Scans `packs/` for `hooks.source.js` files
 2. **Read shared hooks**: Loads all `.js` files from `shared-hooks/` and its subfolders
 3. **Concatenate**: Combines shared code + component code
-4. **Dead code elimination**: Uses esbuild to remove unused functions
-5. **Output**: Writes optimized `hooks.js` to each component
+4. **Tree shaking**: Uses esbuild to drop everything not reachable from `transformHook`
+5. **Output**: Writes `hooks.js` to each component — transpiled to es2018 CommonJS and left unminified, so it stays readable and greppable
 
 ### Shared Hook Organization
 
@@ -1004,9 +1004,13 @@ npm run build:hooks
 | Visual effects | `effects/` | `globalEffects.js` |
 | Typography | `typography/` | `globalHeadingColor.js` |
 
-### Dead Code Elimination
+### Tree Shaking
 
-The build system automatically removes unused code. If you add a function to shared hooks but no component uses it, it won't appear in any output `hooks.js` file. This keeps the output lean.
+Every shared hook is concatenated into every component before the build narrows it down. esbuild then tree shakes from the `exports.transformHook` root: if you add a function to shared hooks but a component never reaches it, it won't appear in that component's `hooks.js`. In practice this removes roughly three quarters of the concatenated bytes.
+
+Output is deliberately **not** minified — identifiers and formatting are preserved so generated `hooks.js` files stay readable, greppable, and produce meaningful git diffs.
+
+This relies on shared hooks being statically analysable. Keep them as plain top-level `const`/`function` declarations with no top-level side effects, and avoid reaching for a helper by name at runtime (`eval`, `new Function`, or computed lookups like `globalThis[name]`) — esbuild can't see those references and will shake the helper away.
 
 ### Example: Complex Shared Hook
 
