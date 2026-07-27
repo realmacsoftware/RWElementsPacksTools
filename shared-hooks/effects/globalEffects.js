@@ -28,23 +28,29 @@ const globalEffects = (app, args = {}) => {
     }
 
     if (type == "hover") {
-        classes.push(boxShadowEnd, boxShadowColorEnd, boxShadowOpacityEnd, `${prefix}:${opacityEnd}`);
+        classes.push(
+            addPrefixToTailwindClasses(boxShadowEnd, prefix),
+            addPrefixToTailwindClasses(boxShadowColorEnd, prefix),
+            addPrefixToTailwindClasses(boxShadowOpacityEnd, prefix),
+            addPrefixToTailwindClasses(opacityEnd, prefix)
+        );
 
         if (wantsActive) {
             classes.push(
-                `data-[active=true]:${boxShadowEnd}`,
-                `data-[active=true]:${boxShadowColorEnd}`,
-                `data-[active=true]:${boxShadowOpacityEnd}`,
-                `data-[active=true]:${opacityEnd}`
+                addPrefixToTailwindClasses(boxShadowEnd, "data-[active=true]"),
+                addPrefixToTailwindClasses(boxShadowColorEnd, "data-[active=true]"),
+                addPrefixToTailwindClasses(boxShadowOpacityEnd, "data-[active=true]"),
+                addPrefixToTailwindClasses(opacityEnd, "data-[active=true]")
             );
         }
 
         if (wantsFocus) {
+            const focusPrefix = prefix.replace(/hover/g, "focus");
             classes.push(
-                `${prefix.replace(/hover/g, "focus")}:${boxShadowEnd}`,
-                `${prefix.replace(/hover/g, "focus")}:${boxShadowColorEnd}`,
-                `${prefix.replace(/hover/g, "focus")}:${boxShadowOpacityEnd}`,
-                `${prefix.replace(/hover/g, "focus")}:${opacityEnd}`
+                addPrefixToTailwindClasses(boxShadowEnd, focusPrefix),
+                addPrefixToTailwindClasses(boxShadowColorEnd, focusPrefix),
+                addPrefixToTailwindClasses(boxShadowOpacityEnd, focusPrefix),
+                addPrefixToTailwindClasses(opacityEnd, focusPrefix)
             );
         }
     }
