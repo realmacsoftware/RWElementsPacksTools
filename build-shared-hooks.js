@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 /**
- * Shared Hooks Builder (with dead code elimination)
+ * Shared Hooks Builder (with tree shaking)
  *
  * - Reads shared hooks from shared-hooks/ and subfolders (alphabetical)
  * - For each component hooks.source.js in packs/, concatenates shared + component
- * - Uses esbuild DCE to remove unused code (anything not reachable from transformHook)
- * - Output: plain static JS with const/let preserved
+ * - Tree shakes from the exports.transformHook root, so a component only ships the
+ *   shared hooks it actually reaches
+ * - Transpiles to es2018 CommonJS, deliberately unminified so output stays readable
  * - If a component has no hooks.source.js, it is skipped
  * - Supports --watch to regenerate on changes
  */
@@ -129,12 +130,14 @@ ${sharedPieces.join('\n\n')}
 ${componentContent}
 `;
 
-  // Wrap as CommonJS and transpile down to es2018; output is left unminified so
-  // the generated file stays readable and greppable
+  // Wrap as CommonJS and transpile down to es2018. treeShaking drops every shared
+  // hook the component never reaches from transformHook; output is left unminified
+  // so the generated file stays readable and greppable
   const result = await transform(combinedSource, {
     loader: 'js',
     target: 'es2018',
     format: 'cjs',
+    treeShaking: true,
     legalComments: 'none',
   });
 
