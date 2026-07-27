@@ -417,16 +417,14 @@ function processControl(control, idTemplate, formatTemplate, overrides, defaultV
 
   // 6. Transform the control's format using the template
   if (formatTemplate) {
-    if (formatTemplate.includes("{{value}}")) {
-      // Wrap the control's existing format; controls without one are left as-is.
-      // A single replacement keeps any runtime {{value}} placeholder inside the
-      // original format intact.
-      if (result.format) {
-        result.format = formatTemplate.replace("{{value}}", result.format);
-      }
-    } else {
-      result.format = formatTemplate;
-    }
+    // Wrap the control's existing format; a single replacement keeps any
+    // runtime {{value}} placeholder inside the original format intact. When
+    // the control has no format of its own, the template becomes the format
+    // and its {{value}} acts as the runtime placeholder.
+    result.format =
+      result.format && formatTemplate.includes("{{value}}")
+        ? formatTemplate.replace("{{value}}", result.format)
+        : formatTemplate;
   }
 
   // 7. Process any nested globalControls
