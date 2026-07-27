@@ -101,9 +101,8 @@ async function findHookSources(startDir) {
  * @param {string[]} sharedFiles - Array of shared hook file paths
  * @param {string} sourcePath - Path to the hooks.source.js file
  * @param {string} projectRoot - Project root for relative path display
- * @param {boolean} [minify=true] - Whether to fully minify the output
  */
-async function buildOne(sharedFiles, sourcePath, projectRoot, minify = true) {
+async function buildOne(sharedFiles, sourcePath, projectRoot) {
   const componentDir = path.dirname(sourcePath);
   const outputPath = path.join(componentDir, OUTPUT_FILENAME);
 
@@ -130,18 +129,16 @@ ${sharedPieces.join('\n\n')}
 ${componentContent}
 `;
 
-  // Minify whitespace only (keep identifier names); enable syntax minification for small size
+  // Wrap as CommonJS and transpile down to es2018; output is left unminified so
+  // the generated file stays readable and greppable
   const result = await transform(combinedSource, {
     loader: 'js',
     target: 'es2018',
-    minifySyntax: minify,
-    minifyWhitespace: minify,
-    minifyIdentifiers: false,
     format: 'cjs',
     legalComments: 'none',
   });
 
-  const banner = minify ? '' : `// AUTO-GENERATED: do not edit. Edit hooks.source.js instead.\n`;
+  const banner = `// AUTO-GENERATED: do not edit. Edit hooks.source.js instead.\n`;
 
   await fs.promises.writeFile(outputPath, banner + result.code, 'utf8');
 
@@ -153,20 +150,18 @@ ${componentContent}
  * @param {Object} config - Configuration object
  * @param {string} config.packsDir - Absolute path to the packs directory
  * @param {string} [config.projectRoot] - Project root for display purposes
- * @param {boolean} [config.minify=true] - Whether to fully minify the output
  */
 export async function buildAll(config) {
   const packsDir = config.packsDir;
   const projectRoot = config.projectRoot || path.dirname(packsDir);
-  const minify = config.minify !== false; // Default to true
-  
+
   const sharedFiles = await listSharedFiles();
   const sources = await findHookSources(packsDir);
 
   console.log(`[hooks] Building ${sources.length} component hook(s); shared files: ${sharedFiles.length}`);
 
   for (const sourcePath of sources) {
-    await buildOne(sharedFiles, sourcePath, projectRoot, minify);
+    await buildOne(sharedFiles, sourcePath, projectRoot);
   }
   
   console.log(`[hooks] Build complete`);
@@ -177,7 +172,6 @@ export async function buildAll(config) {
  * @param {Object} config - Configuration object
  * @param {string} config.packsDir - Absolute path to the packs directory
  * @param {string} [config.projectRoot] - Project root for display purposes
- * @param {boolean} [config.minify=true] - Whether to fully minify the output
  */
 export async function startWatch(config) {
   const packsDir = config.packsDir;
@@ -230,12 +224,10 @@ export async function startWatch(config) {
 if (process.argv[1] === __filename) {
   // Direct execution: use ./packs relative to current working directory
   const WATCH = process.argv.includes('--watch') || process.argv.includes('-w');
-  const NO_MINIFY = process.argv.includes('--no-minify');
   const defaultPacksDir = path.resolve(process.cwd(), 'packs');
-  const config = { 
+  const config = {
     packsDir: defaultPacksDir,
     projectRoot: process.cwd(),
-    minify: !NO_MINIFY
   };
   
   (async () => {

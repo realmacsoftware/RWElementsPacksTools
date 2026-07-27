@@ -37,7 +37,6 @@ function parseArgs(args) {
     watch: false,
     help: false,
     version: false,
-    minify: true, // Minify by default
   };
   
   for (let i = 0; i < args.length; i++) {
@@ -49,8 +48,6 @@ function parseArgs(args) {
       result.version = true;
     } else if (arg === '--watch' || arg === '-w') {
       result.watch = true;
-    } else if (arg === '--no-minify') {
-      result.minify = false;
     } else if (arg === '--packs') {
       result.packs = args[++i];
     } else if (arg.startsWith('--packs=')) {
@@ -81,7 +78,6 @@ Commands:
 Options:
   --packs <dir>    Override the packs directory (default: ./packs)
   --watch, -w      Watch for changes
-  --no-minify      Disable minification (output is minified by default)
   --help, -h       Show this help message
   --version, -v    Show version number
 
@@ -120,34 +116,32 @@ async function showVersion() {
 /**
  * Run the properties build
  */
-async function buildProperties(config, watch = false, minify = true) {
-  console.log(`[rw-build] Building properties${watch ? ' (watch mode)' : ''}${minify ? '' : ' (no minify)'}...`);
+async function buildProperties(config, watch = false) {
+  console.log(`[rw-build] Building properties${watch ? ' (watch mode)' : ''}...`);
   console.log(`[rw-build] Packs directory: ${config.packsDir}`);
-  
-  const buildConfig = { ...config, minify };
+
   const buildModule = await import('../build-properties.js');
-  
+
   if (watch) {
-    await buildModule.startWatch(buildConfig);
+    await buildModule.startWatch(config);
   } else {
-    await buildModule.buildProperties(buildConfig);
+    await buildModule.buildProperties(config);
   }
 }
 
 /**
  * Run the hooks build
  */
-async function buildHooks(config, watch = false, minify = true) {
-  console.log(`[rw-build] Building hooks${watch ? ' (watch mode)' : ''}${minify ? '' : ' (no minify)'}...`);
+async function buildHooks(config, watch = false) {
+  console.log(`[rw-build] Building hooks${watch ? ' (watch mode)' : ''}...`);
   console.log(`[rw-build] Packs directory: ${config.packsDir}`);
-  
-  const buildConfig = { ...config, minify };
+
   const buildModule = await import('../build-shared-hooks.js');
-  
+
   if (watch) {
-    await buildModule.startWatch(buildConfig);
+    await buildModule.startWatch(config);
   } else {
-    await buildModule.buildAll(buildConfig);
+    await buildModule.buildAll(config);
   }
 }
 
@@ -180,11 +174,11 @@ async function main() {
   try {
     switch (args.command) {
       case 'properties':
-        await buildProperties(config, args.watch, args.minify);
+        await buildProperties(config, args.watch);
         break;
-        
+
       case 'hooks':
-        await buildHooks(config, args.watch, args.minify);
+        await buildHooks(config, args.watch);
         break;
         
       case 'all':
@@ -192,13 +186,13 @@ async function main() {
           // In watch mode, start both watchers concurrently
           // They will both run indefinitely, watching for changes
           await Promise.all([
-            buildProperties(config, true, args.minify),
-            buildHooks(config, true, args.minify),
+            buildProperties(config, true),
+            buildHooks(config, true),
           ]);
         } else {
           // One-time build: run sequentially
-          await buildProperties(config, false, args.minify);
-          await buildHooks(config, false, args.minify);
+          await buildProperties(config, false);
+          await buildHooks(config, false);
         }
         break;
         
