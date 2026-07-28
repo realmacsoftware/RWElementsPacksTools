@@ -10,7 +10,7 @@ const BackgroundOnlyColor = [
     {
         enable: "false",
         visible: "false",
-        ai: { exclude: true },
+        ai: { exclude: true, reason: "Hidden control (enable/visible: false) hardcoded to 'color' for this color-only variant; not a real inspector choice." },
         title: "Style",
         id: "globalBgType",
         responsive: false,
@@ -26,7 +26,7 @@ const BackgroundOnlyColor = [
     },
     {
         visible: "globalControlTypeBg != 'none' && globalControlTypeBg != 'static'",
-        ai: { exclude: true },
+        ai: { exclude: true, reason: "Inspector UI toggle for editing the hover start/end state; the background values themselves are curated separately for each state." },
         title: "State",
         id: "globalBgState",
         responsive: false,

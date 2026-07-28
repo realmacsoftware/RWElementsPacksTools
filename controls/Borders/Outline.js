@@ -29,7 +29,7 @@ export const Outline = [
   },
   {
     visible: "globalControlTypeOutline == 'focus'",
-    ai: { exclude: true },
+    ai: { exclude: true, reason: "Inspector UI toggle for editing the unfocused/focused state; focused-state values are curated separately (e.g. outlineColorFocus)." },
     title: "State",
     id: "globalOutlineState",
     responsive: false,

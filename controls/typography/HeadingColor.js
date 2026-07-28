@@ -46,12 +46,18 @@ const HeadingColor = [
   },
   {
     visible: "globalControlTypeBg == 'hover'",
+    ai: {
+        name: "bgHoverTrigger",
+        description: "Which element's hover triggers the hover text color.",
+        values: ["self", "parent", "container", "grid", "flex"],
+        visible: "bg == 'hover'",
+    },
     globalControl: "HoverGroup",
     id: "{{value}}Bg",
 },
   {
     visible: "globalControlTypeBg != 'none' && globalControlTypeBg != 'static'",
-    ai: { exclude: true },
+    ai: { exclude: true, reason: "Inspector UI toggle for editing the hover start/end state; the text color values themselves are curated separately for each state." },
     title: "State",
     id: "globalBgState",
     responsive: false,

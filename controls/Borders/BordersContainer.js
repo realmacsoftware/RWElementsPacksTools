@@ -6,7 +6,7 @@ export const BordersContainer = [
   },
   {
     visible: "globalControlTypeBorders == 'hover'",
-    ai: { exclude: true },
+    ai: { exclude: true, reason: "Inspector UI toggle for editing the hover start/end state; the border values themselves are curated separately for each state." },
     title: "State",
     id: "globalBordersState",
     responsive: false,

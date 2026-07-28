@@ -28,12 +28,22 @@ const Transforms3D = [
     {
         visible:
             "globalControlType3D == 'hover' || globalControlType3D == 'mouse'",
+        ai: {
+            name: "transforms3dHoverTrigger",
+            description: "Which element's hover or mouse movement triggers the 3D transforms.",
+            visible: "transforms3d == 'hover' || transforms3d == 'mouse'",
+        },
         globalControl: "HoverGroup",
         id: "{{value}}3D",
     },
     {
         visible:
             "(globalControlType3D == 'hover' || globalControlType3D == 'mouse') && globalHoverGroup3D == 'custom'",
+        ai: {
+            name: "transforms3dHoverTriggerId",
+            description: "ID of the element that triggers the 3D transforms (when trigger is 'custom').",
+            visible: "(transforms3d == 'hover' || transforms3d == 'mouse') && transforms3dHoverTrigger == 'custom'",
+        },
         title: "ID",
         id: "globalHoverGroupCustomId3D",
         text: {

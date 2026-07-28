@@ -2,6 +2,7 @@ const TextStyles = [
     {
         title: "Weight",
         id: "textStylesFontWeight",
+        ai: { name: "weight", description: "Font weight, 100-900." },
         format: "font-[{{value}}]",
         slider: {
             default: "400",
@@ -21,6 +22,7 @@ const TextStyles = [
     {
         title: "Letter Spacing",
         id: "textStylesLetterSpacing",
+        ai: { name: "letterSpacing", description: "Letter spacing (tracking) token." },
         format: "tracking-{{value}}",
         slider: {
             default: "normal",
@@ -37,6 +39,7 @@ const TextStyles = [
     {
         title: "Line Height",
         id: "textStylesLineHeight",
+        ai: { name: "lineHeight", description: "Line height (leading) token." },
         format: "leading-{{value}}",
         slider: {
             default: "normal",

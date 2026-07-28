@@ -6,12 +6,22 @@ const Filters = [
     },
     {
         visible: "globalControlTypeFilters == 'hover'",
+        ai: {
+            name: "filtersHoverTrigger",
+            description: "Which element's hover triggers the filters.",
+            visible: "filters == 'hover'",
+        },
         globalControl: "HoverGroup",
         id: "{{value}}Filters",
     },
     {
         visible:
             "globalControlTypeFilters == 'hover' && globalHoverGroupFilters == 'custom'",
+        ai: {
+            name: "filtersHoverTriggerId",
+            description: "ID of the element that triggers the hover filters (when trigger is 'custom').",
+            visible: "filters == 'hover' && filtersHoverTrigger == 'custom'",
+        },
         title: "ID",
         id: "globalHoverGroupCustomIdFilters",
         text: {
@@ -26,6 +36,7 @@ const Filters = [
     {
         visible:
             "globalControlTypeFilters != 'none' && globalControlTypeFilters != 'static'",
+        ai: { exclude: true, reason: "Inspector UI toggle for editing the hover start/end state; the filter values themselves are curated separately for each state." },
         title: "State",
         id: "globalFiltersState",
         responsive: false,
@@ -55,25 +66,25 @@ const Filters = [
     {
         visible:
             "globalControlTypeFilters == 'static' || (globalControlTypeFilters == 'hover' && globalFiltersState == 'start')",
-        ai: { visible: "filters == 'static'" },
+        ai: { visible: "filters != 'none'" },
         globalControl: "Blur",
     },
     {
         visible:
             "globalControlTypeFilters == 'static' || (globalControlTypeFilters == 'hover' && globalFiltersState == 'start')",
-        ai: { visible: "filters == 'static'" },
+        ai: { visible: "filters != 'none'" },
         globalControl: "Brightness",
     },
     {
         visible:
             "globalControlTypeFilters == 'static' || (globalControlTypeFilters == 'hover' && globalFiltersState == 'start')",
-        ai: { visible: "filters == 'static'" },
+        ai: { visible: "filters != 'none'" },
         globalControl: "Saturate",
     },
     {
         visible:
             "globalControlTypeFilters == 'static' || (globalControlTypeFilters == 'hover' && globalFiltersState == 'start')",
-        ai: { visible: "filters == 'static'" },
+        ai: { visible: "filters != 'none'" },
         globalControl: "DropShadow",
     },
     {
@@ -112,7 +123,7 @@ const Filters = [
     {
         visible:
             "globalControlTypeFilters == 'static' || (globalControlTypeFilters == 'hover' && globalFiltersState == 'start')",
-        ai: { visible: "filters == 'static'" },
+        ai: { visible: "filters != 'none'" },
         globalControl: "BackdropBlur",
     },
     {

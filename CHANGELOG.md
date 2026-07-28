@@ -7,10 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Curated `transformOrigin` alias on `globalTransformOrigin` in `TransformOrigin.js` — the anchor point for scale/rotate/skew transforms, accepting the 9 `TransformOrigins` tokens (`center`, `top`, `top-right`, `right`, `bottom-right`, `bottom`, `bottom-left`, `left`, `top-left`)
+- Widened `ai.visible` on the base Scale/Rotate/Translate/Skew embeddings in `Transforms.js` from `transforms == 'static'` to `transforms != 'none'`, so the start-state transform values are discoverable when a component is in hover mode
+
 ## [1.5.1] - 2026-07-27
 
 ### Fixed
 - **Tree shaking now actually runs.** `build-shared-hooks.js` documented dead code elimination since its first commit, but never enabled it: the build calls esbuild's `transform()` API, which only tree shakes by default when bundling or emitting `iife` — with `format: 'cjs'` and no explicit `treeShaking` flag it was off, so every component shipped all 42 shared hooks (~78 KB) whether it used them or not. The earlier `minifySyntax` pass was not DCE either; it simplifies expressions but never removes unreachable top-level declarations. `transform()` is now called with `treeShaking: true`, rooted at `exports.transformHook`. Across the 63 components in the pack repos this cuts total generated `hooks.js` from ~4540 KB to ~1158 KB (−74%); components with small sources shrink most (e.g. `reveal`, a 547-byte source, drops from 70 KB to 10 KB). Rebuild your packs with `rw-build hooks` to pick this up
+
+- Curated `ai` aliases across the remaining `controls/typography/` shared controls: `Typography` (`typography`), the underline fields in `TextFontsAndTextStyles` (`decorationStyle`/`decorationOffset`/`decorationColor`/`decorationOpacity`), `TextSimple` (`align`/`color`/`colorOpacity`/`family`/`size`), `TextStyles` (`weight`/`letterSpacing`/`lineHeight`), `TextDecoration` (`decoration`/`decorationThickness`/`decorationOffset`/`decorationStyle`/`decorationColor`), and `TextColorHover` (`colorHover`/`colorOpacityHover`)
 
 ### Changed
 - Build output is no longer minified. `properties.json` is written with 2-space indentation and `hooks.js` keeps its original formatting (with the `// AUTO-GENERATED` banner always emitted), so generated files are readable, greppable, and produce meaningful git diffs. `hooks.js` is still wrapped as CommonJS and transpiled to es2018 — only the minification passes were dropped

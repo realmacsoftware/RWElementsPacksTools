@@ -6,12 +6,22 @@ const Effects = [
     },
     {
         visible: "globalControlTypeEffects == 'hover'",
+        ai: {
+            name: "effectsHoverTrigger",
+            description: "Which element's hover triggers the effects.",
+            visible: "effects == 'hover'",
+        },
         globalControl: "HoverGroup",
         id: "{{value}}Effects",
     },
     {
         visible:
             "globalControlTypeEffects == 'hover' && globalHoverGroupEffects == 'custom'",
+        ai: {
+            name: "effectsHoverTriggerId",
+            description: "ID of the element that triggers the hover effects (when trigger is 'custom').",
+            visible: "effects == 'hover' && effectsHoverTrigger == 'custom'",
+        },
         title: "ID",
         id: "globalHoverGroupCustomIdEffects",
         text: {
@@ -26,6 +36,7 @@ const Effects = [
     {
         visible:
             "globalControlTypeEffects != 'none' && globalControlTypeEffects != 'static'",
+        ai: { exclude: true, reason: "Inspector UI toggle for editing the hover start/end state; the effect values themselves are curated separately for each state." },
         title: "State",
         id: "globalEffectsState",
         responsive: false,
@@ -55,7 +66,7 @@ const Effects = [
     {
         visible:
             "globalControlTypeEffects == 'static' || (globalControlTypeEffects == 'hover' && globalEffectsState == 'start')",
-        ai: { visible: "effects == 'static'" },
+        ai: { visible: "effects != 'none'" },
         globalControl: "BoxShadow",
     },
     {
@@ -73,7 +84,7 @@ const Effects = [
     {
         visible:
             "globalControlTypeEffects == 'static' || (globalControlTypeEffects == 'hover' && globalEffectsState == 'start')",
-        ai: { visible: "effects == 'static'" },
+        ai: { visible: "effects != 'none'" },
         globalControl: "Opacity",
     },
     {

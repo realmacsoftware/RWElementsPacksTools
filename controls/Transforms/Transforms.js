@@ -9,7 +9,6 @@ const Transforms = [
         ai: {
             name: "transformsHoverTrigger",
             description: "Which element's hover triggers the transforms.",
-            values: ["self", "parent", "container", "grid", "flex", "custom"],
             visible: "transforms == 'hover'",
         },
         globalControl: "HoverGroup",
@@ -37,7 +36,7 @@ const Transforms = [
     {
         visible:
             "globalControlTypeTransforms != 'none' && globalControlTypeTransforms != 'static'",
-        ai: { exclude: true },
+        ai: { exclude: true, reason: "Inspector UI toggle for editing the hover start/end state; the transform values themselves are curated separately for each state." },
         title: "State",
         id: "globalTransformsState",
         responsive: false,
@@ -66,25 +65,25 @@ const Transforms = [
     {
         visible:
             "globalControlTypeTransforms == 'static' || (globalControlTypeTransforms == 'hover' && globalTransformsState == 'start')",
-        ai: { visible: "transforms == 'static'" },
+        ai: { visible: "transforms != 'none'" },
         globalControl: "Scale",
     },
     {
         visible:
             "globalControlTypeTransforms == 'static' || (globalControlTypeTransforms == 'hover' && globalTransformsState == 'start')",
-        ai: { visible: "transforms == 'static'" },
+        ai: { visible: "transforms != 'none'" },
         globalControl: "Rotate",
     },
     {
         visible:
             "globalControlTypeTransforms == 'static' || (globalControlTypeTransforms == 'hover' && globalTransformsState == 'start')",
-        ai: { visible: "transforms == 'static'" },
+        ai: { visible: "transforms != 'none'" },
         globalControl: "Translate",
     },
     {
         visible:
             "globalControlTypeTransforms == 'static' || (globalControlTypeTransforms == 'hover' && globalTransformsState == 'start')",
-        ai: { visible: "transforms == 'static'" },
+        ai: { visible: "transforms != 'none'" },
         globalControl: "Skew",
     },
 

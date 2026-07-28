@@ -204,7 +204,7 @@ function mergeAiOverride(existingAi, aiOverride) {
     const baseName = existingAi?.name;
     if (!baseName) {
       // Nothing to template from: don't leak a half-curated alias.
-      return { exclude: true };
+      return { exclude: true, reason: `No base ai.name on this sibling to resolve the '${aiOverride.name}' template against.` };
     }
     merged.name = transformIdTemplate(aiOverride.name, baseName);
   }

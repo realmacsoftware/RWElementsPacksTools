@@ -186,6 +186,7 @@ const TextFontsAndTextStyles = [
         visible: "globalTextTextDecoration != 'no-underline'",
         title: "Style",
         id: "globalTextTextDecorationStyle",
+        ai: { name: "decorationStyle", description: "Line style for the text decoration." },
         format: "decoration-{{value}}",
         select: {
             default: "solid",
@@ -217,6 +218,7 @@ const TextFontsAndTextStyles = [
         visible: "globalTextTextDecoration == 'underline'",
         title: "Offset",
         id: "globalTextTextDecorationOffset",
+        ai: { name: "decorationOffset", description: "Underline offset in pixels, 0-30." },
         format: "underline-offset-[{{value}}px]",
         slider: {
             default: 1,
@@ -228,6 +230,7 @@ const TextFontsAndTextStyles = [
         visible: "globalTextTextDecoration != 'no-underline'",
         title: "Color",
         id: "globalTextTextDecorationColor",
+        ai: { name: "decorationColor", description: "Text decoration theme color." },
         format: "decoration-{{value}}",
         themeColor: {
             default: {
@@ -240,6 +243,7 @@ const TextFontsAndTextStyles = [
         visible: "globalTextTextDecoration != 'no-underline'",
         title: "Opacity",
         id: "globalTextTextDecorationOpacity",
+        ai: { name: "decorationOpacity", description: "Text decoration color opacity, 0-100." },
         format: "[{{value}}%]",
         responsive: false,
         slider: {

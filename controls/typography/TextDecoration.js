@@ -2,6 +2,7 @@ const TextDecoration = [
     {
         title: "Underline",
         id: "textDecoration",
+        ai: { name: "decoration", description: "Text decoration (underline/overline/line-through)." },
         select: {
             default: "no-underline",
             items: [
@@ -28,6 +29,7 @@ const TextDecoration = [
         visible: "textDecoration != 'no-underline'",
         title: "Thickness",
         id: "textDecorationThickness",
+        ai: { name: "decorationThickness", description: "Text decoration thickness in pixels, 0-30. Applied in preview only." },
         format: "decoration-[{{value}}px]",
         slider: {
             default: 1,
@@ -44,6 +46,7 @@ const TextDecoration = [
         visible: "textDecoration == 'underline'",
         title: "Offset",
         id: "textDecorationOffset",
+        ai: { name: "decorationOffset", description: "Underline offset in pixels, 0-30." },
         format: "underline-offset-[{{value}}px]",
         slider: {
             default: 1,
@@ -55,6 +58,7 @@ const TextDecoration = [
         visible: "textDecoration != 'no-underline'",
         title: "Style",
         id: "textDecorationStyle",
+        ai: { name: "decorationStyle", description: "Line style for the text decoration." },
         format: "decoration-{{value}}",
         select: {
             default: "solid",
@@ -86,6 +90,7 @@ const TextDecoration = [
         visible: "textDecoration != 'no-underline'",
         title: "Color",
         id: "textDecorationColor",
+        ai: { name: "decorationColor", description: "Text decoration theme color." },
         format: "decoration-{{value}}",
         themeColor: {
             default: {

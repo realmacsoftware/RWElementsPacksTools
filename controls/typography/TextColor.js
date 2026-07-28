@@ -29,6 +29,7 @@ export const TextColorHover = [
   {
     title: "Color",
     id: "globalTextColorHover",
+    ai: { name: "colorHover", description: "Text hover-state theme color." },
     format: "hover:text-{{value}}/(--textColorOpacityHover)",
     themeColor: {
       default: {
@@ -40,6 +41,7 @@ export const TextColorHover = [
   {
     title: "Opacity",
     id: "globalTextColorOpacityHover",
+    ai: { name: "colorOpacityHover", description: "Text hover-state color opacity, 0-100." },
     responsive: false,
     format: "hover:[--textColorOpacityHover:{{value}}%]",
     slider: {

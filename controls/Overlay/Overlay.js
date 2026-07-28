@@ -33,7 +33,7 @@ const Overlay = [
   },
   {
     visible: "globalControlTypeOverlay != 'none' && globalControlTypeOverlay != 'static'",
-    ai: { exclude: true },
+    ai: { exclude: true, reason: "Inspector UI toggle for editing the hover start/end state; the overlay values themselves are curated separately for each state." },
     title: "State",
     id: "globalOverlayState",
     responsive: false,

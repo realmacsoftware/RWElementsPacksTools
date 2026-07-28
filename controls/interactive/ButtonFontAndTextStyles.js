@@ -2,7 +2,7 @@ const ButtonFontAndTextStyles = [
   {
     title: "State",
     id: "globalButtonFontAndTextStylesState",
-    ai: { exclude: true },
+    ai: { exclude: true, reason: "Inspector UI toggle for editing the normal/hover state; hover text styles are curated separately (e.g. textColorHover)." },
     segmented: {
       default: "normal",
       items: [

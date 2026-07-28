@@ -2,6 +2,7 @@ const HoverGroup = [
     {
         title: "Over",
         id: "globalHoverGroup",
+        ai: { name: "hoverTrigger", description: "Which element's hover triggers the styling." },
         responsive: false,
         select: {
             default: "self",
