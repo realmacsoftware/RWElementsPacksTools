@@ -117,19 +117,20 @@ const globalTransforms3D = (app, args = {}) => {
 
         if (wantsActive) {
             classes.add([
-                `data-[active=true]:${rotateXEnd}`,
-                `data-[active=true]:${rotateYEnd}`,
-                `data-[active=true]:${scaleZEnd}`,
-                `data-[active=true]:${translateZEnd}`,
+                addPrefixToTailwindClasses(rotateXEnd, "data-[active=true]"),
+                addPrefixToTailwindClasses(rotateYEnd, "data-[active=true]"),
+                addPrefixToTailwindClasses(scaleZEnd, "data-[active=true]"),
+                addPrefixToTailwindClasses(translateZEnd, "data-[active=true]"),
             ]);
         }
 
         if (wantsFocus) {
+            const focusPrefix = prefix.replace(/hover/g, "focus");
             classes.add([
-                `${prefix.replace(/hover/g, "focus")}:${rotateXEnd}`,
-                `${prefix.replace(/hover/g, "focus")}:${rotateYEnd}`,
-                `${prefix.replace(/hover/g, "focus")}:${scaleZEnd}`,
-                `${prefix.replace(/hover/g, "focus")}:${translateZEnd}`,
+                addPrefixToTailwindClasses(rotateXEnd, focusPrefix),
+                addPrefixToTailwindClasses(rotateYEnd, focusPrefix),
+                addPrefixToTailwindClasses(scaleZEnd, focusPrefix),
+                addPrefixToTailwindClasses(translateZEnd, focusPrefix),
             ]);
         }
     }

@@ -3,8 +3,10 @@
  * Handles classes that already have modifiers by inserting the prefix after the existing modifier.
  */
 function addPrefixToTailwindClasses(classString, prefix) {
+    if (!classString) return "";
     return classString
         .split(/\s+/)
+        .filter(Boolean)
         .map((cls) => {
             // Remove "hover:" from the class string to avoid duplication
             cls = cls.replace(/hover:/g, "");
