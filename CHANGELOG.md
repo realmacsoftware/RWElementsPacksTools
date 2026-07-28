@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Curated `transformOrigin` alias on `globalTransformOrigin` in `TransformOrigin.js` — the anchor point for scale/rotate/skew transforms, accepting the 9 `TransformOrigins` tokens (`center`, `top`, `top-right`, `right`, `bottom-right`, `bottom`, `bottom-left`, `left`, `top-left`)
 - Widened `ai.visible` on the base Scale/Rotate/Translate/Skew embeddings in `Transforms.js` from `transforms == 'static'` to `transforms != 'none'`, so the start-state transform values are discoverable when a component is in hover mode
+- `rw-build audit` — AI property coverage audit shipped as a first-class CLI subcommand (`audit-ai-properties.js` at package root, added to `files`). Accepts `--packs <dir>` (repeatable), `--core-packs <dir>`, `--no-core-packs`, `--out-dir <dir>`; env overrides `RW_CORE_PACKS_DIR`, `RW_AUDIT_PACK_ROOTS`, `RW_AUDIT_OUT_DIR`; all three also configurable via `package.json` / `rw-elements-tools.config.js` (`auditCorePacks`, `auditPacks`, `auditOutDir`). Writes `AI-Audit-Index.md` + `AI-Audit-Report.md` + `Packs/AI-Audit-<PackName>.md`. Core packs default to `../RWElementsCorePack/packs` if it exists; additional roots default to the project's configured `packsDir` if it exists. Usage/Impact in the shared-controls table is computed over all resolved roots combined. Third-party packs repos can run the audit by passing their own `--packs` and `--out-dir` without the public tools repo knowing anything about their private paths.
 
 ## [1.5.1] - 2026-07-27
 

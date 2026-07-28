@@ -175,7 +175,22 @@ npx rw-build hooks
 npx rw-build all --watch        # Watch both properties and hooks
 npx rw-build properties --watch # Watch properties only
 npx rw-build hooks --watch      # Watch hooks only
+
+# AI property coverage audit
+npx rw-build audit                                      # Shared controls + default core pack (if found)
+npx rw-build audit --no-core-packs                      # Shared controls only
+npx rw-build audit --packs ./packs                      # Audit one additional packs directory
+npx rw-build audit --packs ./a --packs ./b              # Audit multiple additional roots
+npx rw-build audit --core-packs ../MyCorePack/packs     # Custom core pack directory
+npx rw-build audit --out-dir ./reports/ai-audit         # Custom report output directory
 ```
+
+The audit writes a report directory containing:
+- `AI-Audit-Index.md` — methodology, cross-repo summary and links
+- `AI-Audit-Report.md` — shared controls (ranked by impact) + core packs
+- `Packs/AI-Audit-<PackName>.md` — one file per pack in the additional roots
+
+See `rw-build audit --help` for all options and env var overrides.
 
 ## Configuration
 

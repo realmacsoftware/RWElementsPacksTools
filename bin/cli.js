@@ -33,7 +33,11 @@ const packageRoot = path.join(__dirname, '..');
 function parseArgs(args) {
   const result = {
     command: null,
-    packs: null,
+    packs: null,      // single value for properties/hooks
+    auditPacks: [],   // repeatable for audit
+    corePacks: null,
+    noCorePacks: false,
+    outDir: null,
     watch: false,
     help: false,
     version: false,
@@ -49,9 +53,23 @@ function parseArgs(args) {
     } else if (arg === '--watch' || arg === '-w') {
       result.watch = true;
     } else if (arg === '--packs') {
-      result.packs = args[++i];
+      const val = args[++i];
+      result.packs = val;        // last value wins for properties/hooks
+      result.auditPacks.push(val); // all values accumulated for audit
     } else if (arg.startsWith('--packs=')) {
-      result.packs = arg.split('=')[1];
+      const val = arg.split('=')[1];
+      result.packs = val;
+      result.auditPacks.push(val);
+    } else if (arg === '--core-packs') {
+      result.corePacks = args[++i];
+    } else if (arg.startsWith('--core-packs=')) {
+      result.corePacks = arg.split('=')[1];
+    } else if (arg === '--no-core-packs') {
+      result.noCorePacks = true;
+    } else if (arg === '--out-dir') {
+      result.outDir = args[++i];
+    } else if (arg.startsWith('--out-dir=')) {
+      result.outDir = arg.split('=')[1];
     } else if (!arg.startsWith('-') && !result.command) {
       result.command = arg;
     }
@@ -74,12 +92,22 @@ Commands:
   properties    Build properties.json files from properties.config.json
   hooks         Build hooks.js files from hooks.source.js
   all           Build both properties and hooks
+  audit         Run the AI property coverage audit across one or more pack directories
 
-Options:
+Options (properties / hooks / all):
   --packs <dir>    Override the packs directory (default: ./packs)
   --watch, -w      Watch for changes
   --help, -h       Show this help message
   --version, -v    Show version number
+
+Options (audit):
+  --packs <dir>        Additional packs directory (repeatable; each must contain *.elementsdevpack subdirs).
+                       Defaults to the project's configured packsDir (./packs) if it exists.
+  --core-packs <dir>   Core packs directory to fuse with shared controls in the main report.
+                       Defaults to ../RWElementsCorePack/packs if it exists.
+  --no-core-packs      Disable the default core-packs directory.
+  --out-dir <dir>      Report output directory (default: ./ai-property-coverage).
+                       Override: env RW_AUDIT_OUT_DIR
 
 Configuration:
   The packs directory can be configured via (in priority order):
@@ -89,13 +117,24 @@ Configuration:
   4. Config file: rw-elements-tools.config.js
   5. Default: ./packs
 
+  Audit-specific config keys (package.json / config file):
+    auditCorePacks  - core packs directory (string)
+    auditPacks      - additional pack roots (array of strings)
+    auditOutDir     - report output directory (string)
+
 Examples:
   rw-build all                          Build everything
   rw-build properties                   Build properties only
   rw-build hooks --watch                Build and watch hooks
-  rw-build properties --watch           Build and watch properties
-  rw-build all --watch                  Build and watch both hooks and properties
+  rw-build all --watch                  Build and watch both
   rw-build all --packs ./my-elements    Build with custom packs directory
+
+  rw-build audit                                     Audit shared controls + default core pack
+  rw-build audit --no-core-packs                     Audit shared controls only
+  rw-build audit --packs ./packs                     Audit one additional packs directory
+  rw-build audit --packs ./a --packs ./b             Audit two additional packs directories
+  rw-build audit --core-packs ../MyCorePack/packs    Use a custom core pack
+  rw-build audit --out-dir ./reports/ai-audit        Write report to a custom directory
 `);
 }
 
@@ -169,6 +208,10 @@ async function main() {
   // Resolve configuration
   const config = await resolveConfig({
     packs: args.packs,
+    auditPacks: args.auditPacks,
+    corePacks: args.corePacks,
+    noCorePacks: args.noCorePacks,
+    outDir: args.outDir,
   });
   
   try {
@@ -195,6 +238,12 @@ async function main() {
           await buildHooks(config, false);
         }
         break;
+
+      case 'audit': {
+        const { runAudit } = await import('../audit-ai-properties.js');
+        await runAudit(config);
+        break;
+      }
         
       default:
         console.error(`Error: Unknown command '${args.command}'. Use --help for usage information.`);

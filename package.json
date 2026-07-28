@@ -20,6 +20,7 @@
     "controls/",
     "properties/",
     "shared-hooks/",
+    "audit-ai-properties.js",
     "build-properties.js",
     "build-shared-hooks.js",
     "config.js",
@@ -54,10 +55,10 @@
     "prepublishOnly": "echo 'Ready to publish rw-elements-tools'",
     "docs:generate": "node scripts/generate-docs.js",
     "docs:publish": "node scripts/publish-docs.js",
-    "docs": "npm run docs:generate && npm run docs:publish"
+    "docs": "npm run docs:generate && npm run docs:publish",
+    "audit:ai-properties": "rw-build audit"
   },
   "rw-elements-tools": {
-    "docsRepoPath": "/Users/ben/Developer/rapidweaver-elements-docs-api",
     "docsTargetDir": "development-resources/build-tools"
   }
 }

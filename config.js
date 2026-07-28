@@ -21,6 +21,10 @@ const __dirname = path.dirname(__filename);
  */
 const DEFAULTS = {
   packsDir: './packs',
+  // Audit-specific keys (used by `rw-build audit`)
+  corePacksDir: null,       // resolved below: defaults to ../RWElementsCorePack/packs if it exists
+  auditPackRoots: null,     // resolved below: defaults to [packsDir] if it exists, else []
+  auditOutDir: './ai-property-coverage',
 };
 
 /**
@@ -100,34 +104,73 @@ export async function resolveConfig(cliOptions = {}) {
   
   // 4. Config file (rw-elements-tools.config.js)
   if (configFile) {
-    if (configFile.packsDir) {
-      config.packsDir = configFile.packsDir;
-    }
+    if (configFile.packsDir) config.packsDir = configFile.packsDir;
+    if (configFile.auditCorePacks) config.corePacksDir = configFile.auditCorePacks;
+    if (configFile.auditPacks) config.auditPackRoots = configFile.auditPacks;
+    if (configFile.auditOutDir) config.auditOutDir = configFile.auditOutDir;
   }
   
   // 3. package.json "rw-elements-tools" field
   if (packageJson && packageJson['rw-elements-tools']) {
     const pkgConfig = packageJson['rw-elements-tools'];
-    if (pkgConfig.packsDir) {
-      config.packsDir = pkgConfig.packsDir;
-    }
+    if (pkgConfig.packsDir) config.packsDir = pkgConfig.packsDir;
+    if (pkgConfig.auditCorePacks) config.corePacksDir = pkgConfig.auditCorePacks;
+    if (pkgConfig.auditPacks) config.auditPackRoots = pkgConfig.auditPacks;
+    if (pkgConfig.auditOutDir) config.auditOutDir = pkgConfig.auditOutDir;
   }
   
   // 2. Environment variables
-  if (process.env.RW_PACKS_DIR) {
-    config.packsDir = process.env.RW_PACKS_DIR;
+  if (process.env.RW_PACKS_DIR) config.packsDir = process.env.RW_PACKS_DIR;
+  if (process.env.RW_CORE_PACKS_DIR) config.corePacksDir = process.env.RW_CORE_PACKS_DIR;
+  if (process.env.RW_AUDIT_PACK_ROOTS) {
+    config.auditPackRoots = process.env.RW_AUDIT_PACK_ROOTS.split(path.delimiter).filter(Boolean);
   }
+  if (process.env.RW_AUDIT_OUT_DIR) config.auditOutDir = process.env.RW_AUDIT_OUT_DIR;
   
   // 1. CLI arguments (highest priority)
   if (cliOptions.packsDir || cliOptions.packs) {
     config.packsDir = cliOptions.packsDir || cliOptions.packs;
   }
-  
+  // For audit: corePacks / noCorePacks / auditPacks / outDir
+  if (cliOptions.corePacks) config.corePacksDir = cliOptions.corePacks;
+  if (cliOptions.noCorePacks) config.corePacksDir = "__disabled__"; // sentinel; resolved below
+  if (cliOptions.auditPacks && cliOptions.auditPacks.length > 0) {
+    config.auditPackRoots = cliOptions.auditPacks;
+  }
+  if (cliOptions.outDir) config.auditOutDir = cliOptions.outDir;
+
   // Resolve packsDir to absolute path from project root
   if (!path.isAbsolute(config.packsDir)) {
     config.packsDir = path.resolve(projectRoot, config.packsDir);
   }
-  
+
+  // Resolve corePacksDir: disabled sentinel → null, unset → check default sibling, else resolve
+  if (config.corePacksDir === "__disabled__") {
+    config.corePacksDir = null;
+  } else if (!config.corePacksDir) {
+    const defaultCore = path.resolve(projectRoot, '../RWElementsCorePack/packs');
+    config.corePacksDir = fs.existsSync(defaultCore) ? defaultCore : null;
+  } else {
+    const abs = path.isAbsolute(config.corePacksDir)
+      ? config.corePacksDir
+      : path.resolve(projectRoot, config.corePacksDir);
+    config.corePacksDir = abs; // existence checked at runtime by runAudit
+  }
+
+  // Resolve auditPackRoots: default to [packsDir] if it exists, else []
+  if (!config.auditPackRoots || config.auditPackRoots.length === 0) {
+    config.auditPackRoots = fs.existsSync(config.packsDir) ? [config.packsDir] : [];
+  } else {
+    config.auditPackRoots = config.auditPackRoots.map((r) =>
+      path.isAbsolute(r) ? r : path.resolve(projectRoot, r)
+    );
+  }
+
+  // Resolve auditOutDir to absolute path
+  if (!path.isAbsolute(config.auditOutDir)) {
+    config.auditOutDir = path.resolve(projectRoot, config.auditOutDir);
+  }
+
   // Add project root and package location to config
   config.projectRoot = projectRoot;
   config.packageRoot = __dirname;
