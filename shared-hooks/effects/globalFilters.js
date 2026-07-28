@@ -48,30 +48,39 @@ const globalFilters = (app, args = {}) => {
 
     if (type == "hover") {
         classes.push(
-            wantsBlur ? `${prefix}:${blurEnd}` : "",
-            `${prefix}:${brightnessEnd}`,
-            `${prefix}:${dropShadowEnd}`,
-            `${prefix}:${saturateEnd}`,
-            wantsBackdropBlur ? `${prefix}:${backdropBlurEnd}` : ""
+            wantsBlur ? addPrefixToTailwindClasses(blurEnd, prefix) : "",
+            addPrefixToTailwindClasses(brightnessEnd, prefix),
+            addPrefixToTailwindClasses(dropShadowEnd, prefix),
+            addPrefixToTailwindClasses(saturateEnd, prefix),
+            wantsBackdropBlur
+                ? addPrefixToTailwindClasses(backdropBlurEnd, prefix)
+                : ""
         );
 
         if (wantsActive) {
             classes.push(
-                `data-[active=true]:${blurEnd}`,
-                `data-[active=true]:${brightnessEnd}`,
-                `data-[active=true]:${dropShadowEnd}`,
-                `data-[active=true]:${saturateEnd}`,
-                `data-[active=true]:${backdropBlurEnd}`
+                wantsBlur
+                    ? addPrefixToTailwindClasses(blurEnd, "data-[active=true]")
+                    : "",
+                addPrefixToTailwindClasses(brightnessEnd, "data-[active=true]"),
+                addPrefixToTailwindClasses(dropShadowEnd, "data-[active=true]"),
+                addPrefixToTailwindClasses(saturateEnd, "data-[active=true]"),
+                wantsBackdropBlur
+                    ? addPrefixToTailwindClasses(backdropBlurEnd, "data-[active=true]")
+                    : ""
             );
         }
 
         if (wantsFocus) {
+            const focusPrefix = prefix.replace(/hover/g, "focus");
             classes.push(
-                `${prefix.replace(/hover/g, "focus")}:${blurEnd}`,
-                `${prefix.replace(/hover/g, "focus")}:${brightnessEnd}`,
-                `${prefix.replace(/hover/g, "focus")}:${dropShadowEnd}`,
-                `${prefix.replace(/hover/g, "focus")}:${saturateEnd}`,
-                `${prefix.replace(/hover/g, "focus")}:${backdropBlurEnd}`
+                wantsBlur ? addPrefixToTailwindClasses(blurEnd, focusPrefix) : "",
+                addPrefixToTailwindClasses(brightnessEnd, focusPrefix),
+                addPrefixToTailwindClasses(dropShadowEnd, focusPrefix),
+                addPrefixToTailwindClasses(saturateEnd, focusPrefix),
+                wantsBackdropBlur
+                    ? addPrefixToTailwindClasses(backdropBlurEnd, focusPrefix)
+                    : ""
             );
         }
     }

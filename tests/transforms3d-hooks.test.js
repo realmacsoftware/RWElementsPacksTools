@@ -73,6 +73,36 @@ test("hover mode emits start classes plus hover-prefixed end classes", () => {
   assert.doesNotMatch(result, /calc/);
 });
 
+test("hover active branch prefixes every class of a responsive end value", () => {
+  const app = makeApp({
+    props: {
+      globalControlType3D: "hover",
+      globalTransformRotateXEnd: "rotate-x-[25deg] md:rotate-x-[40deg]",
+    },
+  });
+  const result = globalTransforms3D(app, { active: true });
+
+  assert.match(result, /(?:^|\s)data-\[active=true\]:rotate-x-\[25deg\]/);
+  assert.match(result, /(?:^|\s)md:data-\[active=true\]:rotate-x-\[40deg\]/);
+  assert.doesNotMatch(result, /data-\[active=true\]:hover:/);
+  assert.doesNotMatch(result, /(?:^|\s)md:rotate-x-\[40deg\]/);
+});
+
+test("hover focus branch prefixes every class of a responsive end value", () => {
+  const app = makeApp({
+    props: {
+      globalControlType3D: "hover",
+      globalTransformRotateXEnd: "rotate-x-[25deg] md:rotate-x-[40deg]",
+    },
+  });
+  const result = globalTransforms3D(app, { focus: true });
+
+  assert.match(result, /(?:^|\s)focus:rotate-x-\[25deg\]/);
+  assert.match(result, /(?:^|\s)md:focus:rotate-x-\[40deg\]/);
+  assert.doesNotMatch(result, /focus:hover:/);
+  assert.doesNotMatch(result, /(?:^|\s)md:rotate-x-\[40deg\]/);
+});
+
 test("mouse mode emits calc-mix classes instead of bare start classes", () => {
   const app = makeApp({
     props: { globalControlType3D: "mouse", globalTransformBackface: "backface-hidden" },

@@ -53,23 +53,24 @@ const globalTransforms = (app, args = {}) => {
 
         if (wantsActive) {
             classes.add([
-                `data-[active=true]:${scaleEnd}`,
-                `data-[active=true]:${rotateEnd}`,
-                `data-[active=true]:${skewXEnd}`,
-                `data-[active=true]:${skewYEnd}`,
-                `data-[active=true]:${translateXEnd}`,
-                `data-[active=true]:${translateYEnd}`,
+                addPrefixToTailwindClasses(scaleEnd, "data-[active=true]"),
+                addPrefixToTailwindClasses(rotateEnd, "data-[active=true]"),
+                addPrefixToTailwindClasses(skewXEnd, "data-[active=true]"),
+                addPrefixToTailwindClasses(skewYEnd, "data-[active=true]"),
+                addPrefixToTailwindClasses(translateXEnd, "data-[active=true]"),
+                addPrefixToTailwindClasses(translateYEnd, "data-[active=true]"),
             ]);
         }
 
         if (wantsFocus) {
+            const focusPrefix = prefix.replace(/hover/g, "focus");
             classes.add([
-                `${prefix.replace(/hover/g, "focus")}:${scaleEnd}`,
-                `${prefix.replace(/hover/g, "focus")}:${rotateEnd}`,
-                `${prefix.replace(/hover/g, "focus")}:${skewXEnd}`,
-                `${prefix.replace(/hover/g, "focus")}:${skewYEnd}`,
-                `${prefix.replace(/hover/g, "focus")}:${translateXEnd}`,
-                `${prefix.replace(/hover/g, "focus")}:${translateYEnd}`,
+                addPrefixToTailwindClasses(scaleEnd, focusPrefix),
+                addPrefixToTailwindClasses(rotateEnd, focusPrefix),
+                addPrefixToTailwindClasses(skewXEnd, focusPrefix),
+                addPrefixToTailwindClasses(skewYEnd, focusPrefix),
+                addPrefixToTailwindClasses(translateXEnd, focusPrefix),
+                addPrefixToTailwindClasses(translateYEnd, focusPrefix),
             ]);
         }
     }
