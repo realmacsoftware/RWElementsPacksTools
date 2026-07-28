@@ -1,5 +1,6 @@
 const JustifySelf = [
   {
+    ai: { name: "justifySelf", description: "Alignment of this item on the parent's inline axis, overriding the parent's justify-items.", visible: "actAs != 'default'" },
     title: "Justify Self",
     id: "globalGridOrFlexItemJustifySelf",
     format: "justify-self-{{value}}",

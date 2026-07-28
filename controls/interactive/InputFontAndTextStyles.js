@@ -2,6 +2,7 @@ const InputFontAndTextStyles = [
     {
       title: "Color",
       id: "globalInputFontAndTextStylesColor",
+      ai: { name: "textColor", description: "Input field text theme color." },
       format: "text-{{value}}/(--inputFontAndTextStylesColorOpacity)",
       themeColor: {
         default: {
@@ -13,6 +14,7 @@ const InputFontAndTextStyles = [
     {
       title: "Opacity",
       id: "globalInputFontAndTextStylesColorOpacity",
+      ai: { name: "textColorOpacity", description: "Input field text color opacity, 0-100." },
       format: "[--inputFontAndTextStylesColorOpacity:{{value}}%]",
       slider: {
         use: "Slider",
@@ -43,6 +45,7 @@ const InputFontAndTextStyles = [
     {
       title: "Align",
       id: "globalInputFontAndTextStylesTextAlign",
+      ai: { name: "align", description: "Text alignment inside the input field.", values: ["start", "center", "end"] },
       format: "text-{{value}}",
       segmented: {
         default: "start",
@@ -65,6 +68,7 @@ const InputFontAndTextStyles = [
     {
       title: "Family",
       id: "globalInputFontAndTextStylesFont",
+      ai: { name: "family", description: "Font family theme token." },
       themeFont: {
         default: {
           base: "body"
@@ -74,6 +78,7 @@ const InputFontAndTextStyles = [
     {
       title: "Size",
       id: "globalInputFontAndTextStylesFontSize",
+      ai: { name: "size", description: "Font size theme text-style token." },
       themeTextStyle: {
         default: {
           base: { name: "base" }
@@ -87,6 +92,7 @@ const InputFontAndTextStyles = [
     {
       title: "Weight",
       id: "globalInputFontAndTextStylesFontWeight",
+      ai: { name: "weight", description: "Font weight, 100-900." },
       format: "font-[{{value}}]",
       slider: {
         use: "FontWeight",
@@ -95,6 +101,7 @@ const InputFontAndTextStyles = [
     {
       title: "Line Height",
       id: "globalInputFontAndTextStylesLineHeight",
+      ai: { name: "lineHeight", description: "Line height (leading) token." },
       format: "leading-{{value}}",
       slider: {
         use: "LineHeight",
@@ -103,6 +110,7 @@ const InputFontAndTextStyles = [
     {
       title: "Letter Spacing",
       id: "globalInputFontAndTextStylesLetterSpacing",
+      ai: { name: "letterSpacing", description: "Letter spacing (tracking) token." },
       format: "tracking-{{value}}",
       slider: {
         use: "LetterSpacing",
@@ -111,6 +119,7 @@ const InputFontAndTextStyles = [
     {
       title: "Case",
       id: "globalInputFontAndTextStylesTextTransform",
+      ai: { name: "case", description: "Text case transform." },
       select: {
         default: "normal-case",
         items: [
@@ -136,6 +145,7 @@ const InputFontAndTextStyles = [
     {
       title: "Italic",
       id: "globalInputFontAndTextStylesItalic",
+      ai: { name: "italic", description: "Italicize the input text." },
       switch: {
         default: false,
         trueValue: "italic",
@@ -145,6 +155,7 @@ const InputFontAndTextStyles = [
     {
       title: "Underline",
       id: "globalInputFontAndTextStylesUnderline",
+      ai: { name: "underline", description: "Underline the input text." },
       switch: {
         default: false,
         trueValue: "underline",

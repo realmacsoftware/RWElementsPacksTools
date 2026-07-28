@@ -1,6 +1,7 @@
 export const ImageCMS = [
     {
         visible: "globalBgType == 'image'",
+        ai: { name: "bgImageSource", description: "Where the background image comes from: a project resource or a CMS field.", visible: "bgStyle == 'image'" },
         title: "Type",
         id: "globalBgImageType",
         segmented: {
@@ -20,6 +21,7 @@ export const ImageCMS = [
     {
         visible:
             "globalBgImageType == 'cms' && (globalControlTypeBg == 'static' && globalBgType == 'image' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'image'))",
+        ai: { name: "bgImageCmsField", description: "CMS field template resolving to the background image URL, e.g. {{item.image.src}}.", visible: "bg == 'static' && bgStyle == 'image' && bgImageSource == 'cms'" },
         title: "Field",
         id: "globalBgImageCmsField",
         text: {
@@ -29,7 +31,7 @@ export const ImageCMS = [
     {
         visible:
             "globalBgImageType == 'resource' && (globalControlTypeBg == 'static' && globalBgType == 'image' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'image'))",
-        ai: { name: "bgImage", description: "Background image resource ID.", visible: "bg == 'static' && bgStyle == 'image'" },
+        ai: { name: "bgImage", description: "Background image resource ID.", visible: "bg == 'static' && bgStyle == 'image' && bgImageSource == 'resource'" },
         title: "Image",
         id: "globalBgImageResource",
         resource: { accepts: "image/*", excludes: ".svg" },
@@ -146,6 +148,7 @@ export const ImageCMS = [
     {
         visible:
             "globalBgImageType == 'cms' && (globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'image')",
+        ai: { name: "bgImageCmsFieldHover", description: "Hover-state CMS field template resolving to the background image URL.", visible: "bg == 'hover' && bgStyle == 'image' && bgImageSource == 'cms'" },
         title: "Field",
         id: "globalBgImageCmsFieldEnd",
         text: {
@@ -155,6 +158,7 @@ export const ImageCMS = [
     {
         visible:
             "globalBgImageType == 'resource' && (globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'image')",
+        ai: { name: "bgImageHover", description: "Hover-state background image resource ID.", visible: "bg == 'hover' && bgStyle == 'image' && bgImageSource == 'resource'" },
         title: "Image",
         id: "globalBgImageResourceEnd",
         resource: { accepts: "image/*", excludes: ".svg" },
@@ -168,6 +172,7 @@ export const ImageCMS = [
     {
         visible:
             "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'image')",
+        ai: { name: "bgImagePositionHover", description: "Hover-state background image position.", visible: "bg == 'hover' && bgStyle == 'image'" },
         title: "Position",
         id: "globalBgImagePositionEnd",
         format: "hover:bg-{{value}}",
@@ -222,6 +227,7 @@ export const ImageCMS = [
     {
         visible:
             "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'image')",
+        ai: { name: "bgImageSizeHover", description: "Hover-state background image size (auto/cover/contain).", visible: "bg == 'hover' && bgStyle == 'image'" },
         title: "Size",
         id: "globalBgImageSizeEnd",
         format: "hover:bg-{{value}}",
@@ -246,6 +252,7 @@ export const ImageCMS = [
     {
         visible:
             "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'image')",
+        ai: { name: "bgImageRepeatHover", description: "Hover-state background image repeat mode.", visible: "bg == 'hover' && bgStyle == 'image'" },
         title: "Repeat",
         id: "globalBgImageRepeatEnd",
         format: "hover:bg-{{value}}",
@@ -283,6 +290,7 @@ export const ImageCMS = [
     },
     {
         visible: "globalBgType == 'image'",
+        ai: { name: "bgImageFetchPriority", description: "Image fetch priority: auto, high, or low.", visible: "bgStyle == 'image'" },
         title: "Value",
         id: "globalBgImageFetchPriority",
         responsive: false,

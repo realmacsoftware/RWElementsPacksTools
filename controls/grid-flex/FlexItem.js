@@ -6,10 +6,12 @@ const FlexItem = [
   },
   {
     visible: "globalGridOrFlexDisplayAs == 'flex'",
+    ai: { exclude: true, reason: "ActAsGridOrFlexItem embeds AlignSelf on both the grid and flex paths for the same property id; the grid-path declaration already curates 'alignSelf', whose ai.visible covers both modes." },
     globalControl: "AlignSelf"
   },
   {
     visible: "globalGridOrFlexDisplayAs == 'flex'",
+    ai: { exclude: true, reason: "ActAsGridOrFlexItem embeds JustifySelf on both the grid and flex paths for the same property id; the grid-path declaration already curates 'justifySelf', whose ai.visible covers both modes." },
     globalControl: "JustifySelf"
   },
   {

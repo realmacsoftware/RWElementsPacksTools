@@ -1,5 +1,6 @@
 const AlignSelf = [
   {
+    ai: { name: "alignSelf", description: "Alignment of this item on the parent's cross axis, overriding the parent's align-items.", visible: "actAs != 'default'" },
     title: "Align",
     id: "globalGridOrFlexItemAlignSelf",
     format: "self-{{value}}",

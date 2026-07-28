@@ -2,6 +2,7 @@ const Reveals = [
   {
     title: "Mode",
     id: "revealScrub",
+    ai: { name: "scrub", description: "Playback mode. 'false' plays the animation once triggered; 'true' scrubs it to scroll position between triggerStart and triggerEnd. Values are the strings 'false' and 'true'." },
     responsive: false,
     segmented: {
       default: false,
@@ -14,6 +15,7 @@ const Reveals = [
   {
     title: "Animation",
     id: "revealAnimationName",
+    ai: { name: "animation", description: "Reveal animation: fade, slide, zoom, lightSpeed, or rotate." },
     responsive: false,
     select: {
       use: "RevealAnimations"
@@ -22,6 +24,7 @@ const Reveals = [
   {
     title: "Direction",
     id: "revealAnimationDirection",
+    ai: { name: "direction", description: "Direction the reveal animation travels: up, down, left, or right." },
     responsive: false,
     segmented: {
       default: "up",
@@ -36,6 +39,7 @@ const Reveals = [
   {
     title: "Distance",
     id: "revealDistance",
+    ai: { name: "distance", description: "How far the element travels during the animation, as a CSS length (e.g. '200px')." },
     responsive: false,
     text: {
       default: "200px"
@@ -45,6 +49,7 @@ const Reveals = [
     visible: "revealAnimationName == 'rotate'",
     title: "Degrees",
     id: "revealDegrees",
+    ai: { name: "degrees", description: "Rotation amount in degrees. Only used by the 'rotate' animation." },
     responsive: false,
     number: {
       default: "90"
@@ -60,6 +65,7 @@ const Reveals = [
   {
     title: "Play",
     id: "revealPlay",
+    ai: { name: "play", description: "When the animation plays: 'enter-once' the first time it enters the viewport, 'enter-always' every time it enters, 'enter-exit' on enter and reversed on exit." },
     responsive: false,
     select: {
       default: "enter-exit",
@@ -73,6 +79,7 @@ const Reveals = [
   {
     title: "Start",
     id: "revealStart",
+    ai: { name: "triggerStart", description: "Scroll position where the reveal starts: 'entering-screen' as the element enters the viewport, 'middle-of-screen' at the viewport centre, 'exiting-screen' as it leaves the top." },
     responsive: false,
     segmented: {
       default: "entering-screen",
@@ -86,6 +93,7 @@ const Reveals = [
   {
     title: "End",
     id: "revealEnd",
+    ai: { name: "triggerEnd", description: "Scroll position where the reveal ends: 'entering-screen' as the element enters the viewport, 'middle-of-screen' at the viewport centre, 'exiting-screen' as it leaves the top." },
     responsive: false,
     segmented: {
       default: "exiting-screen",
@@ -106,6 +114,7 @@ const Reveals = [
   {
     title: "Easing",
     id: "revealEasing",
+    ai: { name: "easing", description: "Easing curve: linear, power0-power4, sine.out, circ.out, expo.out, back.out, elastic.out, or bounce.out." },
     responsive: false,
     select: {
       default: "power1",
@@ -129,6 +138,7 @@ const Reveals = [
     visible: "revealScrub == false",
     title: "Duration",
     id: "revealDuration",
+    ai: { name: "duration", description: "Animation duration in milliseconds. Ignored when scrub is 'true'." },
     responsive: false,
     number: {
       default: 500
@@ -138,6 +148,7 @@ const Reveals = [
     visible: "revealScrub == false",
     title: "Delay",
     id: "revealDelay",
+    ai: { name: "delay", description: "Delay before the animation starts, in milliseconds. Ignored when scrub is 'true'." },
     responsive: false,
     number: {
       default: 0,
@@ -154,6 +165,7 @@ const Reveals = [
   {
     title: "Markers",
     id: "revealDebug",
+    ai: { name: "debugMarkers", description: "Show scroll trigger start/end markers for debugging. Leave off for published sites." },
     responsive: false,
     switch: {
       default: false
