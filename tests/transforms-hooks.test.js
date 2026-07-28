@@ -21,6 +21,9 @@ const globalTransforms = loadHook("globalTransforms", [
   "../shared-hooks/transforms/globalTransforms.js",
 ]);
 
+// The Scale control emits scale-x classes only (single class per breakpoint —
+// Elements prepends responsive prefixes once per formatted string); the hook
+// mirrors each scale-x class to a scale-y twin.
 function makeApp({ props = {}, node = {} } = {}) {
   return {
     props: {
@@ -29,14 +32,13 @@ function makeApp({ props = {}, node = {} } = {}) {
       globalHoverGroupCustomIdTransforms: "",
       globalTransformsApplyTo: "",
       globalTransformOrigin: "origin-center",
-      globalTransformScale: "scale-x-[100%] scale-y-[100%]",
+      globalTransformScale: "scale-x-[100%]",
       globalTransformRotate: "rotate-[0deg]",
       globalTransformSkewX: "skew-x-[0deg]",
       globalTransformSkewY: "skew-y-[0deg]",
       globalTransformTranslateX: "translate-x-[0px]",
       globalTransformTranslateY: "translate-y-[0px]",
-      globalTransformScaleEnd:
-        "scale-x-[105%] scale-y-[105%] md:scale-x-[125%] md:scale-y-[125%]",
+      globalTransformScaleEnd: "scale-x-[105%] md:scale-x-[125%]",
       globalTransformRotateEnd: "rotate-[5deg]",
       globalTransformSkewXEnd: "skew-x-[0deg]",
       globalTransformSkewYEnd: "skew-y-[0deg]",
@@ -53,29 +55,43 @@ test("none emits no classes", () => {
   assert.equal(globalTransforms(app), "");
 });
 
-test("static mode emits formatted start classes unchanged", () => {
-  const app = makeApp({ props: { globalControlTypeTransforms: "static" } });
+test("static mode mirrors scale-x classes to scale-y with modifiers intact", () => {
+  const app = makeApp({
+    props: {
+      globalControlTypeTransforms: "static",
+      globalTransformScale: "scale-x-[100%] md:scale-x-[110%]",
+    },
+  });
   const result = globalTransforms(app);
 
   assert.match(result, /(?:^|\s)transform(?:\s|$)/);
-  assert.match(result, /(?:^|\s)scale-x-\[100%\] scale-y-\[100%\](?:\s|$)/);
+  assert.match(result, /(?:^|\s)scale-x-\[100%\]/);
+  assert.match(result, /(?:^|\s)scale-y-\[100%\]/);
+  assert.match(result, /(?:^|\s)md:scale-x-\[110%\]/);
+  assert.match(result, /(?:^|\s)md:scale-y-\[110%\]/);
   assert.doesNotMatch(result, /hover:/);
 });
 
-test("hover distributes the prefix across every class of a responsive multi-class end value", () => {
-  const result = globalTransforms(makeApp());
+test("hover end scale carries both hover and breakpoint modifiers on x and y", () => {
+  // Regression: a Button with End scale md=300 emitted
+  // "md:hover:scale-x-[300%] hover:scale-y-[300%]" — the y class lost md:
+  // because the old two-class format only got the breakpoint prefix once.
+  const app = makeApp({
+    props: { globalTransformScaleEnd: "scale-x-[100%] md:scale-x-[300%]" },
+  });
+  const result = globalTransforms(app);
 
-  assert.match(result, /(?:^|\s)hover:scale-x-\[105%\]/);
-  assert.match(result, /(?:^|\s)hover:scale-y-\[105%\]/);
-  assert.match(result, /(?:^|\s)md:hover:scale-x-\[125%\]/);
-  assert.match(result, /(?:^|\s)md:hover:scale-y-\[125%\]/);
-  // no end-state class may leak without the hover modifier
-  assert.doesNotMatch(result, /(?:^|\s)scale-y-\[105%\](?:\s|$)/);
-  assert.doesNotMatch(result, /(?:^|\s)md:scale-x-\[125%\]/);
-  assert.doesNotMatch(result, /(?:^|\s)md:scale-y-\[125%\]/);
+  assert.match(result, /(?:^|\s)hover:scale-x-\[100%\]/);
+  assert.match(result, /(?:^|\s)hover:scale-y-\[100%\]/);
+  assert.match(result, /(?:^|\s)md:hover:scale-x-\[300%\]/);
+  assert.match(result, /(?:^|\s)md:hover:scale-y-\[300%\]/);
+  // no scale class may appear without the hover modifier or without md: pairing
+  assert.doesNotMatch(result, /(?:^|\s)hover:scale-y-\[300%\]/);
+  assert.doesNotMatch(result, /(?:^|\s)scale-y-\[300%\]/);
+  assert.doesNotMatch(result, /(?:^|\s)md:scale-x-\[300%\]/);
 });
 
-test("active branch prefixes every class, including breakpointed ones", () => {
+test("active branch prefixes every mirrored class, including breakpointed ones", () => {
   const result = globalTransforms(makeApp(), { active: true });
 
   assert.match(result, /(?:^|\s)data-\[active=true\]:scale-x-\[105%\]/);
@@ -88,7 +104,7 @@ test("active branch prefixes every class, including breakpointed ones", () => {
   assert.doesNotMatch(result, /(?:^|\s)md:scale-y-\[125%\]/);
 });
 
-test("focus branch prefixes every class, including breakpointed ones", () => {
+test("focus branch prefixes every mirrored class, including breakpointed ones", () => {
   const result = globalTransforms(makeApp(), { focus: true });
 
   assert.match(result, /(?:^|\s)focus:scale-x-\[105%\]/);
@@ -105,14 +121,28 @@ test("parent hover group rewrites hover and focus prefixes", () => {
   const result = globalTransforms(app, { focus: true });
 
   assert.match(result, /(?:^|\s)group-hover\/parent1:scale-x-\[105%\]/);
+  assert.match(result, /(?:^|\s)group-hover\/parent1:scale-y-\[105%\]/);
   assert.match(result, /(?:^|\s)md:group-hover\/parent1:scale-y-\[125%\]/);
   assert.match(result, /(?:^|\s)group-focus\/parent1:scale-x-\[105%\]/);
   assert.match(result, /(?:^|\s)md:group-focus\/parent1:scale-x-\[125%\]/);
   assert.doesNotMatch(result, /(?:^|\s)hover:/);
 });
 
+test("non-scale end values pass through the mirror untouched", () => {
+  const app = makeApp({
+    props: { globalTransformRotateEnd: "rotate-[5deg] md:rotate-[60deg]" },
+  });
+  const result = globalTransforms(app);
+
+  assert.match(result, /(?:^|\s)hover:rotate-\[5deg\]/);
+  assert.match(result, /(?:^|\s)md:hover:rotate-\[60deg\]/);
+  assert.doesNotMatch(result, /rotate-y/);
+});
+
 test("empty end values emit no stray prefix tokens", () => {
-  const app = makeApp({ props: { globalTransformSkewXEnd: "" } });
+  const app = makeApp({
+    props: { globalTransformSkewXEnd: "", globalTransformScaleEnd: "" },
+  });
   const result = globalTransforms(app, { active: true, focus: true });
 
   assert.doesNotMatch(result, /(?:^|\s)hover:(?:\s|$)/);

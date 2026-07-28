@@ -1,3 +1,23 @@
+/**
+ * The Scale control emits scale-x classes only: Elements prepends responsive
+ * prefixes once per formatted string, so a two-class format would leave the
+ * second class without its breakpoint modifier (e.g. "md:scale-x-[300%]
+ * scale-y-[300%]"). Mirror each scale-x class to a scale-y twin so uniform
+ * scale still composes with scale-z, with all modifiers preserved.
+ */
+function mirrorScaleXToY(classString) {
+    if (!classString) return "";
+    return classString
+        .split(/\s+/)
+        .filter(Boolean)
+        .map((cls) =>
+            cls.includes("scale-x-")
+                ? `${cls} ${cls.replace("scale-x-", "scale-y-")}`
+                : cls
+        )
+        .join(" ");
+}
+
 const globalTransforms = (app, args = {}) => {
     const {
         globalControlTypeTransforms: type,
@@ -28,11 +48,14 @@ const globalTransforms = (app, args = {}) => {
     const prefix = getHoverPrefix(node, applyTo, hoverGroup, customId);
     const classes = classnames();
 
+    const scaleMirrored = mirrorScaleXToY(scale);
+    const scaleEndMirrored = mirrorScaleXToY(scaleEnd);
+
     if (type != "none") {
         classes.add([
             "transform",
             origin,
-            scale,
+            scaleMirrored,
             rotate,
             skewX,
             skewY,
@@ -43,7 +66,7 @@ const globalTransforms = (app, args = {}) => {
 
     if (type == "hover") {
         classes.add([
-            addPrefixToTailwindClasses(scaleEnd, prefix),
+            addPrefixToTailwindClasses(scaleEndMirrored, prefix),
             addPrefixToTailwindClasses(rotateEnd, prefix),
             addPrefixToTailwindClasses(skewXEnd, prefix),
             addPrefixToTailwindClasses(skewYEnd, prefix),
@@ -53,7 +76,7 @@ const globalTransforms = (app, args = {}) => {
 
         if (wantsActive) {
             classes.add([
-                addPrefixToTailwindClasses(scaleEnd, "data-[active=true]"),
+                addPrefixToTailwindClasses(scaleEndMirrored, "data-[active=true]"),
                 addPrefixToTailwindClasses(rotateEnd, "data-[active=true]"),
                 addPrefixToTailwindClasses(skewXEnd, "data-[active=true]"),
                 addPrefixToTailwindClasses(skewYEnd, "data-[active=true]"),
@@ -65,7 +88,7 @@ const globalTransforms = (app, args = {}) => {
         if (wantsFocus) {
             const focusPrefix = prefix.replace(/hover/g, "focus");
             classes.add([
-                addPrefixToTailwindClasses(scaleEnd, focusPrefix),
+                addPrefixToTailwindClasses(scaleEndMirrored, focusPrefix),
                 addPrefixToTailwindClasses(rotateEnd, focusPrefix),
                 addPrefixToTailwindClasses(skewXEnd, focusPrefix),
                 addPrefixToTailwindClasses(skewYEnd, focusPrefix),
