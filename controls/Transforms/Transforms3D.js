@@ -63,6 +63,7 @@ const Transforms3D = [
     {
         visible:
             "globalControlType3D != 'none' && globalControlType3D != 'static'",
+        ai: { exclude: true, reason: "Inspector UI toggle for editing the hover/mouse start and end state; the 3D transform values themselves are curated separately for each state." },
         title: "State",
         id: "globalTransforms3DState",
         responsive: false,
@@ -111,34 +112,40 @@ const Transforms3D = [
     {
         visible:
             "globalControlType3D == 'static' || ((globalControlType3D == 'hover' || globalControlType3D == 'mouse') && globalTransforms3DState == 'start')",
+        ai: { visible: "transforms3d != 'none'" },
         globalControl: "Rotate3D",
     },
     {
         visible:
             "globalControlType3D == 'static' || ((globalControlType3D == 'hover' || globalControlType3D == 'mouse') && globalTransforms3DState == 'start')",
+        ai: { visible: "transforms3d != 'none'" },
         globalControl: "ScaleZ",
     },
     {
         visible:
             "globalControlType3D == 'static' || ((globalControlType3D == 'hover' || globalControlType3D == 'mouse') && globalTransforms3DState == 'start')",
+        ai: { visible: "transforms3d != 'none'" },
         globalControl: "TranslateZ",
     },
 
     {
         visible:
             "((globalControlType3D == 'hover' || globalControlType3D == 'mouse') && globalTransforms3DState == 'end')",
+        ai: { name: "{{value}}End", visible: "transforms3d == 'hover' || transforms3d == 'mouse'" },
         globalControl: "Rotate3D",
         id: "{{value}}End",
     },
     {
         visible:
             "((globalControlType3D == 'hover' || globalControlType3D == 'mouse') && globalTransforms3DState == 'end')",
+        ai: { name: "{{value}}End", visible: "transforms3d == 'hover' || transforms3d == 'mouse'" },
         globalControl: "ScaleZ",
         id: "{{value}}End",
     },
     {
         visible:
             "((globalControlType3D == 'hover' || globalControlType3D == 'mouse') && globalTransforms3DState == 'end')",
+        ai: { name: "{{value}}End", visible: "transforms3d == 'hover' || transforms3d == 'mouse'" },
         globalControl: "TranslateZ",
         id: "{{value}}End",
     },

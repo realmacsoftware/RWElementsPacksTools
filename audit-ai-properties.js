@@ -420,6 +420,31 @@ function gitRevision(dir) {
   }
 }
 
+/** Quote a path/arg for safe paste into a POSIX shell. */
+function shellQuote(value) {
+  const s = String(value);
+  if (/^[A-Za-z0-9_./:@%+=,-]+$/.test(s)) return s;
+  return `'${s.replace(/'/g, `'\\''`)}'`;
+}
+
+/**
+ * Reconstruct a pasteable re-run command from the paths this report actually used.
+ * Absolute paths + cwd so an LLM (or human) can reproduce the same report.
+ */
+function formatRerunCommand({ cwd, corePacksDir, auditPackRoots, auditOutDir }) {
+  const parts = ["npx", "rw-build", "audit"];
+  if (corePacksDir) {
+    parts.push("--core-packs", shellQuote(corePacksDir));
+  } else {
+    parts.push("--no-core-packs");
+  }
+  for (const root of auditPackRoots) {
+    parts.push("--packs", shellQuote(root));
+  }
+  parts.push("--out-dir", shellQuote(auditOutDir));
+  return `cd ${shellQuote(cwd)} && ${parts.join(" ")}`;
+}
+
 function renderNotCuratedTable(rows) {
   // Deliberate `ai.exclude: true` opt-outs are not gaps — they're covered separately in the
   // Exclusions Review section — so they're left out of this table entirely.
@@ -817,9 +842,16 @@ export async function runAudit(config) {
     `rw-elements-tools @ ${gitRevision(__dirname)}`,
     ...allPacksRoots.map((r) => `${rootLabelFor(r)} @ ${gitRevision(r)}`),
   ];
+  const rerunCommand = formatRerunCommand({
+    cwd: process.cwd(),
+    corePacksDir: resolvedCorePacksDir,
+    auditPackRoots: resolvedPackRoots,
+    auditOutDir,
+  });
   const header = [
     `> Generated ${generatedAt} by [\`rw-build audit\`](https://github.com/realmacsoftware/RWElementsPacksTools).`,
     `> Source revisions: ${revisions.join(" · ")}.`,
+    `> Re-run: \`${rerunCommand}\``,
   ].join("\n");
 
   // --- 11. Write output -----------------------------------------------------

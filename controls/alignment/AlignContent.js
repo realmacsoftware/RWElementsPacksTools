@@ -2,6 +2,10 @@ const AlignContent = {
     title: "Content",
     format: "content-{{value}}",
     id: "alignContent",
+    ai: {
+        name: "alignContent",
+        description: "Distribute rows along the cross axis when the container has extra space. Requires wrap to be enabled on flex containers.",
+    },
     select: {
         default: "normal",
         items: [

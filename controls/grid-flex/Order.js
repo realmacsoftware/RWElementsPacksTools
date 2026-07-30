@@ -1,6 +1,11 @@
 const Order = [
   {
     visible: "globalGridOrFlexDisplayAs != 'default' && globalGridOrFlexItemSettings == 'advanced'",
+    ai: {
+      name: "order",
+      description: "Position of this item among its siblings: 'none' (source order), 'first', 'last', or 'custom' (use orderCustom).",
+      visible: "actAs != 'default'",
+    },
     title: "Order",
     id: "globalGridOrFlexItemOrder",
     format: "order-{{value}}",
@@ -28,6 +33,11 @@ const Order = [
   },
   {
     visible: "globalGridOrFlexDisplayAs != 'default' && globalGridOrFlexItemSettings == 'advanced' && globalGridOrFlexItemOrder == 'custom'",
+    ai: {
+      name: "orderCustom",
+      description: "Explicit CSS order value, used when order is 'custom'. Lower numbers come first; sibling items must also set an order for it to have an effect.",
+      visible: "actAs != 'default' && order == 'custom'",
+    },
     title: "Custom",
     id: "globalGridOrFlexItemOrderCustom",
     format: "order-[{{value}}]",
