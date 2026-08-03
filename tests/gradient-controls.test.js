@@ -370,3 +370,34 @@ test("background gradient color formats use Tailwind 4 CSS variable opacity shor
     "hover:to-{{value}}/(--bgGradientToOpacityEnd)",
   );
 });
+
+test("overlay gradient color formats use Tailwind 4 CSS variable opacity shorthand", () => {
+  assert.equal(
+    findControlById(Controls.Overlay_Gradient, "globalOverlayGradientFromColor").format,
+    "from-{{value}}/(--overlayGradientFromOpacity)",
+  );
+  assert.equal(
+    findControlById(Controls.Overlay_Gradient, "globalOverlayGradientFromOpacity").format,
+    "[--overlayGradientFromOpacity:{{value}}%]",
+  );
+  assert.equal(
+    findControlById(Controls.Overlay_Gradient, "globalOverlayGradientViaColor").format,
+    "via-{{value}}/(--overlayGradientViaOpacity)",
+  );
+  assert.equal(
+    findControlById(Controls.Overlay_Gradient, "globalOverlayGradientToColor").format,
+    "to-{{value}}/(--overlayGradientToOpacity)",
+  );
+  assert.equal(
+    findControlById(Controls.Overlay_Gradient, "globalOverlayGradientFromColorEnd").format,
+    "from-{{value}}/(--overlayGradientFromOpacityEnd)",
+  );
+  assert.equal(
+    findControlById(Controls.Overlay_Gradient, "globalOverlayGradientViaColorEnd").format,
+    "via-{{value}}/(--overlayGradientViaOpacityEnd)",
+  );
+  assert.equal(
+    findControlById(Controls.Overlay_Gradient, "globalOverlayGradientToColorEnd").format,
+    "to-{{value}}/(--overlayGradientToOpacityEnd)",
+  );
+});
