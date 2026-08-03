@@ -47,27 +47,27 @@ function baseOverlayProps(overrides = {}) {
     globalControlTypeOverlay: "static",
     globalOverlayGradientDirection: "bg-linear-to-b",
     globalOverlayGradientInterpolation: "",
-    globalOverlayGradientFromColor: "from-brand-200",
-    globalOverlayGradientFromOpacity: "[100%]",
+    globalOverlayGradientFromColor: "from-brand-200/(--overlayGradientFromOpacity)",
+    globalOverlayGradientFromOpacity: "[--overlayGradientFromOpacity:100%]",
     globalOverlayGradientFromPosition: "from-0%",
     globalOverlayGradientViaEnabled: "false",
-    globalOverlayGradientViaColor: "via-brand-400",
-    globalOverlayGradientViaOpacity: "[100%]",
+    globalOverlayGradientViaColor: "via-brand-400/(--overlayGradientViaOpacity)",
+    globalOverlayGradientViaOpacity: "[--overlayGradientViaOpacity:100%]",
     globalOverlayGradientViaPosition: "via-50%",
-    globalOverlayGradientToColor: "to-brand-500",
-    globalOverlayGradientToOpacity: "[100%]",
+    globalOverlayGradientToColor: "to-brand-500/(--overlayGradientToOpacity)",
+    globalOverlayGradientToOpacity: "[--overlayGradientToOpacity:100%]",
     globalOverlayGradientToPosition: "to-100%",
     globalOverlayGradientDirectionEnd: "bg-linear-to-t",
     globalOverlayGradientInterpolationEnd: "",
-    globalOverlayGradientFromColorEnd: "from-brand-200",
-    globalOverlayGradientFromOpacityEnd: "[100%]",
+    globalOverlayGradientFromColorEnd: "from-brand-200/(--overlayGradientFromOpacityEnd)",
+    globalOverlayGradientFromOpacityEnd: "[--overlayGradientFromOpacityEnd:100%]",
     globalOverlayGradientFromPositionEnd: "from-0%",
     globalOverlayGradientViaEnabledEnd: "false",
-    globalOverlayGradientViaColorEnd: "via-brand-400",
-    globalOverlayGradientViaOpacityEnd: "[100%]",
+    globalOverlayGradientViaColorEnd: "via-brand-400/(--overlayGradientViaOpacityEnd)",
+    globalOverlayGradientViaOpacityEnd: "[--overlayGradientViaOpacityEnd:100%]",
     globalOverlayGradientViaPositionEnd: "via-50%",
-    globalOverlayGradientToColorEnd: "to-brand-500",
-    globalOverlayGradientToOpacityEnd: "[100%]",
+    globalOverlayGradientToColorEnd: "to-brand-500/(--overlayGradientToOpacityEnd)",
+    globalOverlayGradientToOpacityEnd: "[--overlayGradientToOpacityEnd:100%]",
     globalOverlayGradientToPositionEnd: "to-100%",
     ...overrides,
   };
@@ -87,6 +87,7 @@ const { globalOverlayGradient } = loadHook(
   [
     "../shared-hooks/core/classnames.js",
     "../shared-hooks/core/gradientClasses.js",
+    "../shared-hooks/core/injectPrefixOnDarkModeColors.js",
     "../shared-hooks/effects/globalOverlay.js",
   ],
 );
@@ -219,4 +220,39 @@ test("overlay gradients use selected type-specific conic direction values", () =
 
   assert.match(classes, /\bbg-conic-180\/shorter\b/);
   assert.doesNotMatch(classes, /\bbg-linear-to-b\b/);
+});
+
+test("overlay gradients keep stop opacity on light and dark color variants", () => {
+  const classes = globalOverlayGradient(
+    {
+      props: baseOverlayProps({
+        globalOverlayGradientFromColor:
+          "from-brand-950/(--overlayGradientFromOpacity) dark:from-brand-50/(--overlayGradientFromOpacity)",
+        globalOverlayGradientFromOpacity: "[--overlayGradientFromOpacity:60%]",
+      }),
+    },
+    "group-hover",
+  );
+
+  assert.match(classes, /\bfrom-brand-950\/\(--overlayGradientFromOpacity\)/);
+  assert.match(classes, /\bdark:from-brand-50\/\(--overlayGradientFromOpacity\)/);
+  assert.match(classes, /\[--overlayGradientFromOpacity:60%\]/);
+});
+
+test("overlay hover gradients prefix dark color variants for the end state", () => {
+  const classes = globalOverlayGradient(
+    {
+      props: baseOverlayProps({
+        globalControlTypeOverlay: "hover",
+        globalOverlayGradientFromColorEnd:
+          "from-brand-950/(--overlayGradientFromOpacityEnd) dark:from-brand-50/(--overlayGradientFromOpacityEnd)",
+        globalOverlayGradientFromOpacityEnd: "[--overlayGradientFromOpacityEnd:60%]",
+      }),
+    },
+    "group-hover",
+  );
+
+  assert.match(classes, /\bgroup-hover:from-brand-950\/\(--overlayGradientFromOpacityEnd\)/);
+  assert.match(classes, /\bdark:group-hover:from-brand-50\/\(--overlayGradientFromOpacityEnd\)/);
+  assert.match(classes, /\bgroup-hover:\[--overlayGradientFromOpacityEnd:60%\]/);
 });

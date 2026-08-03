@@ -60,7 +60,7 @@ const Gradient = [
     ai: { name: "overlayGradientFrom", description: "Gradient start theme color.", visible: "overlay == 'static' && overlayStyle == 'gradient'" },
     title: "Color",
     id: "globalOverlayGradientFromColor",
-    format: "from-{{value}}",
+    format: "from-{{value}}/(--overlayGradientFromOpacity)",
     themeColor: {
       default: {
         name: "brand",
@@ -73,7 +73,7 @@ const Gradient = [
     ai: { name: "overlayGradientFromOpacity", description: "Gradient start color opacity, 0-100.", visible: "overlay == 'static' && overlayStyle == 'gradient'" },
     title: "Opacity",
     id: "globalOverlayGradientFromOpacity",
-    format: "[{{value}}%]",
+    format: "[--overlayGradientFromOpacity:{{value}}%]",
     responsive: false,
     slider: {
       use: "Slider",
@@ -117,7 +117,7 @@ const Gradient = [
     ai: { name: "overlayGradientVia", description: "Gradient mid-stop theme color.", visible: "overlay == 'static' && overlayStyle == 'gradient' && overlayGradientViaEnabled == true" },
     title: "Color",
     id: "globalOverlayGradientViaColor",
-    format: "via-{{value}}",
+    format: "via-{{value}}/(--overlayGradientViaOpacity)",
     themeColor: {
       default: {
         name: "brand",
@@ -130,7 +130,7 @@ const Gradient = [
     ai: { name: "overlayGradientViaOpacity", description: "Gradient mid-stop color opacity, 0-100.", visible: "overlay == 'static' && overlayStyle == 'gradient' && overlayGradientViaEnabled == true" },
     title: "Opacity",
     id: "globalOverlayGradientViaOpacity",
-    format: "[{{value}}%]",
+    format: "[--overlayGradientViaOpacity:{{value}}%]",
     responsive: false,
     slider: {
       use: "Slider",
@@ -165,7 +165,7 @@ const Gradient = [
     ai: { name: "overlayGradientTo", description: "Gradient end theme color.", visible: "overlay == 'static' && overlayStyle == 'gradient'" },
     title: "Color",
     id: "globalOverlayGradientToColor",
-    format: "to-{{value}}",
+    format: "to-{{value}}/(--overlayGradientToOpacity)",
     themeColor: {
       default: {
         name: "brand",
@@ -178,7 +178,7 @@ const Gradient = [
     ai: { name: "overlayGradientToOpacity", description: "Gradient end color opacity, 0-100.", visible: "overlay == 'static' && overlayStyle == 'gradient'" },
     title: "Opacity",
     id: "globalOverlayGradientToOpacity",
-    format: "[{{value}}%]",
+    format: "[--overlayGradientToOpacity:{{value}}%]",
     responsive: false,
     slider: {
       use: "Slider",
@@ -260,7 +260,7 @@ const Gradient = [
     ai: { name: "overlayGradientFromHover", description: "Hover-state gradient start theme color.", visible: "overlay == 'hover' && overlayStyle == 'gradient'" },
     title: "Color",
     id: "globalOverlayGradientFromColorEnd",
-    format: "from-{{value}}",
+    format: "from-{{value}}/(--overlayGradientFromOpacityEnd)",
     themeColor: {
       default: {
         name: "brand",
@@ -273,7 +273,7 @@ const Gradient = [
     ai: { name: "overlayGradientFromOpacityHover", description: "Hover-state gradient start color opacity, 0-100.", visible: "overlay == 'hover' && overlayStyle == 'gradient'" },
     title: "Opacity",
     id: "globalOverlayGradientFromOpacityEnd",
-    format: "[{{value}}%]",
+    format: "[--overlayGradientFromOpacityEnd:{{value}}%]",
     responsive: false,
     slider: {
       use: "Slider",
@@ -317,7 +317,7 @@ const Gradient = [
     ai: { name: "overlayGradientViaHover", description: "Hover-state gradient mid-stop theme color.", visible: "overlay == 'hover' && overlayStyle == 'gradient' && overlayGradientViaEnabledHover == true" },
     title: "Color",
     id: "globalOverlayGradientViaColorEnd",
-    format: "via-{{value}}",
+    format: "via-{{value}}/(--overlayGradientViaOpacityEnd)",
     themeColor: {
       default: {
         name: "brand",
@@ -330,7 +330,7 @@ const Gradient = [
     ai: { name: "overlayGradientViaOpacityHover", description: "Hover-state gradient mid-stop color opacity, 0-100.", visible: "overlay == 'hover' && overlayStyle == 'gradient' && overlayGradientViaEnabledHover == true" },
     title: "Opacity",
     id: "globalOverlayGradientViaOpacityEnd",
-    format: "[{{value}}%]",
+    format: "[--overlayGradientViaOpacityEnd:{{value}}%]",
     responsive: false,
     slider: {
       use: "Slider",
@@ -365,7 +365,7 @@ const Gradient = [
     ai: { name: "overlayGradientToHover", description: "Hover-state gradient end theme color.", visible: "overlay == 'hover' && overlayStyle == 'gradient'" },
     title: "Color",
     id: "globalOverlayGradientToColorEnd",
-    format: "to-{{value}}",
+    format: "to-{{value}}/(--overlayGradientToOpacityEnd)",
     themeColor: {
       default: {
         name: "brand",
@@ -378,7 +378,7 @@ const Gradient = [
     ai: { name: "overlayGradientToOpacityHover", description: "Hover-state gradient end color opacity, 0-100.", visible: "overlay == 'hover' && overlayStyle == 'gradient'" },
     title: "Opacity",
     id: "globalOverlayGradientToOpacityEnd",
-    format: "[{{value}}%]",
+    format: "[--overlayGradientToOpacityEnd:{{value}}%]",
     responsive: false,
     slider: {
       use: "Slider",
