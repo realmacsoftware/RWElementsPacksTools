@@ -47,8 +47,8 @@ function makeApp({ props = {}, responsiveProps = {}, node = {} } = {}) {
     node: { id: "node-1", parent: { id: "parent-1" }, ...node },
     theme: {
       breakpoints: {
-        names: ["base", "sm", "md", "lg", "xl", "2xl"],
-        screens: {},
+        names: ["sm", "md", "lg", "xl", "2xl"],
+        screens: { sm: 640, md: 768, lg: 1024, xl: 1280, "2xl": 1536 },
       },
     },
   };
