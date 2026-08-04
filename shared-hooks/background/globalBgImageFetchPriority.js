@@ -1,3 +1,9 @@
+const escapeBgImageFetchPriorityAttribute = (value) =>
+    String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/'/g, "&#39;");
+
 const globalBgImageFetchPriority = (rw) => {
     const {
         globalControlTypeBg,
@@ -19,12 +25,12 @@ const globalBgImageFetchPriority = (rw) => {
 
     let globalBgImageFetchPriorityLinkElement = "";
     if (globalBgImageResource?.image) {
-        globalBgImageFetchPriorityLinkElement = `<link rel='preload' href='${globalBgImageResource?.image}' as='image' fetchpriority='${globalBgImageFetchPriority}' />`;
+        globalBgImageFetchPriorityLinkElement = `<link rel='preload' href='${escapeBgImageFetchPriorityAttribute(globalBgImageResource.image)}' as='image' fetchpriority='${escapeBgImageFetchPriorityAttribute(globalBgImageFetchPriority)}' />`;
     }
 
     let globalBgImageFetchPriorityLinkElementEnd = "";
     if (globalControlTypeBg == "hover" && globalBgImageResourceEnd?.image) {
-        globalBgImageFetchPriorityLinkElementEnd = `<link rel='preload' href='${globalBgImageResourceEnd?.image}' as='image' fetchpriority='${globalBgImageFetchPriority}' />`;
+        globalBgImageFetchPriorityLinkElementEnd = `<link rel='preload' href='${escapeBgImageFetchPriorityAttribute(globalBgImageResourceEnd.image)}' as='image' fetchpriority='${escapeBgImageFetchPriorityAttribute(globalBgImageFetchPriority)}' />`;
     }
 
     return {
