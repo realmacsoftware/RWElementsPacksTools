@@ -22,7 +22,7 @@ function baseBackgroundProps(overrides = {}) {
     globalBgGradientFromColor: "from-brand-200/(--bgGradientFromOpacity)",
     globalBgGradientFromOpacity: "[--bgGradientFromOpacity:100%]",
     globalBgGradientFromPosition: "from-0%",
-    globalBgGradientViaEnabled: "false",
+    globalBgGradientViaEnabled: false,
     globalBgGradientViaColor: "via-brand-400/(--bgGradientViaOpacity)",
     globalBgGradientViaOpacity: "[--bgGradientViaOpacity:100%]",
     globalBgGradientViaPosition: "via-50%",
@@ -33,7 +33,7 @@ function baseBackgroundProps(overrides = {}) {
     globalBgGradientInterpolationEnd: "",
     globalBgGradientFromColorEnd: "hover:from-brand-200/(--bgGradientFromOpacityEnd)",
     globalBgGradientFromOpacityEnd: "hover:[--bgGradientFromOpacityEnd:100%]",
-    globalBgGradientViaEnabledEnd: "false",
+    globalBgGradientViaEnabledEnd: false,
     globalBgGradientViaColorEnd: "hover:via-brand-400/(--bgGradientViaOpacityEnd)",
     globalBgGradientViaOpacityEnd: "hover:[--bgGradientViaOpacityEnd:100%]",
     globalBgGradientToColorEnd: "hover:to-brand-500/(--bgGradientToOpacityEnd)",
@@ -153,6 +153,36 @@ test("global background gradients use selected type-specific radial direction va
 
   assert.match(classes, /\bbg-radial-\[at_50%_75%_in_srgb\]/);
   assert.doesNotMatch(classes, /\bbg-linear-to-b\b/);
+});
+
+test("global background gradients include via stops when the boolean switch is on", () => {
+  const classes = globalBgGradient({
+    props: baseBackgroundProps({
+      globalBgGradientViaEnabled: true,
+    }),
+  });
+
+  assert.match(classes, /\bvia-brand-400\/\(--bgGradientViaOpacity\)/);
+  assert.match(classes, /\bvia-50%/);
+});
+
+test("global background gradients omit via stops when the boolean switch is off", () => {
+  const classes = globalBgGradient({
+    props: baseBackgroundProps(),
+  });
+
+  assert.doesNotMatch(classes, /\bvia-/);
+});
+
+test("global background hover gradients include hover via stops when enabled", () => {
+  const classes = globalBgGradient({
+    props: baseBackgroundProps({
+      globalControlTypeBg: "hover",
+      globalBgGradientViaEnabledEnd: true,
+    }),
+  });
+
+  assert.match(classes, /hover:via-brand-400/);
 });
 
 test("global background hover gradients normalize legacy values before replacing variants", () => {

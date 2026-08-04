@@ -103,6 +103,7 @@ const Gradient = [
     ai: { name: "bgGradientViaEnabled", description: "Add a mid-stop (via) color to the gradient.", visible: "bg == 'static' && bgStyle == 'gradient'" },
     title: "Add Via",
     id: "globalBgGradientViaEnabled",
+    responsive: false,
     switch: {
       default: false,
     },
@@ -293,6 +294,7 @@ const Gradient = [
     ai: { name: "bgGradientViaEnabledHover", description: "Add a mid-stop (via) color to the hover-state gradient.", visible: "bg == 'hover' && bgStyle == 'gradient'" },
     title: "Add Via",
     id: "globalBgGradientViaEnabledEnd",
+    responsive: false,
     switch: {
       default: false,
     },

@@ -31,6 +31,7 @@ const SizingSVG = [
   {
     title: "Enable",
     id: "globalSizingMinMaxEnabled",
+    responsive: false,
     ai: { name: "minMaxEnabled", description: "Enable explicit min/max width and height constraints." },
     switch: {
       default: false
