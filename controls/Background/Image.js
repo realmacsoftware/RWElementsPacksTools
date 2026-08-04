@@ -240,16 +240,16 @@ export const Image = [
         },
     },
     {
-        visible: "globalBgType == 'image'",
+        visible: "globalControlTypeBg != 'none' && globalBgType == 'image'",
         divider: {},
     },
     {
-        visible: "globalBgType == 'image'",
+        visible: "globalControlTypeBg != 'none' && globalBgType == 'image'",
         title: "Fetch Priority",
         heading: {},
     },
     {
-        visible: "globalBgType == 'image'",
+        visible: "globalControlTypeBg != 'none' && globalBgType == 'image'",
         ai: { name: "bgImageFetchPriority", description: "Image fetch priority: auto, high, or low.", visible: "bgStyle == 'image'" },
         title: "Value",
         id: "globalBgImageFetchPriority",

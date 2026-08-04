@@ -1,12 +1,13 @@
 const globalBgImageFetchPriority = (rw) => {
     const {
+        globalControlTypeBg,
         globalBgImageFetchPriority,
         globalBgType,
         globalBgImageResource,
         globalBgImageResourceEnd,
     } = rw.props;
 
-    if (globalBgType != "image") {
+    if (globalControlTypeBg == "none" || globalBgType != "image") {
         return {
             wantsFetchPriority: false,
             linkElement: "",
@@ -22,7 +23,7 @@ const globalBgImageFetchPriority = (rw) => {
     }
 
     let globalBgImageFetchPriorityLinkElementEnd = "";
-    if (globalBgImageResourceEnd?.image) {
+    if (globalControlTypeBg == "hover" && globalBgImageResourceEnd?.image) {
         globalBgImageFetchPriorityLinkElementEnd = `<link rel='preload' href='${globalBgImageResourceEnd?.image}' as='image' fetchpriority='${globalBgImageFetchPriority}' />`;
     }
 

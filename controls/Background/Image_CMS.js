@@ -1,6 +1,6 @@
 export const ImageCMS = [
     {
-        visible: "globalBgType == 'image'",
+        visible: "globalControlTypeBg != 'none' && globalBgType == 'image'",
         ai: { name: "bgImageSource", description: "Where the background image comes from: a project resource or a CMS field.", visible: "bgStyle == 'image'" },
         title: "Type",
         id: "globalBgImageType",
@@ -280,16 +280,16 @@ export const ImageCMS = [
     },
     ,
     {
-        visible: "globalBgType == 'image'",
+        visible: "globalControlTypeBg != 'none' && globalBgType == 'image'",
         divider: {},
     },
     {
-        visible: "globalBgType == 'image'",
+        visible: "globalControlTypeBg != 'none' && globalBgType == 'image'",
         title: "Fetch Priority",
         heading: {},
     },
     {
-        visible: "globalBgType == 'image'",
+        visible: "globalControlTypeBg != 'none' && globalBgType == 'image'",
         ai: { name: "bgImageFetchPriority", description: "Image fetch priority: auto, high, or low.", visible: "bgStyle == 'image'" },
         title: "Value",
         id: "globalBgImageFetchPriority",
