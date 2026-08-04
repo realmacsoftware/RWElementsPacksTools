@@ -16,8 +16,6 @@ const globalNavItems = (rw, isActive = false) => {
     globalNavItemsUnderlineHover: underlineHover,
   } = rw.props;
 
-  console.log({ fontWeight });
-
   const inactiveStyles = {
     textColor,
     textColorOpacity,
