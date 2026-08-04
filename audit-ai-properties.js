@@ -19,7 +19,7 @@
  *      config. An optional "core" packs directory is fused with the shared controls into the main
  *      report (AI-Audit-Report.md); every other pack root produces its own per-pack file under Packs/.
  *
- * Writes a report directory:
+ * Writes a report directory (default: ./audit/ai-block-coverage):
  *   <out-dir>/AI-Audit-Index.md          — methodology + summary + links to every report below
  *   <out-dir>/AI-Audit-Report.md         — shared controls + core packs directory (if given)
  *   <out-dir>/Packs/AI-Audit-<Name>.md  — one file per pack discovered in the additional roots

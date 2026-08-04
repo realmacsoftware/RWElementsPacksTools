@@ -106,7 +106,7 @@ Options (audit):
   --core-packs <dir>   Core packs directory to fuse with shared controls in the main report.
                        Defaults to ../RWElementsCorePack/packs if it exists.
   --no-core-packs      Disable the default core-packs directory.
-  --out-dir <dir>      Report output directory (default: ./ai-property-coverage).
+  --out-dir <dir>      Report output directory (default: ./audit/ai-block-coverage).
                        Override: env RW_AUDIT_OUT_DIR
 
 Configuration:

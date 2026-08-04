@@ -24,7 +24,7 @@ const DEFAULTS = {
   // Audit-specific keys (used by `rw-build audit`)
   corePacksDir: null,       // resolved below: defaults to ../RWElementsCorePack/packs if it exists
   auditPackRoots: null,     // resolved below: defaults to [packsDir] if it exists, else []
-  auditOutDir: './ai-property-coverage',
+  auditOutDir: './audit/ai-block-coverage',
 };
 
 /**
