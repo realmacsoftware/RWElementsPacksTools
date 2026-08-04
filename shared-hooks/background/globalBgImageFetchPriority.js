@@ -9,9 +9,9 @@ const globalBgImageFetchPriority = (rw) => {
 
     if (globalControlTypeBg == "none" || globalBgType != "image") {
         return {
-            wantsFetchPriority: false,
-            linkElement: "",
-            linkElementEnd: "",
+            globalBgImageFetchPriorityEnabled: false,
+            globalBgImageFetchPriorityLinkElement: "",
+            globalBgImageFetchPriorityLinkElementEnd: "",
         };
     }
 
