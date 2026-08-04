@@ -32,7 +32,7 @@ const globalSizingContainer = (app) => {
     heightClasses[heightType]
   ]);
 
-  if (minMaxEnabled == 'true') {
+  if (minMaxEnabled === true) {
     classes.add([minWidth, minHeight, maxWidth, maxHeight]);
   }
 
