@@ -2,7 +2,7 @@ const Rows = [
   {
     visible: "globalGridOrFlexDisplayAs == 'grid'",
     id: "globalGridItemRowSpan",
-    ai: { name: "rowSpan", description: "Grid rows to span (auto or 1-12).", visible: "actAs == 'grid'" },
+    ai: { name: "rowSpan", description: "Grid rows to span (auto or 1-12)." },
     title: "Rows",
     format: "row-span-{{value}}",
     slider: {

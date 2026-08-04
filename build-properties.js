@@ -193,20 +193,40 @@ function transformIdsRecursively(control, transformer) {
  * is `{ exclude: true }` rather than a half-resolved alias — leaving that
  * property cleanly uncurated instead of emitting a broken name.
  *
+ * When the name is templated, a `description` override is applied only to the
+ * sibling whose existing description documents sibling pairing ("Pair with"),
+ * so color/opacity leaves keep their own copy. Prefix groups like Gallery's
+ * `thumbnail{{value}}` BoxShadow can then correct pair-alias vocabulary
+ * without rewriting every sibling.
+ *
  * @param {Object|undefined} existingAi - The control's own `ai` block, if any.
  * @param {Object} aiOverride - The `ai` override supplied by the parent.
  * @returns {Object} The resolved `ai` block to apply.
  */
 function mergeAiOverride(existingAi, aiOverride) {
-  const merged = { ...(existingAi || {}), ...aiOverride };
+  const nameIsTemplated =
+    typeof aiOverride.name === "string" && aiOverride.name.includes("{{value}}");
 
-  if (typeof aiOverride.name === "string" && aiOverride.name.includes("{{value}}")) {
-    const baseName = existingAi?.name;
-    if (!baseName) {
-      // Nothing to template from: don't leak a half-curated alias.
-      return { exclude: true, reason: `No base ai.name on this sibling to resolve the '${aiOverride.name}' template against.` };
-    }
-    merged.name = transformIdTemplate(aiOverride.name, baseName);
+  if (!nameIsTemplated) {
+    return { ...(existingAi || {}), ...aiOverride };
+  }
+
+  const baseName = existingAi?.name;
+  if (!baseName) {
+    // Nothing to template from: don't leak a half-curated alias.
+    return { exclude: true, reason: `No base ai.name on this sibling to resolve the '${aiOverride.name}' template against.` };
+  }
+
+  const { description: descriptionOverride, ...restOverride } = aiOverride;
+  const merged = { ...(existingAi || {}), ...restOverride };
+  merged.name = transformIdTemplate(aiOverride.name, baseName);
+
+  if (
+    typeof descriptionOverride === "string" &&
+    typeof existingAi?.description === "string" &&
+    existingAi.description.includes("Pair with")
+  ) {
+    merged.description = descriptionOverride;
   }
 
   return merged;

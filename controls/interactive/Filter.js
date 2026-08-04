@@ -16,7 +16,7 @@ const Filter = [
         visible: "globalFilterEnable == true",
         title: "Group",
         id: "globalFilterGroup",
-        ai: { name: "filterGroupMode", description: "How this item finds the filter group it belongs to: 'parent' uses its containing element, 'custom' uses filterGroupId.", values: ["parent", "custom"] },
+        ai: { name: "filterGroupMode", description: "How this item finds the filter group it belongs to: 'parent' uses its containing element, 'custom' uses filterGroupId." },
         responsive: false,
         segmented: {
             default: "parent",
@@ -36,7 +36,7 @@ const Filter = [
         visible: "globalFilterEnable == true && globalFilterGroup == 'custom'",
         title: "Group ID",
         id: "globalFilterCustomGroupId",
-        ai: { name: "filterGroupId", description: "Shared identifier linking this item to the Filter or Filter Tags element that controls it. Only used when filterGroupMode is 'custom'." },
+        ai: { name: "filterGroupId", description: "Shared identifier linking this item to the Filter or Filter Tags element that controls it." },
         responsive: false,
         text: {
             default: "unique-group-id"
@@ -46,7 +46,7 @@ const Filter = [
         visible: "globalFilterEnable == true",
         title: "Transition",
         id: "globalFilterTransition",
-        ai: { name: "filterTransition", description: "Animation played when this item is filtered in or out.", values: ["dim", "zoomOut", "slide"] },
+        ai: { name: "filterTransition", description: "Animation played when this item is filtered in or out." },
         responsive: false,
         select: {
             use: "TransitionNames"

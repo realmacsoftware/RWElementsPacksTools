@@ -2,7 +2,7 @@ const Reveals = [
   {
     title: "Mode",
     id: "revealScrub",
-    ai: { name: "scrub", description: "Playback mode. 'false' plays the animation once triggered; 'true' scrubs it to scroll position between triggerStart and triggerEnd. Values are the strings 'false' and 'true'." },
+    ai: { name: "scrub", description: "Playback mode: false plays the animation when triggered; true ties animation progress to scroll position between triggerStart and triggerEnd." },
     responsive: false,
     segmented: {
       default: false,
@@ -49,7 +49,7 @@ const Reveals = [
     visible: "revealAnimationName == 'rotate'",
     title: "Degrees",
     id: "revealDegrees",
-    ai: { name: "degrees", description: "Rotation amount in degrees. Only used by the 'rotate' animation." },
+    ai: { name: "degrees", description: "Rotation amount in degrees." },
     responsive: false,
     number: {
       default: "90"
@@ -138,7 +138,7 @@ const Reveals = [
     visible: "revealScrub == false",
     title: "Duration",
     id: "revealDuration",
-    ai: { name: "duration", description: "Animation duration in milliseconds. Ignored when scrub is 'true'." },
+    ai: { name: "duration", description: "Animation duration in milliseconds." },
     responsive: false,
     number: {
       default: 500
@@ -148,7 +148,7 @@ const Reveals = [
     visible: "revealScrub == false",
     title: "Delay",
     id: "revealDelay",
-    ai: { name: "delay", description: "Delay before the animation starts, in milliseconds. Ignored when scrub is 'true'." },
+    ai: { name: "delay", description: "Delay before the animation starts, in milliseconds." },
     responsive: false,
     number: {
       default: 0,

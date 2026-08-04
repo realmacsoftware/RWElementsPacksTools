@@ -33,6 +33,9 @@ pnpm-lock.yaml
 # Coverage
 coverage/
 
+# Audit reports
+audit/
+
 # Cursor
 .cursor/
 .cursor

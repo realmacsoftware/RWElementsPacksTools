@@ -8,7 +8,7 @@ const Rotate3D = [
     id: "globalTransformRotateX",
     ai: {
       name: "rotateX",
-      description: "3D rotation about the X axis, in degrees: tilts the top and bottom edges toward or away from the viewer. In hover and mouse modes rotateX is the start value and rotateXEnd the end value.",
+      description: "3D rotation about the X axis, in degrees: tilts the top and bottom edges toward or away from the viewer.",
     },
     format: "rotate-x-[{{value}}deg]",
     number: {
@@ -21,7 +21,7 @@ const Rotate3D = [
     id: "globalTransformRotateY",
     ai: {
       name: "rotateY",
-      description: "3D rotation about the Y axis, in degrees: swings the left and right edges toward or away from the viewer. In hover and mouse modes rotateY is the start value and rotateYEnd the end value.",
+      description: "3D rotation about the Y axis, in degrees: swings the left and right edges toward or away from the viewer.",
     },
     format: "rotate-y-[{{value}}deg]",
     number: {

@@ -26,7 +26,7 @@ const LayoutZIndex = [
     visible: "globalLayoutZIndexType == 'custom'",
     title: "",
     id: "globalLayoutZIndex",
-    ai: { name: "zIndex", description: "Custom z-index value, can be positive or negative.", visible: "zIndexType == 'custom'" },
+    ai: { name: "zIndex", description: "Custom z-index value, can be positive or negative." },
     format: "z-[{{value}}]",
     number: {
       default: 0,

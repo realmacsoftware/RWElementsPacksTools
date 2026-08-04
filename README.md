@@ -185,10 +185,12 @@ npx rw-build audit --core-packs ../MyCorePack/packs     # Custom core pack direc
 npx rw-build audit --out-dir ./reports/ai-audit         # Custom report output directory
 ```
 
-The audit writes a report directory containing:
+The audit writes to `audit/ai-block-coverage/` by default:
 - `AI-Audit-Index.md` — methodology, cross-repo summary and links
 - `AI-Audit-Report.md` — shared controls (ranked by impact) + core packs
 - `Packs/AI-Audit-<PackName>.md` — one file per pack in the additional roots
+
+Harness operations write their outputs as sibling folders under `audit/` (see `audit-harness/`).
 
 See `rw-build audit --help` for all options and env var overrides.
 

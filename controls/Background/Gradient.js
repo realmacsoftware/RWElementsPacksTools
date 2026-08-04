@@ -1,7 +1,7 @@
 const Gradient = [
   {
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
-    ai: { name: "bgGradientType", description: "Gradient type: linear, radial, or conic.", values: ["linear", "radial", "conic"], visible: "bg == 'static' && bgStyle == 'gradient'" },
+    ai: { name: "bgGradientType", description: "Gradient type: linear, radial, or conic.", visible: "bg == 'static' && bgStyle == 'gradient'" },
     title: "Type",
     id: "globalBgGradientType",
     responsive: false,
@@ -201,7 +201,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'gradient')",
-    ai: { name: "bgGradientTypeHover", description: "Hover-state gradient type: linear, radial, or conic.", values: ["linear", "radial", "conic"], visible: "bg == 'hover' && bgStyle == 'gradient'" },
+    ai: { name: "bgGradientTypeHover", description: "Hover-state gradient type: linear, radial, or conic.", visible: "bg == 'hover' && bgStyle == 'gradient'" },
     title: "Type",
     id: "globalBgGradientTypeEnd",
     responsive: false,

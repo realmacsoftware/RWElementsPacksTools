@@ -17,7 +17,7 @@ export const SVG = [
     },
     {
         visible: "globalBgType == 'svg'",
-        ai: { name: "bgSvgColor", description: "SVG fill theme color.", visible: "bgStyle == 'svg'" },
+        ai: { name: "bgSvgColor", description: "SVG fill theme color." },
         title: "Color",
         id: "globalBgSVGColor",
         format: "text-{{value}} [&>svg]:fill-current",
@@ -30,7 +30,7 @@ export const SVG = [
     },
     {
         visible: "globalBgType == 'svg'",
-        ai: { name: "bgSvgOpacity", description: "SVG opacity, 0-100.", visible: "bgStyle == 'svg'" },
+        ai: { name: "bgSvgOpacity", description: "SVG opacity, 0-100." },
         title: "Opacity",
         id: "globalBgSVGOpacity",
         format: "opacity-[{{value}}%]",
@@ -47,7 +47,7 @@ export const SVG = [
     },
     {
         visible: "globalBgType == 'svg'",
-        ai: { name: "bgSvgWidth", description: "SVG fixed width theme-size token.", visible: "bgStyle == 'svg'" },
+        ai: { name: "bgSvgWidth", description: "SVG fixed width theme-size token." },
         title: "Fixed",
         id: "globalBgSVGFixedWidth",
         format: "[&>svg]:w-{{value}}",
@@ -63,7 +63,7 @@ export const SVG = [
     },
     {
         visible: "globalBgType == 'svg'",
-        ai: { name: "bgSvgMaxWidth", description: "SVG max width theme-size token.", visible: "bgStyle == 'svg'" },
+        ai: { name: "bgSvgMaxWidth", description: "SVG max width theme-size token." },
         title: "Max",
         id: "globalBgSVGMaxWidth",
         format: "[&>svg]:max-w-{{value}}",
@@ -79,7 +79,7 @@ export const SVG = [
     },
     {
         visible: "globalBgType == 'svg'",
-        ai: { name: "bgSvgMinWidth", description: "SVG min width theme-size token.", visible: "bgStyle == 'svg'" },
+        ai: { name: "bgSvgMinWidth", description: "SVG min width theme-size token." },
         title: "Min",
         id: "globalBgSVGMinWidth",
         format: "[&>svg]:min-w-{{value}}",
@@ -99,7 +99,7 @@ export const SVG = [
     },
     {
         visible: "globalBgType == 'svg'",
-        ai: { name: "bgSvgHeight", description: "SVG fixed height theme-size token.", visible: "bgStyle == 'svg'" },
+        ai: { name: "bgSvgHeight", description: "SVG fixed height theme-size token." },
         title: "Fixed",
         id: "globalBgSVGFixedHeight",
         format: "[&>svg]:h-{{value}}",
@@ -114,7 +114,7 @@ export const SVG = [
     },
     {
         visible: "globalBgType == 'svg'",
-        ai: { name: "bgSvgMaxHeight", description: "SVG max height theme-size token.", visible: "bgStyle == 'svg'" },
+        ai: { name: "bgSvgMaxHeight", description: "SVG max height theme-size token." },
         title: "Max",
         id: "globalBgSVGMaxHeight",
         format: "[&>svg]:max-h-{{value}}",
@@ -129,7 +129,7 @@ export const SVG = [
     },
     {
         visible: "globalBgType == 'svg'",
-        ai: { name: "bgSvgMinHeight", description: "SVG min height theme-size token.", visible: "bgStyle == 'svg'" },
+        ai: { name: "bgSvgMinHeight", description: "SVG min height theme-size token." },
         title: "Min",
         id: "globalBgSVGMinHeight",
         format: "[&>svg]:min-h-{{value}}",
@@ -153,7 +153,7 @@ export const SVG = [
     },
     {
         visible: "globalBgType == 'svg'",
-        ai: { name: "bgSvgTop", description: "SVG offset from top.", visible: "bgStyle == 'svg'" },
+        ai: { name: "bgSvgTop", description: "SVG offset from top." },
         title: "Top",
         id: "globalBgSVGPositionTop",
         format: "[&>svg]:top-{{value}}",
@@ -168,7 +168,7 @@ export const SVG = [
     },
     {
         visible: "globalBgType == 'svg'",
-        ai: { name: "bgSvgRight", description: "SVG offset from right.", visible: "bgStyle == 'svg'" },
+        ai: { name: "bgSvgRight", description: "SVG offset from right." },
         title: "Right",
         id: "globalBgSVGPositionRight",
         format: "[&>svg]:right-{{value}}",
@@ -183,7 +183,7 @@ export const SVG = [
     },
     {
         visible: "globalBgType == 'svg'",
-        ai: { name: "bgSvgBottom", description: "SVG offset from bottom.", visible: "bgStyle == 'svg'" },
+        ai: { name: "bgSvgBottom", description: "SVG offset from bottom." },
         title: "Bottom",
         id: "globalBgSVGPositionBottom",
         format: "[&>svg]:bottom-{{value}}",
@@ -198,7 +198,7 @@ export const SVG = [
     },
     {
         visible: "globalBgType == 'svg'",
-        ai: { name: "bgSvgLeft", description: "SVG offset from left.", visible: "bgStyle == 'svg'" },
+        ai: { name: "bgSvgLeft", description: "SVG offset from left." },
         title: "Left",
         id: "globalBgSVGPositionLeft",
         format: "[&>svg]:left-{{value}}",
@@ -218,7 +218,7 @@ export const SVG = [
     },
     {
         visible: "globalBgType == 'svg'",
-        ai: { name: "bgSvgTranslateX", description: "SVG horizontal translate offset.", visible: "bgStyle == 'svg'" },
+        ai: { name: "bgSvgTranslateX", description: "SVG horizontal translate offset." },
         title: "X",
         id: "globalBgSVGTranslateX",
         format: "[&>svg]:translate-x-{{value}}",
@@ -233,7 +233,7 @@ export const SVG = [
     },
     {
         visible: "globalBgType == 'svg'",
-        ai: { name: "bgSvgTranslateY", description: "SVG vertical translate offset.", visible: "bgStyle == 'svg'" },
+        ai: { name: "bgSvgTranslateY", description: "SVG vertical translate offset." },
         title: "Y",
         id: "globalBgSVGTranslateY",
         format: "[&>svg]:translate-y-{{value}}",

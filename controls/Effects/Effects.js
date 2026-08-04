@@ -2,14 +2,13 @@ const Effects = [
     {
         globalControl: "ControlType",
         id: "{{value}}Effects",
-        ai: { name: "effects", description: "Enable/disable effects.", values: ["none", "static", "hover"] },
+        ai: { name: "effects", description: "Enable/disable effects." },
     },
     {
         visible: "globalControlTypeEffects == 'hover'",
         ai: {
             name: "effectsHoverTrigger",
-            description: "Which element's hover triggers the effects.",
-            visible: "effects == 'hover'",
+            description: "Which element's hover triggers the effects."
         },
         globalControl: "HoverGroup",
         id: "{{value}}Effects",
@@ -19,8 +18,7 @@ const Effects = [
             "globalControlTypeEffects == 'hover' && globalHoverGroupEffects == 'custom'",
         ai: {
             name: "effectsHoverTriggerId",
-            description: "ID of the element that triggers the hover effects (when trigger is 'custom').",
-            visible: "effects == 'hover' && effectsHoverTrigger == 'custom'",
+            description: "ID of the element that triggers the hover effects."
         },
         title: "ID",
         id: "globalHoverGroupCustomIdEffects",

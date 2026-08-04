@@ -108,7 +108,7 @@ const ButtonFontAndTextStyles = [
   {
     title: "Align",
     id: "globalButtonFontAndTextStylesTextAlign",
-    ai: { name: "align", description: "Label alignment within the button.", values: ["start", "center", "end"] },
+    ai: { name: "align", description: "Label alignment within the button." },
     format: "justify-{{value}}",
     segmented: {
       default: "center",

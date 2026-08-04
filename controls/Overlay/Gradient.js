@@ -1,7 +1,7 @@
 const Gradient = [
   {
     visible: "globalControlTypeOverlay == 'static' && globalOverlayType == 'gradient' || (globalControlTypeOverlay == 'hover' && globalOverlayState == 'start' && globalOverlayType == 'gradient')",
-    ai: { name: "overlayGradientType", description: "Gradient type: linear, radial, or conic.", values: ["linear", "radial", "conic"], visible: "overlay == 'static' && overlayStyle == 'gradient'" },
+    ai: { name: "overlayGradientType", description: "Gradient type: linear, radial, or conic.", visible: "overlay == 'static' && overlayStyle == 'gradient'" },
     title: "Type",
     id: "globalOverlayGradientType",
     responsive: false,
@@ -201,7 +201,7 @@ const Gradient = [
   },
   {
     visible: "(globalControlTypeOverlay == 'hover' && globalOverlayState == 'end' && globalOverlayType == 'gradient')",
-    ai: { name: "overlayGradientTypeHover", description: "Hover-state gradient type: linear, radial, or conic.", values: ["linear", "radial", "conic"], visible: "overlay == 'hover' && overlayStyle == 'gradient'" },
+    ai: { name: "overlayGradientTypeHover", description: "Hover-state gradient type: linear, radial, or conic.", visible: "overlay == 'hover' && overlayStyle == 'gradient'" },
     title: "Type",
     id: "globalOverlayGradientTypeEnd",
     responsive: false,

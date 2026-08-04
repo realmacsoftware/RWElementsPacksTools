@@ -2,14 +2,13 @@ const Filters = [
     {
         globalControl: "ControlType",
         id: "{{value}}Filters",
-        ai: { name: "filters", description: "Enable/disable filters.", values: ["none", "static", "hover"] },
+        ai: { name: "filters", description: "Enable/disable filters." },
     },
     {
         visible: "globalControlTypeFilters == 'hover'",
         ai: {
             name: "filtersHoverTrigger",
-            description: "Which element's hover triggers the filters.",
-            visible: "filters == 'hover'",
+            description: "Which element's hover triggers the filters."
         },
         globalControl: "HoverGroup",
         id: "{{value}}Filters",
@@ -19,8 +18,7 @@ const Filters = [
             "globalControlTypeFilters == 'hover' && globalHoverGroupFilters == 'custom'",
         ai: {
             name: "filtersHoverTriggerId",
-            description: "ID of the element that triggers the hover filters (when trigger is 'custom').",
-            visible: "filters == 'hover' && filtersHoverTrigger == 'custom'",
+            description: "ID of the element that triggers the hover filters."
         },
         title: "ID",
         id: "globalHoverGroupCustomIdFilters",

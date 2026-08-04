@@ -1,7 +1,7 @@
 export const Video = [
   {
     visible: "globalBgType == 'video'",
-    ai: { name: "bgVideo", description: "Background video resource ID.", visible: "bgStyle == 'video'" },
+    ai: { name: "bgVideo", description: "Background video resource ID." },
     title: "Video",
     id: "globalBgVideo",
     resource: { accepts: "video/*" },
@@ -13,7 +13,7 @@ export const Video = [
   },
   {
     visible: "globalBgType == 'video'",
-    ai: { name: "bgVideoAspectRatio", description: "Force a 16:9 aspect ratio on the container.", visible: "bgStyle == 'video'" },
+    ai: { name: "bgVideoAspectRatio", description: "Force a 16:9 aspect ratio on the container." },
     title: "Enable",
     responsive: false,
     id: "globalBgVideoAspectRatio",

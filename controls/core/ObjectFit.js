@@ -1,7 +1,7 @@
 const ObjectFit = {
     title: "Object Fit",
     id: "objectFit",
-    ai: { name: "objectFit", description: "How the image fills its box when cropped by aspect ratio." },
+    ai: { name: "objectFit", description: "How the image is resized within its box (CSS object-fit)." },
     format: "object-{{value}}",
     select: {
         default: "cover",

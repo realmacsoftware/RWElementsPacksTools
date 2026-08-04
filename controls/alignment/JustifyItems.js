@@ -4,7 +4,7 @@ const JustifyItems = {
     id: "justifyItems",
     ai: {
         name: "justifyItems",
-        description: "Default inline-axis alignment of each item within its own grid cell. Grid only; CSS ignores it on flex containers.",
+        description: "Default inline-axis alignment of each item within its area (CSS justify-items).",
     },
     select: {
         default: "normal",

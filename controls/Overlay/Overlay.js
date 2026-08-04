@@ -2,7 +2,7 @@ const Overlay = [
   {
     globalControl: "ControlType",
     id: "{{value}}Overlay",
-    ai: { name: "overlay", description: "Enable/disable overlay.", values: ["none", "static", "hover"] },
+    ai: { name: "overlay", description: "Enable/disable overlay." },
     segmented: {
       default: "none",
     },

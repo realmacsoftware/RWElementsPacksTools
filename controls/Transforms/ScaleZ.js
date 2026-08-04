@@ -4,7 +4,7 @@ const ScaleZ = [
     id: "globalTransformScaleZ",
     ai: {
       name: "scaleZ",
-      description: "Depth scale along the Z axis, in percent (100 = no change). Only has a visible effect combined with rotateX or rotateY. In hover and mouse modes scaleZ is the start value and scaleZEnd the end value.",
+      description: "Depth scale along the Z axis, in percent (100 = no change). Only has a visible effect combined with rotateX or rotateY.",
     },
     format: "scale-z-[{{value}}%]",
     number: {

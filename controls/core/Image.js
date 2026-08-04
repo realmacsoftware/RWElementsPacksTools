@@ -24,7 +24,7 @@ export const Image = [
     {
         title: "Mode",
         id: "imageMode",
-        ai: { name: "imageMode", description: "Light or dark mode variant being edited: 'light' or 'dark'." },
+        ai: { exclude: true, reason: "Inspector-only light/dark editing toggle; the light and dark source properties it switches between are curated separately." },
         segmented: {
             default: "light",
             items: [
@@ -91,7 +91,7 @@ export const Image = [
     },
     {
         visible: "imageType == 'cms' || imageType == 'custom'",
-        ai: { name: "alt", description: "Image alt text for accessibility/SEO. Only used for 'custom' and 'cms' image types.", visible: "imageType == 'custom' || imageType == 'cms'" },
+        ai: { name: "alt", description: "Image alt text for accessibility/SEO." },
         title: "Alt",
         id: "imageAlt",
         responsive: false,
