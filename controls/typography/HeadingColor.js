@@ -2,7 +2,7 @@ const HeadingColor = [
   {
     globalControl: "ControlType",
     id: "{{value}}Bg",
-    ai: { name: "bg", description: "Text color styling state: 'static' or 'hover'.", values: ["static", "hover"] },
+    ai: { name: "bg", description: "Text color styling state: 'static' or 'hover'." },
     segmented: {
       default: "static",
       items: [
@@ -49,8 +49,7 @@ const HeadingColor = [
     ai: {
         name: "bgHoverTrigger",
         description: "Which element's hover triggers the hover text color.",
-        values: ["self", "parent", "container", "grid", "flex"],
-        visible: "bg == 'hover'",
+        values: ["self", "parent", "container", "grid", "flex"]
     },
     globalControl: "HoverGroup",
     id: "{{value}}Bg",

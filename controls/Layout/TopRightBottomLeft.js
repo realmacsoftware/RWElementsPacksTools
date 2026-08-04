@@ -34,7 +34,7 @@ const LayoutTopRightBottomLeft = [
     visible: "globalLayoutTopRightBottomLeftType == 'individual'",
     title: "Top",
     id: "globalLayoutTop",
-    ai: { name: "top", description: "Top inset theme spacing value.", visible: "insetType == 'individual'" },
+    ai: { name: "top", description: "Top inset theme spacing value." },
     format: "top-{{value}}",
     themeSpacing: {
       mode: "single",
@@ -49,7 +49,7 @@ const LayoutTopRightBottomLeft = [
     visible: "globalLayoutTopRightBottomLeftType == 'individual'",
     title: "Right",
     id: "globalLayoutRight",
-    ai: { name: "right", description: "Right inset theme spacing value.", visible: "insetType == 'individual'" },
+    ai: { name: "right", description: "Right inset theme spacing value." },
     format: "right-{{value}}",
     themeSpacing: {
       mode: "single",
@@ -64,7 +64,7 @@ const LayoutTopRightBottomLeft = [
     visible: "globalLayoutTopRightBottomLeftType == 'individual'",
     title: "Bottom",
     id: "globalLayoutBottom",
-    ai: { name: "bottom", description: "Bottom inset theme spacing value.", visible: "insetType == 'individual'" },
+    ai: { name: "bottom", description: "Bottom inset theme spacing value." },
     format: "bottom-{{value}}",
     themeSpacing: {
       mode: "single",
@@ -79,7 +79,7 @@ const LayoutTopRightBottomLeft = [
     visible: "globalLayoutTopRightBottomLeftType == 'individual'",
     title: "Left",
     id: "globalLayoutLeft",
-    ai: { name: "left", description: "Left inset theme spacing value.", visible: "insetType == 'individual'" },
+    ai: { name: "left", description: "Left inset theme spacing value." },
     format: "left-{{value}}",
     themeSpacing: {
       mode: "single",

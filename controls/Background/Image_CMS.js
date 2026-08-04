@@ -1,7 +1,7 @@
 export const ImageCMS = [
     {
         visible: "globalBgType == 'image'",
-        ai: { name: "bgImageSource", description: "Where the background image comes from: a project resource or a CMS field.", visible: "bgStyle == 'image'" },
+        ai: { name: "bgImageSource", description: "Where the background image comes from: a project resource or a CMS field." },
         title: "Type",
         id: "globalBgImageType",
         segmented: {
@@ -290,7 +290,7 @@ export const ImageCMS = [
     },
     {
         visible: "globalBgType == 'image'",
-        ai: { name: "bgImageFetchPriority", description: "Image fetch priority: auto, high, or low.", visible: "bgStyle == 'image'" },
+        ai: { name: "bgImageFetchPriority", description: "Image fetch priority: auto, high, or low." },
         title: "Value",
         id: "globalBgImageFetchPriority",
         responsive: false,

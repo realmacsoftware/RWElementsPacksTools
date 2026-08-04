@@ -34,7 +34,7 @@ const TimingFunction = [
     visible: "globalTransitionsTimingFunction == 'custom'",
     title: "Cubic Bezier",
     id: "globalTransitionsTimingFunctionCustom",
-    ai: { name: "timingFunctionCustom", description: "Custom cubic-bezier value as 'x1,y1,x2,y2'.", visible: "timingFunction == 'custom'" },
+    ai: { name: "timingFunctionCustom", description: "Custom cubic-bezier value as 'x1,y1,x2,y2'." },
     format: "ease-[cubic-bezier({{value}})]",
     input: {
       default: "0.95,0.05,0.795,0.035",

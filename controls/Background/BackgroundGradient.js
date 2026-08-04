@@ -6,9 +6,7 @@ const BackgroundGadient = [
         ai: {
             name: "bgGradientType",
             description: "Gradient type: linear, radial, or conic.",
-            values: ["linear", "radial", "conic"],
-            visible: "true",
-        },
+            visible: "true" },
         responsive: false,
         segmented: {
             use: "GradientType",

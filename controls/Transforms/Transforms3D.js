@@ -2,7 +2,7 @@ const Transforms3D = [
     {
         globalControl: "ControlType",
         id: "{{value}}3D",
-        ai: { name: "transforms3d", description: "Enable/disable 3D transforms.", values: ["none", "static", "hover", "mouse"] },
+        ai: { name: "transforms3d", description: "Enable/disable 3D transforms." },
         segmented: {
             default: "none",
             items: [
@@ -30,8 +30,7 @@ const Transforms3D = [
             "globalControlType3D == 'hover' || globalControlType3D == 'mouse'",
         ai: {
             name: "transforms3dHoverTrigger",
-            description: "Which element's hover or mouse movement triggers the 3D transforms.",
-            visible: "transforms3d == 'hover' || transforms3d == 'mouse'",
+            description: "Which element's hover or mouse movement triggers the 3D transforms."
         },
         globalControl: "HoverGroup",
         id: "{{value}}3D",
@@ -41,8 +40,7 @@ const Transforms3D = [
             "(globalControlType3D == 'hover' || globalControlType3D == 'mouse') && globalHoverGroup3D == 'custom'",
         ai: {
             name: "transforms3dHoverTriggerId",
-            description: "ID of the element that triggers the 3D transforms (when trigger is 'custom').",
-            visible: "(transforms3d == 'hover' || transforms3d == 'mouse') && transforms3dHoverTrigger == 'custom'",
+            description: "ID of the element that triggers the 3D transforms."
         },
         title: "ID",
         id: "globalHoverGroupCustomId3D",

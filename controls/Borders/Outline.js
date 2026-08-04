@@ -2,7 +2,7 @@ export const Outline = [
   {
     title: "Type",
     id: "globalControlTypeOutline",
-    ai: { name: "outline", description: "Enable/disable outline. 'static' always shows it; 'focus' styles the unfocused and focused states separately.", values: ["none", "static", "focus"] },
+    ai: { name: "outline", description: "Enable/disable outline. 'static' always shows it; 'focus' styles the unfocused and focused states separately." },
     responsive: false,
     segmented: {
       default: "none",
@@ -24,7 +24,6 @@ export const Outline = [
   },
   {
     visible: "globalControlTypeOutline != 'none'",
-    ai: { visible: "outline != 'none'" },
     globalControl: "OutlineStyle",
   },
   {

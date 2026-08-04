@@ -68,6 +68,7 @@ export { default as HTMLTag } from "./core/HTMLTag.js";
 export { default as HoverGroup } from "./core/HoverGroup.js";
 export { default as ID } from "./core/ID.js";
 export { default as Image } from "./core/Image.js";
+export { default as PosterImage } from "./core/PosterImage.js";
 export { default as MenuItem } from "./core/MenuItem.js";
 export { default as ObjectFit } from "./core/ObjectFit.js";
 export { default as ObjectPosition } from "./core/ObjectPosition.js";
@@ -112,6 +113,7 @@ export { default as Link } from "./interactive/Link.js";
 // LAYOUT
 // =============================================================================
 export { default as AspectRatio } from "./Layout/AspectRatio.js";
+export { default as AspectRatioVideo } from "./Layout/AspectRatioVideo.js";
 export { default as Container } from "./Layout/Container.js";
 export { default as Hidden } from "./Layout/Hidden.js";
 export { default as Inset } from "./Layout/Inset.js";

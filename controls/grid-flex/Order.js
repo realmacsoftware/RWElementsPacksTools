@@ -35,7 +35,7 @@ const Order = [
     visible: "globalGridOrFlexDisplayAs != 'default' && globalGridOrFlexItemSettings == 'advanced' && globalGridOrFlexItemOrder == 'custom'",
     ai: {
       name: "orderCustom",
-      description: "Explicit CSS order value, used when order is 'custom'. Lower numbers come first; sibling items must also set an order for it to have an effect.",
+      description: "Explicit CSS order value. Lower numbers come first; sibling items must also set an order for it to have an effect.",
       visible: "actAs != 'default' && order == 'custom'",
     },
     title: "Custom",

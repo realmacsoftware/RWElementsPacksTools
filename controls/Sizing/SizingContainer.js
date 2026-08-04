@@ -38,7 +38,7 @@ const SizingContainer = [
     visible: "globalWidthType == 'theme'",
     globalControl: "Width",
     title: "",
-    ai: { name: "widthSize", description: "Width theme-size token, used when widthMode is 'theme'." }
+    ai: { name: "widthSize", description: "Width theme-size token." }
   },
   {
     title: "Height",
@@ -71,7 +71,7 @@ const SizingContainer = [
     visible: "globalHeightType == 'theme'",
     globalControl: "Height",
     title: "",
-    ai: { name: "heightSize", description: "Height theme-size token, used when heightMode is 'theme'." }
+    ai: { name: "heightSize", description: "Height theme-size token." }
   },
   {
     divider: {}

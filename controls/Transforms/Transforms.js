@@ -2,14 +2,13 @@ const Transforms = [
     {
         globalControl: "ControlType",
         id: "{{value}}Transforms",
-        ai: { name: "transforms", description: "Enable/disable transforms.", values: ["none", "static", "hover"] },
+        ai: { name: "transforms", description: "Enable/disable transforms." },
     },
     {
         visible: "globalControlTypeTransforms == 'hover'",
         ai: {
             name: "transformsHoverTrigger",
-            description: "Which element's hover triggers the transforms.",
-            visible: "transforms == 'hover'",
+            description: "Which element's hover triggers the transforms."
         },
         globalControl: "HoverGroup",
         id: "{{value}}Transforms",
@@ -19,8 +18,7 @@ const Transforms = [
             "globalControlTypeTransforms == 'hover' && globalHoverGroupTransforms == 'custom'",
         ai: {
             name: "transformsHoverTriggerId",
-            description: "ID of the element that triggers the hover transforms (when trigger is 'custom').",
-            visible: "transforms == 'hover' && transformsHoverTrigger == 'custom'",
+            description: "ID of the element that triggers the hover transforms."
         },
         title: "ID",
         id: "globalHoverGroupCustomIdTransforms",

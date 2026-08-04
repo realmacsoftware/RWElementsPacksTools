@@ -2,7 +2,7 @@ const ControlType =
 {
   title: "Type",
   id: "globalControlType",
-  ai: { name: "styling", description: "Styling mode: 'none' disables, 'static' always applies, 'hover' styles start and hover states separately.", values: ["none", "static", "hover"] },
+  ai: { name: "styling", description: "Styling mode: 'none' disables, 'static' always applies, 'hover' styles start and hover states separately." },
   responsive: false,
   segmented: {
     default: "none",

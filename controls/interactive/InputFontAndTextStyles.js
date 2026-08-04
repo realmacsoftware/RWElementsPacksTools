@@ -45,7 +45,7 @@ const InputFontAndTextStyles = [
     {
       title: "Align",
       id: "globalInputFontAndTextStylesTextAlign",
-      ai: { name: "align", description: "Text alignment inside the input field.", values: ["start", "center", "end"] },
+      ai: { name: "align", description: "Text alignment inside the input field." },
       format: "text-{{value}}",
       segmented: {
         default: "start",
