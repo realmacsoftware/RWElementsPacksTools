@@ -240,8 +240,11 @@ const globalBgImage = (app, args) => {
     const hasPrefix = (args?.prefix && args?.prefixCallback) || false;
     const prefixCallback = args?.prefixCallback || (() => {});
 
+    const hasImage = Boolean(resource?.image);
+    const hasImageEnd = Boolean(resourceEnd?.image);
+
     const classes = classnames().add([
-        `bg-[url(${resource?.image})]`,
+        hasImage ? `bg-[url(${resource.image})]` : "",
         size,
         repeat,
         position,
@@ -250,21 +253,23 @@ const globalBgImage = (app, args) => {
     if (controlType == "hover") {
         if (wantsPeer) {
             classes.add([
-                `peer-hover:bg-[url(${resourceEnd?.image})]`,
+                hasImageEnd ? `peer-hover:bg-[url(${resourceEnd.image})]` : "",
                 sizeEnd.replace(/hover:/g, "peer-hover:"),
                 repeatEnd.replace(/hover:/g, "peer-hover:"),
                 positionEnd.replace(/hover:/g, "peer-hover:"),
             ]);
         } else if (hasPrefix) {
             classes.add([
-                prefixCallback(`bg-[url(${resourceEnd?.image})]`, args.prefix),
+                hasImageEnd
+                    ? prefixCallback(`bg-[url(${resourceEnd.image})]`, args.prefix)
+                    : "",
                 prefixCallback(sizeEnd.replace(/hover:/g, ""), args.prefix),
                 prefixCallback(repeatEnd.replace(/hover:/g, ""), args.prefix),
                 prefixCallback(positionEnd.replace(/hover:/g, ""), args.prefix),
             ]);
         } else {
             classes.add([
-                `hover:bg-[url(${resourceEnd?.image})]`,
+                hasImageEnd ? `hover:bg-[url(${resourceEnd.image})]` : "",
                 sizeEnd,
                 repeatEnd,
                 positionEnd,
@@ -273,7 +278,7 @@ const globalBgImage = (app, args) => {
 
         if (wantsActive) {
             classes.add([
-                `data-[active=true]:bg-[url(${resourceEnd?.image})]`,
+                hasImageEnd ? `data-[active=true]:bg-[url(${resourceEnd.image})]` : "",
                 sizeEnd.replace(/hover:/g, "data-[active=true]:"),
                 repeatEnd.replace(/hover:/g, "data-[active=true]:"),
                 positionEnd.replace(/hover:/g, "data-[active=true]:"),
@@ -282,7 +287,7 @@ const globalBgImage = (app, args) => {
 
         if (wantsFocus) {
             classes.add([
-                `focus:bg-[url(${resourceEnd?.image})]`,
+                hasImageEnd ? `focus:bg-[url(${resourceEnd.image})]` : "",
                 sizeEnd.replace(/hover:/g, "focus:"),
                 repeatEnd.replace(/hover:/g, "focus:"),
                 positionEnd.replace(/hover:/g, "focus:"),
