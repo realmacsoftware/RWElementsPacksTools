@@ -13,7 +13,7 @@ const TimingFunction = [
         },
         {
           title: "Linear",
-          value: "linear",
+          value: "ease-linear",
         },
         {
           title: "Ease-in",

@@ -103,17 +103,18 @@ const GradientContainer = [
     ai: { name: "bgGradientViaEnabled", description: "Add a mid-stop (via) color to the gradient.", visible: "bg == 'static' && bgStyle == 'gradient'" },
     title: "Add Via",
     id: "globalBgGradientViaEnabled",
+    responsive: false,
     switch: {
       default: false,
     },
   },
   {
-    visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient') && globalBgGradientViaEnabled == true",
+    visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientViaEnabled == true",
     heading: {},
     title: "Via",
   },
   {
-    visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient') && globalBgGradientViaEnabled == true",
+    visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientViaEnabled == true",
     ai: { name: "bgGradientVia", description: "Gradient mid-stop theme color.", visible: "bg == 'static' && bgStyle == 'gradient' && bgGradientViaEnabled == true" },
     title: "Color",
     id: "globalBgGradientViaColor",
@@ -126,7 +127,7 @@ const GradientContainer = [
     },
   },
   {
-    visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient') && globalBgGradientViaEnabled == true",
+    visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientViaEnabled == true",
     ai: { name: "bgGradientViaOpacity", description: "Gradient mid-stop color opacity, 0-100.", visible: "bg == 'static' && bgStyle == 'gradient' && bgGradientViaEnabled == true" },
     title: "Opacity",
     id: "globalBgGradientViaOpacity",
@@ -139,7 +140,7 @@ const GradientContainer = [
     },
   },
   {
-    visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient') && globalBgGradientViaEnabled == true",
+    visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientViaEnabled == true",
     ai: { name: "bgGradientViaPosition", description: "Gradient mid-stop position, 0-100.", visible: "bg == 'static' && bgStyle == 'gradient' && bgGradientViaEnabled == true" },
     title: "Position",
     id: "globalBgGradientViaPosition",
@@ -293,6 +294,7 @@ const GradientContainer = [
     ai: { name: "bgGradientViaEnabledHover", description: "Add a mid-stop (via) color to the hover-state gradient.", visible: "bg == 'hover' && bgStyle == 'gradient'" },
     title: "Add Via",
     id: "globalBgGradientViaEnabledEnd",
+    responsive: false,
     switch: {
       default: false,
     },

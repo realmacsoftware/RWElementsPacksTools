@@ -32,6 +32,7 @@ const SizingInput = [
   {
     title: "Enable",
     id: "globalSizingMinMaxEnabled",
+    responsive: false,
     switch: {
       default: false
     }
