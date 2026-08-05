@@ -70,7 +70,11 @@ const Effects = [
     {
         visible:
             "(globalControlTypeEffects == 'hover' && globalEffectsState == 'end')",
-        ai: { name: "{{value}}Hover", visible: "effects == 'hover'" },
+        ai: {
+            name: "{{value}}Hover",
+            description: "Hover-state box shadow size, a theme shadow token. Pair with boxShadowColorHover and boxShadowOpacityHover.",
+            visible: "effects == 'hover'"
+        },
         globalControl: "BoxShadow",
         id: "{{value}}End",
         format: "hover:{{value}}",
