@@ -85,7 +85,7 @@ const globalOverlayGradient = (app, prefix) => {
     toPosition,
   ])
 
-  if (viaEnabled == 'true') {
+  if (switchToBool(viaEnabled) === true) {
     classes.add([
       viaColor,
       viaOpacity,
@@ -104,7 +104,7 @@ const globalOverlayGradient = (app, prefix) => {
       `${prefix}:${toPositionEnd}`,
     ])
 
-    if (viaEnabledEnd == 'true') {
+    if (switchToBool(viaEnabledEnd) === true) {
       classes.add([
         injectPrefixOnDarkModeColors(prefix, `${prefix}:${viaColorEnd}`),
         `${prefix}:${viaOpacityEnd}`,

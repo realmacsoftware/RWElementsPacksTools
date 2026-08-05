@@ -5,7 +5,7 @@ const globalSpacing = (app) => {
     globalPadding: padding,
   } = app.props;
 
-  if (enabled === false) {
+  if (switchToBool(enabled) === false) {
     return false;
   }
 

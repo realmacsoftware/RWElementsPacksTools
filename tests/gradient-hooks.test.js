@@ -78,6 +78,7 @@ const { globalBgGradient } = loadHook(
   [
     "../shared-hooks/core/classnames.js",
     "../shared-hooks/core/gradientClasses.js",
+    "../shared-hooks/core/switchToBool.js",
     "../shared-hooks/background/globalBackground.js",
   ],
 );
@@ -88,6 +89,7 @@ const { globalOverlayGradient } = loadHook(
     "../shared-hooks/core/classnames.js",
     "../shared-hooks/core/gradientClasses.js",
     "../shared-hooks/core/injectPrefixOnDarkModeColors.js",
+    "../shared-hooks/core/switchToBool.js",
     "../shared-hooks/effects/globalOverlay.js",
   ],
 );
@@ -185,6 +187,38 @@ test("global background hover gradients include hover via stops when enabled", (
   assert.match(classes, /hover:via-brand-400/);
 });
 
+test("global background gradients include via stops for legacy string switch values", () => {
+  const classes = globalBgGradient({
+    props: baseBackgroundProps({
+      globalBgGradientViaEnabled: "true",
+    }),
+  });
+
+  assert.match(classes, /\bvia-brand-400\/\(--bgGradientViaOpacity\)/);
+  assert.match(classes, /\bvia-50%/);
+});
+
+test("global background gradients omit via stops for legacy string switch values", () => {
+  const classes = globalBgGradient({
+    props: baseBackgroundProps({
+      globalBgGradientViaEnabled: "false",
+    }),
+  });
+
+  assert.doesNotMatch(classes, /\bvia-/);
+});
+
+test("global background hover gradients include hover via stops for legacy string switch values", () => {
+  const classes = globalBgGradient({
+    props: baseBackgroundProps({
+      globalControlTypeBg: "hover",
+      globalBgGradientViaEnabledEnd: "true",
+    }),
+  });
+
+  assert.match(classes, /hover:via-brand-400/);
+});
+
 test("global background hover gradients normalize legacy values before replacing variants", () => {
   const classes = globalBgGradient(
     {
@@ -250,6 +284,34 @@ test("overlay gradients use selected type-specific conic direction values", () =
 
   assert.match(classes, /\bbg-conic-180\/shorter\b/);
   assert.doesNotMatch(classes, /\bbg-linear-to-b\b/);
+});
+
+test("overlay gradients include via stops for string and boolean switch values", () => {
+  const stringClasses = globalOverlayGradient(
+    { props: baseOverlayProps({ globalOverlayGradientViaEnabled: "true" }) },
+    "group-hover",
+  );
+  const booleanClasses = globalOverlayGradient(
+    { props: baseOverlayProps({ globalOverlayGradientViaEnabled: true }) },
+    "group-hover",
+  );
+
+  assert.match(stringClasses, /\bvia-brand-400\/\(--overlayGradientViaOpacity\)/);
+  assert.match(booleanClasses, /\bvia-brand-400\/\(--overlayGradientViaOpacity\)/);
+});
+
+test("overlay gradients omit via stops for string and boolean switch values", () => {
+  const stringClasses = globalOverlayGradient(
+    { props: baseOverlayProps() },
+    "group-hover",
+  );
+  const booleanClasses = globalOverlayGradient(
+    { props: baseOverlayProps({ globalOverlayGradientViaEnabled: false }) },
+    "group-hover",
+  );
+
+  assert.doesNotMatch(stringClasses, /\bvia-/);
+  assert.doesNotMatch(booleanClasses, /\bvia-/);
 });
 
 test("overlay gradients keep stop opacity on light and dark color variants", () => {

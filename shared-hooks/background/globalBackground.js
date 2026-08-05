@@ -110,7 +110,7 @@ const globalBgGradient = (app, args) => {
         toPosition,
     ]);
 
-    if (viaEnabled === true) {
+    if (switchToBool(viaEnabled) === true) {
         classes.add([viaColor, viaOpacity, viaPosition]);
     }
 
@@ -173,7 +173,7 @@ const globalBgGradient = (app, args) => {
             ]);
         }
 
-        if (viaEnabledEnd === true) {
+        if (switchToBool(viaEnabledEnd) === true) {
             if (wantsPeer) {
                 classes.add([
                     viaColorEnd.replace(/hover:/g, "peer-hover:"),

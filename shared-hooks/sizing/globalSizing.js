@@ -11,7 +11,7 @@ const globalSizing = (app) => {
 
   const classes = classnames([width, height]);
 
-  if (minMaxEnabled === true) {
+  if (switchToBool(minMaxEnabled) === true) {
     classes.add([minWidth, minHeight, maxWidth, maxHeight]);
   }
 
