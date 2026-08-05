@@ -110,7 +110,6 @@ const Transforms3D = [
     {
         visible:
             "globalControlType3D == 'static' || ((globalControlType3D == 'hover' || globalControlType3D == 'mouse') && globalTransforms3DState == 'start')",
-        ai: { visible: "transforms3d != 'none'" },
         globalControl: "Rotate3D",
     },
     {

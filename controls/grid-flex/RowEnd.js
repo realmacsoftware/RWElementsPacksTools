@@ -1,6 +1,6 @@
 const RowEnd = {
   id: "globalGridItemRowEnd",
-  ai: { name: "rowEnd", description: "Grid row end line (auto or 1-13).", visible: "actAs == 'grid'" },
+  ai: { name: "rowEnd", description: "Grid row end line (auto or 1-13).", visible: "actAs == 'grid' && itemSettings == 'advanced'" },
   format: "row-end-{{value}}",
   title: "End",
   slider: {

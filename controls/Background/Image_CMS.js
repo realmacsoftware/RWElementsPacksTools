@@ -21,7 +21,7 @@ export const ImageCMS = [
     {
         visible:
             "globalBgImageType == 'cms' && (globalControlTypeBg == 'static' && globalBgType == 'image' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'image'))",
-        ai: { name: "bgImageCmsField", description: "CMS field template resolving to the background image URL, e.g. {{item.image.src}}.", visible: "bg == 'static' && bgStyle == 'image' && bgImageSource == 'cms'" },
+        ai: { name: "bgImageCmsField", description: "CMS field template resolving to the background image URL, e.g. {{item.image.src}}.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'image' && bgImageSource == 'cms'" },
         title: "Field",
         id: "globalBgImageCmsField",
         text: {
@@ -31,7 +31,7 @@ export const ImageCMS = [
     {
         visible:
             "globalBgImageType == 'resource' && (globalControlTypeBg == 'static' && globalBgType == 'image' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'image'))",
-        ai: { name: "bgImage", description: "Background image resource ID.", visible: "bg == 'static' && bgStyle == 'image' && bgImageSource == 'resource'" },
+        ai: { name: "bgImage", description: "Background image resource ID.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'image' && bgImageSource == 'resource'" },
         title: "Image",
         id: "globalBgImageResource",
         resource: { accepts: "image/*", excludes: ".svg" },
@@ -39,7 +39,7 @@ export const ImageCMS = [
     {
         visible:
             "globalControlTypeBg == 'static' && globalBgType == 'image' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'image')",
-        ai: { name: "bgImagePosition", description: "Background image position.", visible: "bg == 'static' && bgStyle == 'image'" },
+        ai: { name: "bgImagePosition", description: "Background image position.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'image'" },
         title: "Position",
         id: "globalBgImagePosition",
         format: "bg-{{value}}",
@@ -94,7 +94,7 @@ export const ImageCMS = [
     {
         visible:
             "globalControlTypeBg == 'static' && globalBgType == 'image' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'image')",
-        ai: { name: "bgImageSize", description: "Background image size (auto/cover/contain).", visible: "bg == 'static' && bgStyle == 'image'" },
+        ai: { name: "bgImageSize", description: "Background image size (auto/cover/contain).", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'image'" },
         title: "Size",
         id: "globalBgImageSize",
         format: "bg-{{value}}",
@@ -119,7 +119,7 @@ export const ImageCMS = [
     {
         visible:
             "globalControlTypeBg == 'static' && globalBgType == 'image' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'image')",
-        ai: { name: "bgImageRepeat", description: "Background image repeat mode.", visible: "bg == 'static' && bgStyle == 'image'" },
+        ai: { name: "bgImageRepeat", description: "Background image repeat mode.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'image'" },
         title: "Repeat",
         id: "globalBgImageRepeat",
         format: "bg-{{value}}",

@@ -75,13 +75,11 @@ const Transforms = [
     {
         visible:
             "globalControlTypeTransforms == 'static' || (globalControlTypeTransforms == 'hover' && globalTransformsState == 'start')",
-        ai: { visible: "transforms != 'none'" },
         globalControl: "Translate",
     },
     {
         visible:
             "globalControlTypeTransforms == 'static' || (globalControlTypeTransforms == 'hover' && globalTransformsState == 'start')",
-        ai: { visible: "transforms != 'none'" },
         globalControl: "Skew",
     },
 

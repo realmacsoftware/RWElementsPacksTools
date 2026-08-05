@@ -24,7 +24,7 @@ const FlexItem = [
   },
   {
     visible: "globalGridOrFlexDisplayAs == 'flex' && globalGridOrFlexItemSettings == 'advanced'",
-    ai: { name: "flex", description: "CSS flex shorthand: auto, none, 1, or initial.", visible: "actAs == 'flex'" },
+    ai: { name: "flexShorthand", description: "CSS flex shorthand: auto, none, 1, or initial.", visible: "actAs == 'flex' && itemSettings == 'advanced'" },
     title: "Flex",
     id: "globalFlexItemFlex",
     format: "flex-{{value}}",
@@ -52,7 +52,7 @@ const FlexItem = [
   },
   {
     visible: "globalGridOrFlexDisplayAs == 'flex' && globalGridOrFlexItemSettings == 'advanced'",
-    ai: { name: "flexGrow", description: "Whether the item grows to fill free space.", visible: "actAs == 'flex'" },
+    ai: { name: "flexGrow", description: "Whether the item grows to fill free space.", visible: "actAs == 'flex' && itemSettings == 'advanced'" },
     title: "Grow",
     id: "globalFlexItemGrow",
     segmented: {
@@ -75,7 +75,7 @@ const FlexItem = [
   },
   {
     visible: "globalGridOrFlexDisplayAs == 'flex' && globalGridOrFlexItemSettings == 'advanced'",
-    ai: { name: "flexShrink", description: "Whether the item can shrink below its basis.", visible: "actAs == 'flex'" },
+    ai: { name: "flexShrink", description: "Whether the item can shrink below its basis.", visible: "actAs == 'flex' && itemSettings == 'advanced'" },
     title: "Shrink",
     id: "globalFlexItemShrink",
     segmented: {
@@ -98,7 +98,7 @@ const FlexItem = [
   },
   {
     visible: "globalGridOrFlexDisplayAs == 'flex' && globalGridOrFlexItemSettings == 'advanced'",
-    ai: { name: "flexBasis", description: "Initial main-axis size (flex-basis), theme-size token.", visible: "actAs == 'flex'" },
+    ai: { name: "flexBasis", description: "Initial main-axis size (flex-basis), theme-size token.", visible: "actAs == 'flex' && itemSettings == 'advanced'" },
     title: "Basis",
     id: "globalFlexItemBasis",
     format: "basis-{{value}}",

@@ -204,6 +204,14 @@ function transformIdsRecursively(control, transformer) {
  * @returns {Object} The resolved `ai` block to apply.
  */
 function mergeAiOverride(existingAi, aiOverride) {
+  // Explicit exclusion wins: drop curated name/description/visible noise.
+  if (existingAi?.exclude === true || aiOverride?.exclude === true) {
+    return {
+      exclude: true,
+      reason: aiOverride.reason || existingAi?.reason,
+    };
+  }
+
   const nameIsTemplated =
     typeof aiOverride.name === "string" && aiOverride.name.includes("{{value}}");
 

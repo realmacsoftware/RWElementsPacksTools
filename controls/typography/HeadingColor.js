@@ -76,7 +76,7 @@ const HeadingColor = [
   },
   {
     visible: "globalControlTypeBg == 'static' && globalBgType == 'color' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'color')",
-    ai: { visible: "bg == 'static'" },
+    ai: { visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'color'" },
     globalControl: "TextColor",
     default: {
       name: "text",
@@ -85,7 +85,7 @@ const HeadingColor = [
   },
   {
     visible: "globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'color'",
-    ai: { name: "colorHover", description: "Text hover-state theme color.", visible: "bg == 'hover'" },
+    ai: { name: "colorHover", description: "Text hover-state theme color.", visible: "bg == 'hover' && bgStyle == 'color'" },
     title: "Color",
     id: "globalTextColorHover",
     format: "text-{{value}}/(--textColorOpacityHover)",
@@ -98,7 +98,7 @@ const HeadingColor = [
   },
   {
     visible: "globalControlTypeBg == 'hover' && globalBgState == 'end' && globalBgType == 'color'",
-    ai: { name: "colorOpacityHover", description: "Text hover-state color opacity, 0-100.", visible: "bg == 'hover'" },
+    ai: { name: "colorOpacityHover", description: "Text hover-state color opacity, 0-100.", visible: "bg == 'hover' && bgStyle == 'color'" },
     title: "Opacity",
     id: "globalTextColorOpacityHover",
     responsive: false,

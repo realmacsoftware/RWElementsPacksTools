@@ -30,22 +30,22 @@ export const BordersContainer = [
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
-    ai: { visible: "border == 'static'" },
+    ai: { visible: "(border == 'static' || border == 'hover')" },
     globalControl: "BorderStyle",
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
-    ai: { visible: "border == 'static'" },
+    ai: { visible: "(border == 'static' || border == 'hover')" },
     globalControl: "BorderColor",
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
-    ai: { visible: "border == 'static'" },
+    ai: { visible: "(border == 'static' || border == 'hover')" },
     globalControl: "BorderWidth",
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
-    ai: { name: "borderRadius", description: "Border radius theme token per corner.", visible: "border == 'static'" },
+    ai: { name: "borderRadius", description: "Border radius theme token per corner.", visible: "(border == 'static' || border == 'hover')" },
     title: "Radius",
     id: "globalBordersRadius",
     format: "{{value}}",

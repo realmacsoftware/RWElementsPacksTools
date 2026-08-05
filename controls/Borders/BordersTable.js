@@ -30,17 +30,17 @@ export const BordersTable = [
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
-    ai: { visible: "border == 'static'" },
+    ai: { visible: "(border == 'static' || border == 'hover')" },
     globalControl: "BorderStyle",
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
-    ai: { visible: "border == 'static'" },
+    ai: { visible: "(border == 'static' || border == 'hover')" },
     globalControl: "BorderColor",
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
-    ai: { visible: "border == 'static'" },
+    ai: { visible: "(border == 'static' || border == 'hover')" },
     globalControl: "BorderWidth",
   },
   {

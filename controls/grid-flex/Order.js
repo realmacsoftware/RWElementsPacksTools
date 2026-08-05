@@ -4,7 +4,7 @@ const Order = [
     ai: {
       name: "order",
       description: "Position of this item among its siblings: 'none' (source order), 'first', 'last', or 'custom' (use orderCustom).",
-      visible: "actAs != 'default'",
+      visible: "actAs != 'default' && itemSettings == 'advanced'",
     },
     title: "Order",
     id: "globalGridOrFlexItemOrder",
@@ -36,7 +36,7 @@ const Order = [
     ai: {
       name: "orderCustom",
       description: "Explicit CSS order value. Lower numbers come first; sibling items must also set an order for it to have an effect.",
-      visible: "actAs != 'default' && order == 'custom'",
+      visible: "actAs != 'default' && itemSettings == 'advanced' && order == 'custom'",
     },
     title: "Custom",
     id: "globalGridOrFlexItemOrderCustom",

@@ -2,7 +2,7 @@ export const SVG = [
     {
         visible:
             "globalControlTypeBg == 'static' && globalBgType == 'svg' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'svg')",
-        ai: { name: "bgSvg", description: "Background SVG resource ID.", visible: "bg == 'static' && bgStyle == 'svg'" },
+        ai: { name: "bgSvg", description: "Background SVG resource ID.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'svg'" },
         title: "SVG",
         id: "globalBgSVGResource",
         resource: { accepts: ".svg" },

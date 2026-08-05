@@ -1,6 +1,6 @@
 const RowStart = {
   id: "globalGridItemRowStart",
-  ai: { name: "rowStart", description: "Grid row start line (auto or 1-12).", visible: "actAs == 'grid'" },
+  ai: { name: "rowStart", description: "Grid row start line (auto or 1-12).", visible: "actAs == 'grid' && itemSettings == 'advanced'" },
   format: "row-start-{{value}}",
   title: "Start",
   slider: {

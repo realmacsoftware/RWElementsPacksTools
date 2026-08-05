@@ -33,12 +33,12 @@ export const BordersInput = [
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
-    ai: { visible: "border == 'static'" },
+    ai: { visible: "(border == 'static' || border == 'hover')" },
     globalControl: "BorderStyle",
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
-    ai: { visible: "border == 'static'" },
+    ai: { visible: "(border == 'static' || border == 'hover')" },
     globalControl: "BorderColor",
     default: {
       name: "surface",
@@ -47,7 +47,7 @@ export const BordersInput = [
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
-    ai: { visible: "border == 'static'" },
+    ai: { visible: "(border == 'static' || border == 'hover')" },
     globalControl: "BorderWidth",
     default: {
       base: {
@@ -60,7 +60,7 @@ export const BordersInput = [
   },
   {
     visible: "globalControlTypeBorders == 'static' || (globalControlTypeBorders == 'hover' && globalBordersState == 'start')",
-    ai: { name: "borderRadius", description: "Border radius theme token per corner.", visible: "border == 'static'" },
+    ai: { name: "borderRadius", description: "Border radius theme token per corner.", visible: "(border == 'static' || border == 'hover')" },
     title: "Radius",
     id: "globalBordersRadius",
     format: "{{value}}",

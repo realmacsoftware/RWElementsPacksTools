@@ -1,7 +1,7 @@
 const Gradient = [
   {
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
-    ai: { name: "bgGradientType", description: "Gradient type: linear, radial, or conic.", visible: "bg == 'static' && bgStyle == 'gradient'" },
+    ai: { name: "bgGradientType", description: "Gradient type: linear, radial, or conic.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'gradient'" },
     title: "Type",
     id: "globalBgGradientType",
     responsive: false,
@@ -12,7 +12,7 @@ const Gradient = [
   },
   {
     visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientType == 'linear'",
-    ai: { name: "bgGradientDirection", description: "Linear gradient direction.", visible: "bg == 'static' && bgStyle == 'gradient' && bgGradientType == 'linear'" },
+    ai: { name: "bgGradientDirection", description: "Linear gradient direction.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'gradient' && bgGradientType == 'linear'" },
     title: "Direction",
     id: "globalBgGradientDirection",
     responsive: false,
@@ -22,7 +22,7 @@ const Gradient = [
   },
   {
     visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientType == 'radial'",
-    ai: { name: "bgGradientRadialPosition", description: "Radial gradient center position.", visible: "bg == 'static' && bgStyle == 'gradient' && bgGradientType == 'radial'" },
+    ai: { name: "bgGradientRadialPosition", description: "Radial gradient center position.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'gradient' && bgGradientType == 'radial'" },
     title: "Position",
     id: "globalBgGradientRadialPosition",
     responsive: false,
@@ -32,7 +32,7 @@ const Gradient = [
   },
   {
     visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientType == 'conic'",
-    ai: { name: "bgGradientConicAngle", description: "Conic gradient start angle.", visible: "bg == 'static' && bgStyle == 'gradient' && bgGradientType == 'conic'" },
+    ai: { name: "bgGradientConicAngle", description: "Conic gradient start angle.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'gradient' && bgGradientType == 'conic'" },
     title: "Angle",
     id: "globalBgGradientConicAngle",
     responsive: false,
@@ -42,7 +42,7 @@ const Gradient = [
   },
   {
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
-    ai: { name: "bgGradientInterpolation", description: "Gradient color interpolation mode.", visible: "bg == 'static' && bgStyle == 'gradient'" },
+    ai: { name: "bgGradientInterpolation", description: "Gradient color interpolation mode.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'gradient'" },
     title: "Interpolation",
     id: "globalBgGradientInterpolation",
     responsive: false,
@@ -57,7 +57,7 @@ const Gradient = [
   },
   {
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
-    ai: { name: "bgGradientFrom", description: "Gradient start theme color.", visible: "bg == 'static' && bgStyle == 'gradient'" },
+    ai: { name: "bgGradientFrom", description: "Gradient start theme color.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'gradient'" },
     title: "Color",
     id: "globalBgGradientFromColor",
     format: "from-{{value}}/(--bgGradientFromOpacity)",
@@ -70,7 +70,7 @@ const Gradient = [
   },
   {
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
-    ai: { name: "bgGradientFromOpacity", description: "Gradient start color opacity, 0-100.", visible: "bg == 'static' && bgStyle == 'gradient'" },
+    ai: { name: "bgGradientFromOpacity", description: "Gradient start color opacity, 0-100.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'gradient'" },
     title: "Opacity",
     id: "globalBgGradientFromOpacity",
     format: "[--bgGradientFromOpacity:{{value}}%]",
@@ -83,7 +83,7 @@ const Gradient = [
   },
   {
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
-    ai: { name: "bgGradientFromPosition", description: "Gradient start stop position, 0-100.", visible: "bg == 'static' && bgStyle == 'gradient'" },
+    ai: { name: "bgGradientFromPosition", description: "Gradient start stop position, 0-100.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'gradient'" },
     title: "Position",
     id: "globalBgGradientFromPosition",
     format: "from-{{value}}%",
@@ -100,7 +100,7 @@ const Gradient = [
   },
   {
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
-    ai: { name: "bgGradientViaEnabled", description: "Add a mid-stop (via) color to the gradient.", visible: "bg == 'static' && bgStyle == 'gradient'" },
+    ai: { name: "bgGradientViaEnabled", description: "Add a mid-stop (via) color to the gradient.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'gradient'" },
     title: "Add Via",
     id: "globalBgGradientViaEnabled",
     responsive: false,
@@ -115,7 +115,7 @@ const Gradient = [
   },
   {
     visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientViaEnabled == true",
-    ai: { name: "bgGradientVia", description: "Gradient mid-stop theme color.", visible: "bg == 'static' && bgStyle == 'gradient' && bgGradientViaEnabled == true" },
+    ai: { name: "bgGradientVia", description: "Gradient mid-stop theme color.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'gradient' && bgGradientViaEnabled == true" },
     title: "Color",
     id: "globalBgGradientViaColor",
     format: "via-{{value}}/(--bgGradientViaOpacity)",
@@ -128,7 +128,7 @@ const Gradient = [
   },
   {
     visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientViaEnabled == true",
-    ai: { name: "bgGradientViaOpacity", description: "Gradient mid-stop color opacity, 0-100.", visible: "bg == 'static' && bgStyle == 'gradient' && bgGradientViaEnabled == true" },
+    ai: { name: "bgGradientViaOpacity", description: "Gradient mid-stop color opacity, 0-100.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'gradient' && bgGradientViaEnabled == true" },
     title: "Opacity",
     id: "globalBgGradientViaOpacity",
     format: "[--bgGradientViaOpacity:{{value}}%]",
@@ -141,7 +141,7 @@ const Gradient = [
   },
   {
     visible: "((globalControlTypeBg == 'static' && globalBgType == 'gradient') || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')) && globalBgGradientViaEnabled == true",
-    ai: { name: "bgGradientViaPosition", description: "Gradient mid-stop position, 0-100.", visible: "bg == 'static' && bgStyle == 'gradient' && bgGradientViaEnabled == true" },
+    ai: { name: "bgGradientViaPosition", description: "Gradient mid-stop position, 0-100.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'gradient' && bgGradientViaEnabled == true" },
     title: "Position",
     id: "globalBgGradientViaPosition",
     format: "via-{{value}}%",
@@ -163,7 +163,7 @@ const Gradient = [
   },
   {
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
-    ai: { name: "bgGradientTo", description: "Gradient end theme color.", visible: "bg == 'static' && bgStyle == 'gradient'" },
+    ai: { name: "bgGradientTo", description: "Gradient end theme color.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'gradient'" },
     title: "Color",
     id: "globalBgGradientToColor",
     format: "to-{{value}}/(--bgGradientToOpacity)",
@@ -176,7 +176,7 @@ const Gradient = [
   },
   {
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
-    ai: { name: "bgGradientToOpacity", description: "Gradient end color opacity, 0-100.", visible: "bg == 'static' && bgStyle == 'gradient'" },
+    ai: { name: "bgGradientToOpacity", description: "Gradient end color opacity, 0-100.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'gradient'" },
     title: "Opacity",
     id: "globalBgGradientToOpacity",
     format: "[--bgGradientToOpacity:{{value}}%]",
@@ -189,7 +189,7 @@ const Gradient = [
   },
   {
     visible: "globalControlTypeBg == 'static' && globalBgType == 'gradient' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'gradient')",
-    ai: { name: "bgGradientToPosition", description: "Gradient end stop position, 0-100.", visible: "bg == 'static' && bgStyle == 'gradient'" },
+    ai: { name: "bgGradientToPosition", description: "Gradient end stop position, 0-100.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'gradient'" },
     title: "Position",
     id: "globalBgGradientToPosition",
     format: "to-{{value}}%",

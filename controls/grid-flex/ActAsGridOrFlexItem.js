@@ -29,7 +29,10 @@ const ActAsGridOrFlexItem = [
   },
   {
     visible: "globalGridOrFlexDisplayAs != 'default'",
-    ai: { exclude: true, reason: "Inspector UI mode toggle (Standard/Advanced); the grid/flex item properties it reveals are curated directly." },
+    ai: {
+      name: "itemSettings",
+      description: "Grid/flex item controls: 'basic' (span only on grid) or 'advanced' (placement lines, flex grow/shrink/basis, order, self-alignment on grid).",
+    },
     title: "Settings",
     id: "globalGridOrFlexItemSettings",
     responsive: false,

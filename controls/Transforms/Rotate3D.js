@@ -2,6 +2,7 @@ const Rotate3D = [
   {
     title: "Rotate",
     heading: {},
+    ai: { exclude: true, reason: "Inspector-only heading; not a settable property." },
   },
   {
     title: "X",
@@ -9,6 +10,7 @@ const Rotate3D = [
     ai: {
       name: "rotateX",
       description: "3D rotation about the X axis, in degrees: tilts the top and bottom edges toward or away from the viewer.",
+      visible: "transforms3d != 'none'",
     },
     format: "rotate-x-[{{value}}deg]",
     number: {
@@ -22,6 +24,7 @@ const Rotate3D = [
     ai: {
       name: "rotateY",
       description: "3D rotation about the Y axis, in degrees: swings the left and right edges toward or away from the viewer.",
+      visible: "transforms3d != 'none'",
     },
     format: "rotate-y-[{{value}}deg]",
     number: {

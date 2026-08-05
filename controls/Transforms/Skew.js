@@ -1,12 +1,13 @@
 const Skew = [
   {
     title: "Skew",
-    heading: {}
+    heading: {},
+    ai: { exclude: true, reason: "Inspector-only heading; not a settable property." },
   },
   {
     title: "Horizontal",
     id: "globalTransformSkewX",
-    ai: { name: "skewX", description: "Horizontal skew, in degrees." },
+    ai: { name: "skewX", description: "Horizontal skew, in degrees.", visible: "transforms != 'none'" },
     format: "skew-x-[{{value}}deg]",
     number: {
       default: 0,
@@ -15,7 +16,7 @@ const Skew = [
   {
     title: "Vertical",
     id: "globalTransformSkewY",
-    ai: { name: "skewY", description: "Vertical skew, in degrees." },
+    ai: { name: "skewY", description: "Vertical skew, in degrees.", visible: "transforms != 'none'" },
     format: "skew-y-[{{value}}deg]",
     number: {
       default: 0,

@@ -1,6 +1,6 @@
 export const ColStart = {
   id: "globlaGridItemColStart",
-  ai: { name: "colStart", description: "Grid column start line (auto or 1-12).", visible: "actAs == 'grid'" },
+  ai: { name: "colStart", description: "Grid column start line (auto or 1-12).", visible: "actAs == 'grid' && itemSettings == 'advanced'" },
   format: "col-start-{{value}}",
   title: "Start",
   slider: {

@@ -66,7 +66,7 @@ const HTMLTag = [
     visible: "globalHTMLTag == 'custom'",
     title: "",
     id: "globalHTMLTagCustom",
-    ai: { name: "tagCustom", description: "Custom HTML tag name, without brackets, e.g. 'figure'. Only applies when tag is 'custom'." },
+    ai: { name: "tagCustom", description: "Custom HTML tag name, without brackets, e.g. 'figure'." },
     responsive: false,
     text: {
       default: "div",

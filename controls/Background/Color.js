@@ -1,7 +1,7 @@
 const Color = [
   {
     visible: "globalControlTypeBg == 'static' && globalBgType == 'color' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'color')",
-    ai: { name: "bgColor", description: "Background theme color.", visible: "bg == 'static' && bgStyle == 'color'" },
+    ai: { name: "bgColor", description: "Background theme color.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'color'" },
     title: "Color",
     id: "globalBgColor",
     format: "bg-{{value}}/(--bgColorOpacity)",
@@ -14,7 +14,7 @@ const Color = [
   },
   {
     visible: "globalControlTypeBg == 'static' && globalBgType == 'color' || (globalControlTypeBg == 'hover' && globalBgState == 'start' && globalBgType == 'color')",
-    ai: { name: "bgColorOpacity", description: "Background color opacity, 0-100.", visible: "bg == 'static' && bgStyle == 'color'" },
+    ai: { name: "bgColorOpacity", description: "Background color opacity, 0-100.", visible: "(bg == 'static' || bg == 'hover') && bgStyle == 'color'" },
     title: "Opacity",
     id: "globalBgColorOpacity",
     format: "[--bgColorOpacity:{{value}}%]",
