@@ -4,7 +4,7 @@ const globalSpacingMargin = (app) => {
     globalMargin: margin,
   } = app.props;
 
-  return enabled === false
+  return switchToBool(enabled) === false
     ? false
     : margin;
 }

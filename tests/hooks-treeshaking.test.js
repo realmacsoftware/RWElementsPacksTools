@@ -59,6 +59,7 @@ test("tree shaking drops the shared hooks a component never reaches", async () =
     "globalBackground",
     "globalTransforms3D",
     "globalBordersTable",
+    "switchToBool",
   ]) {
     assert.doesNotMatch(
       code,

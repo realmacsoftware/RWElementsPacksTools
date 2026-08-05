@@ -4,7 +4,7 @@ const globalSpacingPadding = (app) => {
     globalPadding: padding,
   } = app.props;
 
-  return enabled === false
+  return switchToBool(enabled) === false
     ? false
     : padding;
 }
