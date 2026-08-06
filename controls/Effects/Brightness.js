@@ -5,6 +5,7 @@ const Brightness = {
   format: "brightness-[{{value}}%]",
   number: {
     default: 100,
+    min: 0,
     subtitle: "In percent",
   },
 };

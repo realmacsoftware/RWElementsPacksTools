@@ -1,6 +1,6 @@
 const globalLink = (app) => {
   const { globalLink: link = null } = app.props;
-  const hasLink = typeof link === 'object' && Object.keys(link).length > 0 && link.href.length > 0;
+  const hasLink = !!link && typeof link === 'object' && typeof link.href === 'string' && link.href.length > 0;
 
   let linkAttributes = {
     hasLink,

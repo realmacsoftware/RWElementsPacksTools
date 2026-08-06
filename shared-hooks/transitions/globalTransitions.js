@@ -18,7 +18,7 @@ const globalTransitions = (app, alwaysWantsHover = false) => {
     globalTransitionsTimingFunctionCustom: customTimingFunction,
   } = app.props;
 
-  const customTimingFunctionFormatted = customTimingFunction?.replace(/,\s/g, ',_');
+  const customTimingFunctionFormatted = escapeArbitraryWhitespace(customTimingFunction);
 
   const aControlWantsHover = () => {
     return alwaysWantsHover || globalFilterEnable || [

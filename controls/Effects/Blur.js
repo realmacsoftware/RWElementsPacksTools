@@ -5,6 +5,7 @@ const Blur = {
   format: "blur-[{{value}}px]",
   number: {
     default: 0,
+    min: 0,
     subtitle: "In pixels",
   },
 };

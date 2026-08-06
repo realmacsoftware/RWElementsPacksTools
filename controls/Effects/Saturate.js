@@ -5,6 +5,7 @@ const Saturate = {
   format: "saturate-[{{value}}%]",
   number: {
     default: 100,
+    min: 0,
     subtitle: "In percent",
   },
 };

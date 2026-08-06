@@ -51,6 +51,11 @@ const globalTransforms = (app, args = {}) => {
     const scaleMirrored = mirrorScaleXToY(scale);
     const scaleEndMirrored = mirrorScaleXToY(scaleEnd);
 
+    const translateXSafe = escapeArbitraryWhitespace(translateX);
+    const translateYSafe = escapeArbitraryWhitespace(translateY);
+    const translateXEndSafe = escapeArbitraryWhitespace(translateXEnd);
+    const translateYEndSafe = escapeArbitraryWhitespace(translateYEnd);
+
     if (type != "none") {
         classes.add([
             "transform",
@@ -59,8 +64,8 @@ const globalTransforms = (app, args = {}) => {
             rotate,
             skewX,
             skewY,
-            translateX,
-            translateY,
+            translateXSafe,
+            translateYSafe,
         ]);
     }
 
@@ -70,8 +75,8 @@ const globalTransforms = (app, args = {}) => {
             addPrefixToTailwindClasses(rotateEnd, prefix),
             addPrefixToTailwindClasses(skewXEnd, prefix),
             addPrefixToTailwindClasses(skewYEnd, prefix),
-            addPrefixToTailwindClasses(translateXEnd, prefix),
-            addPrefixToTailwindClasses(translateYEnd, prefix),
+            addPrefixToTailwindClasses(translateXEndSafe, prefix),
+            addPrefixToTailwindClasses(translateYEndSafe, prefix),
         ]);
 
         if (wantsActive) {
@@ -80,8 +85,8 @@ const globalTransforms = (app, args = {}) => {
                 addPrefixToTailwindClasses(rotateEnd, "data-[active=true]"),
                 addPrefixToTailwindClasses(skewXEnd, "data-[active=true]"),
                 addPrefixToTailwindClasses(skewYEnd, "data-[active=true]"),
-                addPrefixToTailwindClasses(translateXEnd, "data-[active=true]"),
-                addPrefixToTailwindClasses(translateYEnd, "data-[active=true]"),
+                addPrefixToTailwindClasses(translateXEndSafe, "data-[active=true]"),
+                addPrefixToTailwindClasses(translateYEndSafe, "data-[active=true]"),
             ]);
         }
 
@@ -92,8 +97,8 @@ const globalTransforms = (app, args = {}) => {
                 addPrefixToTailwindClasses(rotateEnd, focusPrefix),
                 addPrefixToTailwindClasses(skewXEnd, focusPrefix),
                 addPrefixToTailwindClasses(skewYEnd, focusPrefix),
-                addPrefixToTailwindClasses(translateXEnd, focusPrefix),
-                addPrefixToTailwindClasses(translateYEnd, focusPrefix),
+                addPrefixToTailwindClasses(translateXEndSafe, focusPrefix),
+                addPrefixToTailwindClasses(translateYEndSafe, focusPrefix),
             ]);
         }
     }
