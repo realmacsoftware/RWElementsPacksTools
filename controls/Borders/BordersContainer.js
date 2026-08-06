@@ -2,7 +2,7 @@ export const BordersContainer = [
   {
     globalControl: "ControlType",
     id: "{{value}}Borders",
-    ai: { name: "border", description: "Enable/disable borders." },
+    ai: { name: "border", description: "Border mode: 'none' disables, 'static' always applies, 'hover' styles start and hover states separately." },
   },
   {
     visible: "globalControlTypeBorders == 'hover'",
