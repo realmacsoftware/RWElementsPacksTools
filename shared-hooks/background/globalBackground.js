@@ -213,6 +213,21 @@ const globalBgGradient = (app, args) => {
     return classes.toString();
 };
 
+/**
+ * A resource path lands inside a bg-[url(...)] arbitrary value: a raw space
+ * splits the class token, and a raw quote or parenthesis ends the CSS url()
+ * early — percent-encode exactly those characters. "%" is left alone so
+ * already-encoded paths are not double-encoded.
+ */
+const encodeBgImageUrl = (url) =>
+    String(url).replace(/[ '"()]/g, (char) => ({
+        " ": "%20",
+        "'": "%27",
+        '"': "%22",
+        "(": "%28",
+        ")": "%29",
+    })[char]);
+
 const globalBgImage = (app, args) => {
     const {
         globalControlTypeBg: controlType,
@@ -244,7 +259,7 @@ const globalBgImage = (app, args) => {
     const hasImageEnd = Boolean(resourceEnd?.image);
 
     const classes = classnames().add([
-        hasImage ? `bg-[url(${resource.image})]` : "",
+        hasImage ? `bg-[url(${encodeBgImageUrl(resource.image)})]` : "",
         size,
         repeat,
         position,
@@ -253,7 +268,7 @@ const globalBgImage = (app, args) => {
     if (controlType == "hover") {
         if (wantsPeer) {
             classes.add([
-                hasImageEnd ? `peer-hover:bg-[url(${resourceEnd.image})]` : "",
+                hasImageEnd ? `peer-hover:bg-[url(${encodeBgImageUrl(resourceEnd.image)})]` : "",
                 sizeEnd.replace(/hover:/g, "peer-hover:"),
                 repeatEnd.replace(/hover:/g, "peer-hover:"),
                 positionEnd.replace(/hover:/g, "peer-hover:"),
@@ -261,7 +276,7 @@ const globalBgImage = (app, args) => {
         } else if (hasPrefix) {
             classes.add([
                 hasImageEnd
-                    ? prefixCallback(`bg-[url(${resourceEnd.image})]`, args.prefix)
+                    ? prefixCallback(`bg-[url(${encodeBgImageUrl(resourceEnd.image)})]`, args.prefix)
                     : "",
                 prefixCallback(sizeEnd.replace(/hover:/g, ""), args.prefix),
                 prefixCallback(repeatEnd.replace(/hover:/g, ""), args.prefix),
@@ -269,7 +284,7 @@ const globalBgImage = (app, args) => {
             ]);
         } else {
             classes.add([
-                hasImageEnd ? `hover:bg-[url(${resourceEnd.image})]` : "",
+                hasImageEnd ? `hover:bg-[url(${encodeBgImageUrl(resourceEnd.image)})]` : "",
                 sizeEnd,
                 repeatEnd,
                 positionEnd,
@@ -278,7 +293,7 @@ const globalBgImage = (app, args) => {
 
         if (wantsActive) {
             classes.add([
-                hasImageEnd ? `data-[active=true]:bg-[url(${resourceEnd.image})]` : "",
+                hasImageEnd ? `data-[active=true]:bg-[url(${encodeBgImageUrl(resourceEnd.image)})]` : "",
                 sizeEnd.replace(/hover:/g, "data-[active=true]:"),
                 repeatEnd.replace(/hover:/g, "data-[active=true]:"),
                 positionEnd.replace(/hover:/g, "data-[active=true]:"),
@@ -287,7 +302,7 @@ const globalBgImage = (app, args) => {
 
         if (wantsFocus) {
             classes.add([
-                hasImageEnd ? `focus:bg-[url(${resourceEnd.image})]` : "",
+                hasImageEnd ? `focus:bg-[url(${encodeBgImageUrl(resourceEnd.image)})]` : "",
                 sizeEnd.replace(/hover:/g, "focus:"),
                 repeatEnd.replace(/hover:/g, "focus:"),
                 positionEnd.replace(/hover:/g, "focus:"),
@@ -302,7 +317,7 @@ const globalBgVideoThumbnail = (app, args) => {
     const { globalBgVideo: video } = app.props;
 
     return classnames([
-        `bg-[url(${video?.image})] bg-cover bg-center`,
+        `bg-[url(${encodeBgImageUrl(video?.image)})] bg-cover bg-center`,
     ]).toString();
 };
 
