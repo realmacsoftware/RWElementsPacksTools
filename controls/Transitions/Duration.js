@@ -7,6 +7,7 @@ const Duration = [
     format: "duration-[{{value}}ms]",
     number: {
       default: 300,
+      min: 0,
     },
   },
 ];
