@@ -2,7 +2,7 @@ const Transforms3D = [
     {
         globalControl: "ControlType",
         id: "{{value}}3D",
-        ai: { name: "transforms3d", description: "Enable/disable 3D transforms." },
+        ai: { name: "transforms3d", description: "3D transform mode: 'none', 'static', 'hover', or 'mouse' (follow cursor)." },
         segmented: {
             default: "none",
             items: [
