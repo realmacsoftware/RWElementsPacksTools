@@ -2,7 +2,7 @@ const Filters = [
     {
         globalControl: "ControlType",
         id: "{{value}}Filters",
-        ai: { name: "filters", description: "Enable/disable filters." },
+        ai: { name: "filters", description: "Filters mode: 'none' disables, 'static' always applies, 'hover' styles start and hover states separately." },
     },
     {
         visible: "globalControlTypeFilters == 'hover'",
