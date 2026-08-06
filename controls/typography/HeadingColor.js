@@ -48,8 +48,7 @@ const HeadingColor = [
     visible: "globalControlTypeBg == 'hover'",
     ai: {
         name: "bgHoverTrigger",
-        description: "Which element's hover triggers the hover text color.",
-        values: ["self", "parent", "container", "grid", "flex"]
+        description: "Which element's hover triggers the hover text color."
     },
     globalControl: "HoverGroup",
     id: "{{value}}Bg",
