@@ -17,6 +17,7 @@ function loadHook(exportsExpression, files) {
 const globalTransforms = loadHook("globalTransforms", [
   "../shared-hooks/core/classnames.js",
   "../shared-hooks/core/addPrefixToTailwindClasses.js",
+  "../shared-hooks/core/escapeArbitraryWhitespace.js",
   "../shared-hooks/core/getHoverPrefix.js",
   "../shared-hooks/transforms/globalTransforms.js",
 ]);
@@ -137,6 +138,33 @@ test("non-scale end values pass through the mirror untouched", () => {
   assert.match(result, /(?:^|\s)hover:rotate-\[5deg\]/);
   assert.match(result, /(?:^|\s)md:hover:rotate-\[60deg\]/);
   assert.doesNotMatch(result, /rotate-y/);
+});
+
+test("whitespace inside translate arbitrary values is escaped to underscores", () => {
+  const app = makeApp({
+    props: {
+      globalControlTypeTransforms: "static",
+      globalTransformTranslateX: "translate-x-[calc(100% - 10px)]",
+    },
+  });
+  const result = globalTransforms(app);
+
+  assert.match(result, /(?:^|\s)translate-x-\[calc\(100%_-_10px\)\](?:\s|$)/);
+  assert.doesNotMatch(result, /calc\(100% /);
+});
+
+test("escaping keeps responsive translate variants as separate classes", () => {
+  const app = makeApp({
+    props: {
+      globalTransformTranslateXEnd:
+        "translate-x-[10px] md:translate-x-[calc(100% - 10px)]",
+    },
+  });
+  const result = globalTransforms(app);
+
+  assert.match(result, /(?:^|\s)hover:translate-x-\[10px\]/);
+  assert.match(result, /(?:^|\s)md:hover:translate-x-\[calc\(100%_-_10px\)\]/);
+  assert.doesNotMatch(result, /\]_md:/);
 });
 
 test("empty end values emit no stray prefix tokens", () => {
