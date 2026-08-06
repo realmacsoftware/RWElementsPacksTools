@@ -1,7 +1,7 @@
 const Margin = {
   title: "Margin",
   id: "globalMargin",
-  ai: { name: "margin", description: "Margin (outer spacing) — theme spacing token per side." },
+  ai: { name: "margin", description: "Margin (outer spacing) — theme spacing token per side. Set left and right to 'auto' to centre a fixed-width element in normal flow." },
   themeSpacing: {
     mode: "margin",
     default: {

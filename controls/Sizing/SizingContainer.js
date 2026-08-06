@@ -6,7 +6,7 @@ const SizingContainer = [
   {
     title: "Width",
     id: "globalWidthType",
-    ai: { name: "widthMode", description: "Width mode: 'auto', 'full', 'screen', 'container' (breakpoint), or 'theme' (use widthSize)." },
+    ai: { name: "widthMode", description: "Width mode: 'auto', 'full', 'screen', 'container' (breakpoint), or 'theme' (use widthSize). 'auto' fills the available width on block wrappers — it does not shrink-wrap to content." },
     responsive: false,
     select: {
       default: "full",
