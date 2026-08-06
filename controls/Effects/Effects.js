@@ -2,7 +2,7 @@ const Effects = [
     {
         globalControl: "ControlType",
         id: "{{value}}Effects",
-        ai: { name: "effects", description: "Enable/disable effects." },
+        ai: { name: "effects", description: "Effects mode: 'none' disables, 'static' always applies, 'hover' styles start and hover states separately." },
     },
     {
         visible: "globalControlTypeEffects == 'hover'",

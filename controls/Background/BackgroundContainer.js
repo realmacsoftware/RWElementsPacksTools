@@ -2,7 +2,7 @@ const BackgroundTransparent = [
   {
     globalControl: "ControlType",
     id: "{{value}}Bg",
-    ai: { name: "bg", description: "Enable/disable background." },
+    ai: { name: "bg", description: "Background mode: 'none' disables, 'static' always applies, 'hover' styles start and hover states separately." },
     segmented: {
       default: "none",
     },

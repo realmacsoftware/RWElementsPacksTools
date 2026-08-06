@@ -2,7 +2,7 @@ const Transforms = [
     {
         globalControl: "ControlType",
         id: "{{value}}Transforms",
-        ai: { name: "transforms", description: "Enable/disable transforms." },
+        ai: { name: "transforms", description: "Transforms mode: 'none' disables, 'static' always applies, 'hover' styles start and hover states separately." },
     },
     {
         visible: "globalControlTypeTransforms == 'hover'",
